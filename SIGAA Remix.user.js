@@ -7,6 +7,7 @@
 // @match        https://sig.unb.br/*
 // @grant        none
 // @updateURL    https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
+// @downloadURL  https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
 // ==/UserScript==
 
 /*globals $*/
