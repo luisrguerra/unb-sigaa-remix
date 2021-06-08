@@ -6,6 +6,7 @@
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // @match        https://sig.unb.br/*
 // @grant        none
+// @supportURL   https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/
 // @updateURL    https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
 // @downloadURL  https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
 // ==/UserScript==
