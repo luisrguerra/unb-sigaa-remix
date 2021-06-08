@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         SIGAA Remix Dark
+// @name         SIGAA Remix
 // @version      0.1
 // @description  Redesigner do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
