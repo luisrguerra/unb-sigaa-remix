@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.1
+// @version      0.2
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
