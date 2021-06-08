@@ -1,11 +1,12 @@
 // ==UserScript==
 // @name         SIGAA Remix
 // @version      0.1
-// @description  Redesigner do SIGAA UnB
+// @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // @match        https://sig.unb.br/*
 // @grant        none
+// @updateURL    https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
 // ==/UserScript==
 
 /*globals $*/
