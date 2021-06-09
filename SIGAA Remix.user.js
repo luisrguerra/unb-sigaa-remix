@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.1
+// @version      0.2
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -15,7 +15,10 @@
 
 'use strict';
 
+var ativado = localStorage.getItem("ativado");
+
 $(document).ready(function(){
+ if (ativado != "false"){
 
    var cor1 = '#2f3c52'; //cor escura //bkp #535353 //bk2 #232D3F
    var cor2 = '#232f40'; //cor escura //bkp #424242 //bkp2 #1C2532
@@ -87,6 +90,9 @@ $(document).ready(function(){
        else if (propriedade == 'width'){
           x[i].style.width = valor;
        }
+       else if (propriedade == 'minWidth'){
+          x[i].style.minWidth = valor;
+       }
        else if (propriedade == 'height'){
           x[i].style.height = valor;
        }
@@ -120,9 +126,8 @@ $(document).ready(function(){
 
 
 
-
   //Página inicial
-  if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf'){
+  if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
 
 
     //Mudar fonte
@@ -178,8 +183,10 @@ $(document).ready(function(){
 
     ///remover espaço de plano de fundo
     xcss('#container','width','auto');
+    //Evitar bug de redimensionamento
+    xcss('#container','minWidth','68em');
     //Ocultar plano de fundo
-    xcss('#container','height','100vh');
+    //xcss('#container','height','100vh');
 
     //Remover fundo definitivamente
     xcss('html.background, body.background','background','white');
@@ -207,6 +214,9 @@ $(document).ready(function(){
 
     //Correção tamanho de letras em Turmas do Semestre e Minhas Atividades
     xcss('#main-docente .simple-panel h4','fontSize',tamanhoFonte1);
+
+    //Melhoria no padding de aviso de vazio
+    xcss('#main-docente .simple-panel p.vazio','padding','10px');
 
     //Mudar a area da foto, mensagens, atualizar foto e perfil...
     xcss('.pessoal-docente','background',corTransparente);
@@ -293,6 +303,7 @@ $(document).ready(function(){
     xcss('#painel-erros ul.erros','background','none'); //remover icone de erro feio
     //xcss('#painel-erros','display','none');
     xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
+    xcss('#painel-erros ul.info','background','none'); //Esconder icone de informação
     xcss('#painel-erros ul','padding','0'); //Remover o padding desnecessário
     xcss('#painel-erros ul.erros li','color','#ff6023'); //Letra vermelha do aviso de erro
 
@@ -342,6 +353,12 @@ $(document).ready(function(){
     //Todas
     xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg','https://svgshare.com/i/Xuz.svg');
 
+    //Remover imagem de telefone antigo inutil
+    xsrc('img','https://sig.unb.br/sigaa/img/celular.jpg','');
+    //Aumentar a area ocupada na horizontal do relatório de notas do aluno
+    xcss('#relatorio-paisagem-container',"width", '90%');
+    xcss('#relatorio-paisagem-container',"minWidth", '60em');
+
     //Inserir icones nos botões modulos, caixa postal...
     //Modulos
     var botaoModulos = document.querySelector('#painel-usuario #menu-usuario li.modulos a');
@@ -359,7 +376,11 @@ $(document).ready(function(){
     var botaoSenha = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
     if (botaoSenha != null){ botaoSenha.insertAdjacentHTML('afterbegin', '<img src="https://svgshare.com/i/XzL.svg" width="12px" height="12px">&nbsp;'); }
 
-    console.log(window.location.href);
+    //Corrreção do tamanho da letra em consultar minhas notas
+    xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
+    //console.log(window.location.href);
+
+
   }
   //Consultar indices acadêmicos
   else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#'){
@@ -372,8 +393,59 @@ $(document).ready(function(){
     xcss('html.background, body.background','background','white');
     //Aumento da ocupação da página na horizontal
     xcss('#relatorio-container','width','70%');
+    xcss('#relatorio-container','minWidth','50em');
 
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
   }
+  //àrea de turmas anteriores
+  else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#'){
+    //Remover fundo
+    xcss('html.background, body.background','background','white');
+    //Ajeitar a margem lateral
+    xcss('#container','width','auto');
+    //Melhorar tamanho da letra
+    xcss('table.listagem, table.subListagem','fontSize',tamanhoFonte2);
+    //Melhorar a margem
+    xcss('table.listagem, table.subListagem','width','90%');
+    //Esconder rodapé
+    xcss('#rodape','display','none');
+
+  }
+ }
+
+ //Botão de ativar e desativar
+ // Criar botão
+ var button = document.createElement("button");
+ if (ativado == 'false'){
+     button.innerHTML = "Ativar SIGAA Remix";
+ }
+ else{
+     button.innerHTML = "Desativar SIGAA Remix";
+ }
+ button.style.border = 'none';
+ button.style.backgroundColor = '#2553ca';
+ button.style.color = 'white';
+ button.style.fontSize = '16px';
+ button.style.padding = '1em';
+ button.style.margin = '1em';
+ button.style.borderRadius = '12px';
+ button.style.boxShadow ='0px 3px 5px rgba(0, 0, 0, 0.20)';
+
+ // Inserir Botão
+ var body = document.getElementsByTagName("body")[0];
+ body.appendChild(button);
+
+
+ button.addEventListener ("click", function() {
+   if (ativado == 'false'){
+       localStorage.setItem("ativado", 'true');
+       alert("SIGAA Remix Ativado");
+   }
+   else{
+       localStorage.setItem("ativado", 'false');
+       alert("SIGAA Remix Desativado");
+   }
+   document.location.reload(true);
+ });
 
 });
