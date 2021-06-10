@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.2
+// @version      0.3
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -102,6 +102,15 @@ $(document).ready(function(){
        else if (propriedade == 'marginTop'){
           x[i].style.marginTop = valor;
        }
+       else if (propriedade == 'marginBottom'){
+          x[i].style.marginBottom = valor;
+       }
+       else if (propriedade == 'marginLeft'){
+          x[i].style.marginLeft = valor;
+       }
+       else if (propriedade == 'marginRight'){
+          x[i].style.marginRight = valor;
+       }
        else if (propriedade == 'boxShadow'){
           x[i].style.boxShadow = valor;
        }
@@ -124,7 +133,22 @@ $(document).ready(function(){
   }
 
 
+  //Mudar o ícone de interroção dos horários para um ícone de relógio
+  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif','https://svgshare.com/i/Y3e.svg');
 
+  //Mudar icone de Matricula negada
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png','https://svgshare.com/i/Y49.svg');
+  //Mudar icone de Matricula permitida
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_permitida.png','https://svgshare.com/i/Y4t.svg');
+
+  //Mudar icone zoom matricula
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/zoom.png','https://svgshare.com/i/Y3h.svg');
+
+  //Mudar icone chave
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_tem_reservas.png','https://svgshare.com/i/Y2n.svg');
+
+  //Mudar icone de restrição reserva matrizes curriculares especificas
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/restricao_reserva.png','https://svgshare.com/i/Y4i.svg');
 
   //Página inicial
   if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
@@ -288,6 +312,7 @@ $(document).ready(function(){
     xcss('a.fonteMaior','display','none');
     xcss('a.fonteMenor','display','none');
 
+
     //menu
     xcss('.ThemeOfficeMenuItem','background',cor1);
     xcss('.ThemeOfficeMenuItem','color',corFonteClara1);
@@ -304,6 +329,8 @@ $(document).ready(function(){
     //xcss('#painel-erros','display','none');
     xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
     xcss('#painel-erros ul.info','background','none'); //Esconder icone de informação
+    xcss('#painel-erros ul.warning','background','none'); //Esconder icone de alerta
+    xcss('#painel-erros ul.warning li','color','#ffeb3b'); //Mudar do aviso de alerta
     xcss('#painel-erros ul','padding','0'); //Remover o padding desnecessário
     xcss('#painel-erros ul.erros li','color','#ff6023'); //Letra vermelha do aviso de erro
 
@@ -326,6 +353,12 @@ $(document).ready(function(){
 
     //Mudar cor do botão sair
     xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
+
+    //Mudar a are portal docente> Lista de avaliações...
+    xcss('#conteudo #form h2','background',cor2);
+    xcss('#conteudo #form h2','color',corFonteClara1);
+    xcss('#conteudo #form a','color',corFonteClara1);
+    xcss('#conteudo #form h2','borderBottom',"1px solid" + cor3);
 
     //Adicionar sombra no menu de dropdown
     xcss('.ThemeOfficeSubMenu',"boxShadow", 'rgb(0 0 0 / 30%) 0px 1px 4px');
@@ -418,16 +451,21 @@ $(document).ready(function(){
  var button = document.createElement("button");
  if (ativado == 'false'){
      button.innerHTML = "Ativar SIGAA Remix";
+     button.style.backgroundColor = '#379638';
+     //
  }
  else{
      button.innerHTML = "Desativar SIGAA Remix";
+     button.style.backgroundColor = '#2553ca';
  }
  button.style.border = 'none';
- button.style.backgroundColor = '#2553ca';
  button.style.color = 'white';
  button.style.fontSize = '16px';
  button.style.padding = '1em';
- button.style.margin = '1em';
+ button.style.marginTop = '1em';
+ button.style.marginBottom = '1em';
+ button.style.marginLeft = 'auto';
+ button.style.marginRight = 'auto';
  button.style.borderRadius = '12px';
  button.style.boxShadow ='0px 3px 5px rgba(0, 0, 0, 0.20)';
 
