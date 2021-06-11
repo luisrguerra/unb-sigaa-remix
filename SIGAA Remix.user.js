@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.3
+// @version      0.4
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -17,28 +17,39 @@
 
 var ativado = localStorage.getItem("ativado");
 
-$(document).ready(function(){
- if (ativado != "false"){
+//Cores
+var cor1 = '#2f3c52'; //cor escura //bkp #535353 //bk2 #232D3F
+var cor2 = '#232f40'; //cor escura //bkp #424242 //bkp2 #1C2532
+var cor3 = '#141A25'; //cor escura //bkp #383838
+var cor4 = '#5e697d'; //cor escura botão //bkp #747474
+var corFundo1 = "white";
+var corTransparente = "rgb(255 255 255 / 0%)";
 
-   var cor1 = '#2f3c52'; //cor escura //bkp #535353 //bk2 #232D3F
-   var cor2 = '#232f40'; //cor escura //bkp #424242 //bkp2 #1C2532
-   var cor3 = '#141A25'; //cor escura //bkp #383838
-   var cor4 = '#5e697d'; //cor escura botão //bkp #747474
-   var corFundo1 = "white";
-   var corTransparente = "rgb(255 255 255 / 0%)";
+//Borda
+var brancoBorda1 = "1px solid #e0e0e0";
+var arrendondamentoBorda1 = "2px";
 
-   //Borda
-   var brancoBorda1 = "1px solid #e0e0e0";
-   var arrendondamentoBorda1 = "2px";
+//Fonte
+var tamanhoFonte1 = "1em";
+var tamanhoFonte2 = "14px";
+var fontePadrao = "Helvetica, sans-serif";
+var corFonteClara1 = "#fbfbfb"; //bkp #f0f0f0
+var paddingPadrao = "1em";
 
-   //Fonte
-   var tamanhoFonte1 = "1em";
-   var tamanhoFonte2 = "14px";
-   var fontePadrao = "Helvetica, sans-serif";
-   var corFonteClara1 = "#fbfbfb"; //bkp #f0f0f0
-   var paddingPadrao = "1em";
+//Sombras
+var sombra1 = 'rgb(0 0 0 / 30%) 0px 1px 4px';
+var sombra2 = '0px 3px 5px rgba(0, 0, 0, 0.20)';
 
-   function xcss (regra, propriedade, valor){
+//Imagens e icones
+var iconeImpressora = 'https://svgshare.com/i/Y4o.svg';
+var iconeSenha = 'https://svgshare.com/i/XzL.svg';
+var iconeMenuDiscente = 'https://svgshare.com/i/XzX.svg';
+var iconeChamado = 'https://svgshare.com/i/Xyh.svg';
+var iconeCaixaPostal = 'https://svgshare.com/i/Xz0.svg';
+var iconeModulos = 'https://svgshare.com/i/Xyi.svg';
+
+//Função para alterar a aparência de  acordo com a regra do cssw
+function xcss (regra, propriedade, valor){
      var x,i ;
      x = document.querySelectorAll(regra);
       for (i = 0; i < x.length; i++) {
@@ -115,10 +126,10 @@ $(document).ready(function(){
           x[i].style.boxShadow = valor;
        }
       }
-    }
+}
 
-  //Função para trocar imagens (source)
-  function xsrc (regra, antigo, novo){
+//Função para trocar imagens (source)
+function xsrc (regra, antigo, novo){
      var x,i ;
      x = document.querySelectorAll(regra);
       for (i = 0; i < x.length; i++) {
@@ -129,8 +140,11 @@ $(document).ready(function(){
           else if (antigo == 'all'){
             x[i].src = novo;
           }
-     }
-  }
+      }
+}
+
+$(document).ready(function(){
+ if (ativado != "false"){
 
 
   //Mudar o ícone de interroção dos horários para um ícone de relógio
@@ -252,7 +266,8 @@ $(document).ready(function(){
     xcss('#menu-dropdown','background',cor2);
     xcss('#menu-dropdown','borderBottom',"1px solid" + cor3);
     //Adicionar sombra a aba de cima
-    xcss('#menu-dropdown',"boxShadow", 'rgb(0 0 0 / 30%) 0px 1px 4px');
+    xcss('#menu-dropdown',"boxShadow", sombra1);
+    xcss('#painel-usuario',"boxShadow", sombra1);
 
     ///escurecer sistema de gestão...
     xcss('#info-sistema','background',cor1);
@@ -355,13 +370,20 @@ $(document).ready(function(){
     xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
 
     //Mudar a are portal docente> Lista de avaliações...
-    xcss('#conteudo #form h2','background',cor2);
-    xcss('#conteudo #form h2','color',corFonteClara1);
-    xcss('#conteudo #form a','color',corFonteClara1);
-    xcss('#conteudo #form h2','borderBottom',"1px solid" + cor3);
+    //xcss('#conteudo #form h2','background',cor2);
+    //xcss('#conteudo #form h2','color',corFonteClara1);
+    //xcss('#conteudo #form a','color',corFonteClara1);
+    //xcss('#conteudo #form h2','borderBottom',"1px solid" + cor3);
+    //xcss('#conteudo #form h2','boxShadow', sombra1);
+
+    //Melhorar o Portal discente> todas as turmas
+    xcss('#conteudo h2','background', corTransparente);
+    xcss('#conteudo h2','border', 'none');
+
+
 
     //Adicionar sombra no menu de dropdown
-    xcss('.ThemeOfficeSubMenu',"boxShadow", 'rgb(0 0 0 / 30%) 0px 1px 4px');
+    xcss('.ThemeOfficeSubMenu',"boxShadow", sombra1);
 
     //Mudar o icone de avalição institucional
     xsrc('input, textarea, select,input#agenda','https://sig.unb.br/sigaa/img/avaliacao.jpg','https://svgshare.com/i/Xzo.svg');
@@ -392,22 +414,25 @@ $(document).ready(function(){
     xcss('#relatorio-paisagem-container',"width", '90%');
     xcss('#relatorio-paisagem-container',"minWidth", '60em');
 
+    //Mudar icone impressora
+    xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
+
     //Inserir icones nos botões modulos, caixa postal...
     //Modulos
     var botaoModulos = document.querySelector('#painel-usuario #menu-usuario li.modulos a');
-    if (botaoModulos != null){ botaoModulos.insertAdjacentHTML('afterbegin', '<img src="https://svgshare.com/i/Xyi.svg" width="12px" height="12px">&nbsp;'); }
+    if (botaoModulos != null){ botaoModulos.insertAdjacentHTML('afterbegin', '<img src="' + iconeModulos + '" width="12px" height="12px">&nbsp;'); }
     //Caixa Postal
     var botaoPostal = document.querySelector('#painel-usuario #menu-usuario li.caixa-postal a');
-    if (botaoPostal != null){ botaoPostal.insertAdjacentHTML('afterbegin', '<img src="https://svgshare.com/i/Xz0.svg" width="12px" height="12px">&nbsp;'); }
+    if (botaoPostal != null){ botaoPostal.insertAdjacentHTML('afterbegin', '<img src="' + iconeCaixaPostal + '" width="12px" height="12px">&nbsp;'); }
     //Chamado
     var botaoChamado = document.querySelector('#painel-usuario #menu-usuario li.chamado a');
-    if (botaoChamado != null){ botaoChamado.insertAdjacentHTML('afterbegin', '<img src="https://svgshare.com/i/Xyh.svg" width="12px" height="12px">&nbsp;'); }
+    if (botaoChamado != null){ botaoChamado.insertAdjacentHTML('afterbegin', '<img src="' + iconeChamado + '" width="12px" height="12px">&nbsp;'); }
     //Menu discente
     var botaoDiscente = document.querySelector('#painel-usuario #menu-usuario li.menus a');
-    if (botaoDiscente != null){ botaoDiscente.insertAdjacentHTML('afterbegin', '<img src="https://svgshare.com/i/XzX.svg" width="12px" height="12px">&nbsp;'); }
+    if (botaoDiscente != null){ botaoDiscente.insertAdjacentHTML('afterbegin', '<img src="' + iconeMenuDiscente + '" width="12px" height="12px">&nbsp;'); }
     //Alterar senha
     var botaoSenha = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
-    if (botaoSenha != null){ botaoSenha.insertAdjacentHTML('afterbegin', '<img src="https://svgshare.com/i/XzL.svg" width="12px" height="12px">&nbsp;'); }
+    if (botaoSenha != null){ botaoSenha.insertAdjacentHTML('afterbegin', '<img src="' + iconeSenha + '" width="12px" height="12px">&nbsp;'); }
 
     //Corrreção do tamanho da letra em consultar minhas notas
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
@@ -428,10 +453,45 @@ $(document).ready(function(){
     xcss('#relatorio-container','width','70%');
     xcss('#relatorio-container','minWidth','50em');
 
+    //Mudar tamanho da letra rodapé
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
+
+    //Mudar as bordas
+    xcss('#relatorio-rodape','border',brancoBorda1);
+    xcss('#relatorio-rodape','borderRadius',arrendondamentoBorda1);
+    xcss('#relatorio-cabecalho','border',brancoBorda1);
+    xcss('#relatorio-cabecalho','borderRadius',arrendondamentoBorda1);
+
+    //Mudar icone impressora
+    xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
   }
-  //àrea de turmas anteriores
+  //Área de turmas anteriores
   else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#'){
+    //Mudar fonte
+    document.body.style.fontFamily = fontePadrao;
+    //Mudar tamanho da fonte para o tamanho normal
+    //document.body.style.fontSize = tamanhoFonte1;
+
+    xcss('#container','minWidth','102em');
+
+    xcss('#painel-usuario',"boxShadow", sombra1);
+
+    //Melhorar o Portal discente> todas as turmas
+    xcss('#conteudo h2','background', corTransparente);
+    xcss('#conteudo h2','border', 'none');
+
+    //Melhorar o acessar turma virtual
+    xcss('.infoAltRem','background', corTransparente);
+    xcss('.infoAltRem','border', 'none');
+
+    //Melhorar tamanho fonte
+    xcss('#tempoSessao small em, #tempoSessao small span','fontSize','13.3px');
+    xcss('#info-sistema span.acessibilidade a','fontSize','17.6px');
+    xcss('#info-sistema h1 span','fontSize','21.12px');
+    xcss('#info-sistema h3','fontSize','17.6px');
+    xcss('#painel-usuario #info-usuario p','fontSize','16px');
+    xcss('#painel-usuario #menu-usuario li a','fontSize','13.4px');
+
     //Remover fundo
     xcss('html.background, body.background','background','white');
     //Ajeitar a margem lateral
@@ -442,6 +502,60 @@ $(document).ready(function(){
     xcss('table.listagem, table.subListagem','width','90%');
     //Esconder rodapé
     xcss('#rodape','display','none');
+
+    ///escurecer sistema de gestão...
+    xcss('#info-sistema','background',cor1);
+    xcss('#info-sistema','color',corFonteClara1);
+    xcss('#info-sistema','borderBottom',"1px solid" + cor3);
+
+    //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
+    xcss('#info-sistema span.acessibilidade','border','solid ' + cor3);
+    xcss('#info-sistema span.acessibilidade','borderWidth','0 1px 0 0');
+
+    //Mudar cor do botão sair
+    xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
+
+    //Mudar o fundo dá área do nome, departamento, semestre da barra de cima
+    xcss('#painel-usuario','background',cor1);
+    xcss('#painel-usuario','color',corFonteClara1);
+    xcss('#painel-usuario','borderBottom',"1px solid" + cor3);
+    //correção do tamanho da barra de cima
+    xcss('#painel-usuario','minHeight',"55px");
+
+    //mudar cores do fundo do menu com os botões modulos , menu discente...
+    xcss('#painel-usuario #menu-usuario','background',cor1);
+    xcss('#painel-usuario #menu-usuario','color',corFonteClara1);
+
+    //Mudar botões modulos, caixa postal, discente, senha....
+    xcss('#painel-usuario #menu-usuario li a','background',cor1); //Remover icones
+    xcss('#painel-usuario #menu-usuario li a','color',corFonteClara1);
+    xcss('#painel-usuario #menu-usuario li a','textAlign',"center");
+    xcss('#painel-usuario #menu-usuario li a','padding',"2px 0px 2px 0px");
+    xcss('#painel-usuario #menu-usuario li a','border',"1px solid " +cor4);
+    xcss('#painel-usuario #menu-usuario li a','borderRadius',arrendondamentoBorda1);
+    xcss('#painel-usuario #menu-usuario li a','marginTop','auto');
+
+    //Mudar 'todas as turmas virtuais'
+    xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','background',cor1);
+    xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','border',"1px solid " +cor3);
+    xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','borderRadius',arrendondamentoBorda1);
+
+    //Inserir icones nos botões modulos, caixa postal...
+    //Modulos
+    var botaoModulos2 = document.querySelector('#painel-usuario #menu-usuario li.modulos a');
+    if (botaoModulos2 != null){ botaoModulos2.insertAdjacentHTML('afterbegin', '<img src="' + iconeModulos + '" width="12px" height="12px">&nbsp;'); }
+    //Caixa Postal
+    var botaoPostal2 = document.querySelector('#painel-usuario #menu-usuario li.caixa-postal a');
+    if (botaoPostal2 != null){ botaoPostal2.insertAdjacentHTML('afterbegin', '<img src="' + iconeCaixaPostal + '" width="12px" height="12px">&nbsp;'); }
+    //Chamado
+    var botaoChamado2 = document.querySelector('#painel-usuario #menu-usuario li.chamado a');
+    if (botaoChamado2 != null){ botaoChamado2.insertAdjacentHTML('afterbegin', '<img src="' + iconeChamado + '" width="12px" height="12px">&nbsp;'); }
+    //Menu discente
+    var botaoDiscente2 = document.querySelector('#painel-usuario #menu-usuario li.menus a');
+    if (botaoDiscente2 != null){ botaoDiscente2.insertAdjacentHTML('afterbegin', '<img src="' + iconeMenuDiscente + '" width="12px" height="12px">&nbsp;'); }
+    //Alterar senha
+    var botaoSenha2 = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
+    if (botaoSenha2 != null){ botaoSenha2.insertAdjacentHTML('afterbegin', '<img src="' + iconeSenha + '" width="12px" height="12px">&nbsp;'); }
 
   }
  }
@@ -467,7 +581,7 @@ $(document).ready(function(){
  button.style.marginLeft = 'auto';
  button.style.marginRight = 'auto';
  button.style.borderRadius = '12px';
- button.style.boxShadow ='0px 3px 5px rgba(0, 0, 0, 0.20)';
+ button.style.boxShadow = sombra2;
 
  // Inserir Botão
  var body = document.getElementsByTagName("body")[0];

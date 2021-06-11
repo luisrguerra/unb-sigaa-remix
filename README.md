@@ -1,4 +1,4 @@
-# SIGAA Remix Beta Versão 0.3
+# SIGAA Remix Beta Versão 0.4
 Extensão que melhora a experiência do usuário na plataforma SIGAA da UnB. Necessário a extensão Tampermonkey instalada no navegador.
 <br>
 <br>
