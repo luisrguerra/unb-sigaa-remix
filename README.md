@@ -1,4 +1,4 @@
-# SIGAA Remix Beta Versão 0.4
+# SIGAA Remix Beta Versão 0.5
 O SIGAA Remix é uma extensão para Google Chrome desenvolvida com o foco de melhorar a experiência do usuário na plataforma SIGAA da UnB. 
 Atravéz de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aquela cara de anos 90, melhorando a aparência 
 e aumentando o tamanho das letras. Para evitar qualquer problema com atulizações futuras, é adicionado um botão no final do

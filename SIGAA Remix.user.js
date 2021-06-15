@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.4
+// @version      0.5
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -41,12 +41,51 @@ var sombra1 = 'rgb(0 0 0 / 30%) 0px 1px 4px';
 var sombra2 = '0px 3px 5px rgba(0, 0, 0, 0.20)';
 
 //Imagens e icones
-var iconeImpressora = 'https://svgshare.com/i/Y4o.svg';
-var iconeSenha = 'https://svgshare.com/i/XzL.svg';
-var iconeMenuDiscente = 'https://svgshare.com/i/XzX.svg';
-var iconeChamado = 'https://svgshare.com/i/Xyh.svg';
-var iconeCaixaPostal = 'https://svgshare.com/i/Xz0.svg';
-var iconeModulos = 'https://svgshare.com/i/Xyi.svg';
+const iconeImpressora = 'https://svgshare.com/i/Y4o.svg';
+const iconeSenha = 'https://svgshare.com/i/XzL.svg';
+const iconeMenuDiscente = 'https://svgshare.com/i/XzX.svg';
+const iconeChamado = 'https://svgshare.com/i/Xyh.svg';
+const iconeCaixaPostal = 'https://svgshare.com/i/Xz0.svg';
+const iconeModulos = 'https://svgshare.com/i/Xyi.svg';
+const iconeTurmaReservada = 'https://svgshare.com/i/YA2.svg';
+const iconeMatriculaPermitida = 'https://svgshare.com/i/YAT.svg';
+const iconeMatriculaNegada = 'https://svgshare.com/i/YA3.svg';
+const iconeRelogio = 'https://svgshare.com/i/Y9w.svg';
+const iconeZoom = 'https://svgshare.com/i/Y3h.svg';
+const iconeChave = 'https://svgshare.com/i/Y2n.svg';
+const iconeEnsino = 'https://svgshare.com/i/Xw5.svg';
+const iconePesquisa = 'https://svgshare.com/i/XvR.svg';
+const iconeExtensao = 'https://svgshare.com/i/XuM.svg';
+const iconeBolsas = 'https://svgshare.com/i/XvU.svg';
+const iconeRelacoesInternacionais = 'https://svgshare.com/i/Xus.svg';
+const iconeOutros = 'https://svgshare.com/i/XvT.svg';
+
+function tema(cor){
+   if (cor == 'azul'){
+      cor1 = '#2f3c52';
+      cor2 = '#232f40';
+      cor3 = '#141A25';
+      cor4 = '#5e697d';
+   }
+   else if(cor == 'preto'){
+      cor1 = '#3A3A3A';
+      cor2 = '#2D2D2D';
+      cor3 = '#191919';
+      cor4 = '#686868';
+   }
+   else if(cor == 'ciano'){
+      cor1 = '#314352';
+      cor2 = '#253540';
+      cor3 = '#151E25';
+      cor4 = '#606F7D';
+   }
+   else{
+      cor1 = '#2f3c52';
+      cor2 = '#232f40';
+      cor3 = '#141A25';
+      cor4 = '#5e697d';
+   }
+}
 
 //Função para alterar a aparência de  acordo com a regra do cssw
 function xcss (regra, propriedade, valor){
@@ -144,34 +183,132 @@ function xsrc (regra, antigo, novo){
 }
 
 $(document).ready(function(){
- if (ativado != "false"){
 
+  function mudancasBasicias(){
+    //Mudar fonte
+    document.body.style.fontFamily = fontePadrao;
+    //Remoção do fundo
+    xcss('html.background, body.background','background','white');
+    ///remover espaço lateral do plano de fundo
+    xcss('#container','width','auto');
+    //Esconder rodapé
+    xcss('#rodape','display','none');
+ }
+ function mudancasBarraDeCima(){
+    //Escurecer sistema de gestão...
+    xcss('#info-sistema','background',cor1);
+    xcss('#info-sistema','color',corFonteClara1);
+    xcss('#info-sistema','borderBottom',"1px solid" + cor3);
+
+    //Mudar o fundo dá área do nome, departamento, semestre da barra de cima
+    xcss('#painel-usuario','background',cor1);
+    xcss('#painel-usuario','color',corFonteClara1);
+    xcss('#painel-usuario','borderBottom',"1px solid" + cor3);
+
+    //Correção do tamanho da barra de cima
+    xcss('#painel-usuario','minHeight',"56px");
+
+    //Mudar cores do fundo do menu com os botões modulos , menu discente...
+    xcss('#painel-usuario #menu-usuario','background',cor1);
+    xcss('#painel-usuario #menu-usuario','color',corFonteClara1);
+
+    //Mudar botões modulos, caixa postal, discente, senha....
+    xcss('#painel-usuario #menu-usuario li a','background',cor1); //Remover icones
+    xcss('#painel-usuario #menu-usuario li a','color',corFonteClara1);
+    xcss('#painel-usuario #menu-usuario li a','textAlign',"center");
+    xcss('#painel-usuario #menu-usuario li a','padding',"2px 0px 2px 0px");
+    xcss('#painel-usuario #menu-usuario li a','border',"1px solid " +cor4);
+    xcss('#painel-usuario #menu-usuario li a','borderRadius',arrendondamentoBorda1);
+    xcss('#painel-usuario #menu-usuario li a','marginTop','auto');
+
+    //Mudar cor do botão sair
+    xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
+
+    //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
+    xcss('#info-sistema span.acessibilidade','border','solid ' + cor3);
+    xcss('#info-sistema span.acessibilidade','borderWidth','0 1px 0 0');
+
+    //Inserir icones nos botões modulos, caixa postal...
+    //Modulos
+    var botaoModulos2 = document.querySelector('#painel-usuario #menu-usuario li.modulos a');
+    if (botaoModulos2 != null){ botaoModulos2.insertAdjacentHTML('afterbegin', '<img src="' + iconeModulos + '" width="12px" height="12px">&nbsp;'); }
+    //Caixa Postal
+    var botaoPostal2 = document.querySelector('#painel-usuario #menu-usuario li.caixa-postal a');
+    if (botaoPostal2 != null){ botaoPostal2.insertAdjacentHTML('afterbegin', '<img src="' + iconeCaixaPostal + '" width="12px" height="12px">&nbsp;'); }
+    //Chamado
+    var botaoChamado2 = document.querySelector('#painel-usuario #menu-usuario li.chamado a');
+    if (botaoChamado2 != null){ botaoChamado2.insertAdjacentHTML('afterbegin', '<img src="' + iconeChamado + '" width="12px" height="12px">&nbsp;'); }
+    //Menu discente
+    var botaoDiscente2 = document.querySelector('#painel-usuario #menu-usuario li.menus a');
+    if (botaoDiscente2 != null){ botaoDiscente2.insertAdjacentHTML('afterbegin', '<img src="' + iconeMenuDiscente + '" width="12px" height="12px">&nbsp;'); }
+    //Alterar senha
+    var botaoSenha2 = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
+    if (botaoSenha2 != null){ botaoSenha2.insertAdjacentHTML('afterbegin', '<img src="' + iconeSenha + '" width="12px" height="12px">&nbsp;'); }
+
+    //Esconder ajuste de tamanho de letra
+    xcss('a.fonteMaior','display','none');
+    xcss('a.fonteMenor','display','none');
+
+    //Melhorar Tamanho da letra
+    xcss('#info-sistema h3','fontSize','18.72px');
+    xcss('#painel-usuario #info-usuario p','fontSize','16px');
+    xcss('#info-sistema h1 span','fontSize','18.72px');
+    xcss('#tempoSessao small em, #tempoSessao small span','fontSize','13.28px');
+    xcss('#info-sistema span.acessibilidade a','fontSize','18.72px');
+    xcss('#painel-usuario #menu-usuario li a','fontSize','14px');
+    xcss('#info-sistema span.sair-sistema a','fontSize','18.72px');
+
+    //Adicionar sombra
+    xcss('#painel-usuario',"boxShadow", sombra1);
+
+    //Melhorar o Portal discente> todas as turmas ... e outros
+    xcss('#conteudo h2','background', corTransparente);
+    xcss('#conteudo h2','border', 'none');
+
+    //Mudar fundo avisso de erro
+    xcss('#painel-erros','background',cor1);
+    xcss('#painel-erros','borderBottom',"1px solid" + cor3);
+    xcss('#painel-erros','color',corFonteClara1);
+    xcss('#painel-erros a','color',corFonteClara1);
+    xcss('#painel-erros ul.erros','background','none'); //remover icone de erro feio
+    xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
+    xcss('#painel-erros ul.info','background','none'); //Esconder icone de informação
+    xcss('#painel-erros ul.warning','background','none'); //Esconder icone de alerta
+    xcss('#painel-erros ul.warning li','color','#ffeb3b'); //Mudar do aviso de alerta
+    xcss('#painel-erros ul','padding','0'); //Remover o padding desnecessário
+    xcss('#painel-erros ul.erros li','color','#ff6023'); //Letra vermelha do aviso de erro
+
+ }
+ function corrigirFonte(){
+   document.body.style.fontSize = tamanhoFonte1;
+ }
+
+ if (ativado != "false"){
+  tema('azul');
 
   //Mudar o ícone de interroção dos horários para um ícone de relógio
-  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif','https://svgshare.com/i/Y3e.svg');
+  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif',iconeRelogio);
 
   //Mudar icone de Matricula negada
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png','https://svgshare.com/i/Y49.svg');
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png',iconeMatriculaNegada);
   //Mudar icone de Matricula permitida
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_permitida.png','https://svgshare.com/i/Y4t.svg');
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_permitida.png',iconeMatriculaPermitida);
 
   //Mudar icone zoom matricula
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/zoom.png','https://svgshare.com/i/Y3h.svg');
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/zoom.png', iconeZoom);
 
   //Mudar icone chave
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_tem_reservas.png','https://svgshare.com/i/Y2n.svg');
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_tem_reservas.png',iconeChave);
 
   //Mudar icone de restrição reserva matrizes curriculares especificas
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/restricao_reserva.png','https://svgshare.com/i/Y4i.svg');
+  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/restricao_reserva.png',iconeTurmaReservada);
 
   //Página inicial
   if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
+    mudancasBasicias();
+    mudancasBarraDeCima();
 
-
-    //Mudar fonte
-    document.body.style.fontFamily = fontePadrao;
-    //Mudar tamanho da fonte para o tamanho normal
-    document.body.style.fontSize = tamanhoFonte1;
+    corrigirFonte();
 
 
     //Mudança daborda de cima do ver turmas anteriores
@@ -216,18 +353,11 @@ $(document).ready(function(){
     //Esconder comunidade inutil
     xcss('#participantes','display','none');
 
-    //Esconder rodapé
-    xcss('#rodape','display','none');
 
-    ///remover espaço de plano de fundo
-    xcss('#container','width','auto');
     //Evitar bug de redimensionamento
     xcss('#container','minWidth','68em');
     //Ocultar plano de fundo
     //xcss('#container','height','100vh');
-
-    //Remover fundo definitivamente
-    xcss('html.background, body.background','background','white');
 
     //correção do tamanho do texto em atualizações da turma
     xcss('#atualizacoes-turma','fontSize',tamanhoFonte2);
@@ -269,31 +399,6 @@ $(document).ready(function(){
     xcss('#menu-dropdown',"boxShadow", sombra1);
     xcss('#painel-usuario',"boxShadow", sombra1);
 
-    ///escurecer sistema de gestão...
-    xcss('#info-sistema','background',cor1);
-    xcss('#info-sistema','color',corFonteClara1);
-    xcss('#info-sistema','borderBottom',"1px solid" + cor3);
-
-    //Mudar o fundo dá área do nome, departamento, semestre da barra de cima
-    xcss('#painel-usuario','background',cor1);
-    xcss('#painel-usuario','color',corFonteClara1);
-    xcss('#painel-usuario','borderBottom',"1px solid" + cor3);
-    //correção do tamanho da barra de cima
-    xcss('#painel-usuario','minHeight',"55px");
-
-    //mudar cores do fundo do menu com os botões modulos , menu discente...
-    xcss('#painel-usuario #menu-usuario','background',cor1);
-    xcss('#painel-usuario #menu-usuario','color',corFonteClara1);
-
-    //Mudar botões modulos, caixa postal, discente, senha....
-    xcss('#painel-usuario #menu-usuario li a','background',cor1); //Remover icones
-    xcss('#painel-usuario #menu-usuario li a','color',corFonteClara1);
-    xcss('#painel-usuario #menu-usuario li a','textAlign',"center");
-    xcss('#painel-usuario #menu-usuario li a','padding',"2px 0px 2px 0px");
-    xcss('#painel-usuario #menu-usuario li a','border',"1px solid " +cor4);
-    xcss('#painel-usuario #menu-usuario li a','borderRadius',arrendondamentoBorda1);
-    xcss('#painel-usuario #menu-usuario li a','marginTop','auto');
-
     ////ensino, cadastro, bolsas..... mudar cor e adicionar bordas
     xcss('.ThemeOfficeMainItem','background',cor2);
     xcss('.ThemeOfficeMainItem','color',corFonteClara1);
@@ -307,25 +412,21 @@ $(document).ready(function(){
     //xcss('.ThemeOfficeMainFolderLeft','display','none'); //remover
     //Mudar icones
     //Ensino
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/ensino_menu.gif','https://svgshare.com/i/Xw5.svg');
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/ensino_menu.gif', iconeEnsino);
     //Pesquisa
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/pesquisa_menu.gif','https://svgshare.com/i/XvR.svg');
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/pesquisa_menu.gif', iconePesquisa);
     //Extensão
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/extensao_menu.gif','https://svgshare.com/i/XuM.svg');
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/extensao_menu.gif', iconeExtensao);
     //Bolsas
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/bolsas.png','https://svgshare.com/i/XvU.svg');
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/bolsas.png', iconeBolsas);
     //Relações Internacionais
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/relacoes_internacionais/mobilidade.png','https://svgshare.com/i/Xus.svg');
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/relacoes_internacionais/mobilidade.png', iconeRelacoesInternacionais);
     //Outros
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/menu/outros.png','https://svgshare.com/i/XvT.svg');
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/menu/outros.png', iconeOutros);
 
     //Remover icones estranhos do menu
     xcss('td.ThemeOfficeMenuItemLeft img','display','none');
     xcss('td.ThemeOfficeMenuFolderLeft img','display','none');
-
-    //Esconder ajuste de tamanho de letra
-    xcss('a.fonteMaior','display','none');
-    xcss('a.fonteMenor','display','none');
 
 
     //menu
@@ -334,24 +435,6 @@ $(document).ready(function(){
     xcss('.ThemeOfficeSubMenu','border','1px solid' + cor3);
     xcss('.ThemeOfficeMenuItem .ThemeOfficeMenuFolderLeft, .ThemeOfficeMenuItem .ThemeOfficeMenuItemLeft','background',cor2);
     xcss('.ThemeOfficeMenuSplit','borderTop','1px solid' + cor3);
-
-    //Mudar fundo avisso de erro
-    xcss('#painel-erros','background',cor1);
-    xcss('#painel-erros','borderBottom',"1px solid" + cor3);
-    xcss('#painel-erros','color',corFonteClara1);
-    xcss('#painel-erros a','color',corFonteClara1);
-    xcss('#painel-erros ul.erros','background','none'); //remover icone de erro feio
-    //xcss('#painel-erros','display','none');
-    xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
-    xcss('#painel-erros ul.info','background','none'); //Esconder icone de informação
-    xcss('#painel-erros ul.warning','background','none'); //Esconder icone de alerta
-    xcss('#painel-erros ul.warning li','color','#ffeb3b'); //Mudar do aviso de alerta
-    xcss('#painel-erros ul','padding','0'); //Remover o padding desnecessário
-    xcss('#painel-erros ul.erros li','color','#ff6023'); //Letra vermelha do aviso de erro
-
-    //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
-    xcss('#info-sistema span.acessibilidade','border','solid ' + cor3);
-    xcss('#info-sistema span.acessibilidade','borderWidth','0 1px 0 0');
 
     //Remover o fundo de avaliação institucional e da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','background',corTransparente);
@@ -366,19 +449,12 @@ $(document).ready(function(){
     xcss('#main-docente .simple-panel','border',brancoBorda1);
     xcss('#main-docente .simple-panel','borderRadius',arrendondamentoBorda1);
 
-    //Mudar cor do botão sair
-    xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
-
     //Mudar a are portal docente> Lista de avaliações...
     //xcss('#conteudo #form h2','background',cor2);
     //xcss('#conteudo #form h2','color',corFonteClara1);
     //xcss('#conteudo #form a','color',corFonteClara1);
     //xcss('#conteudo #form h2','borderBottom',"1px solid" + cor3);
     //xcss('#conteudo #form h2','boxShadow', sombra1);
-
-    //Melhorar o Portal discente> todas as turmas
-    xcss('#conteudo h2','background', corTransparente);
-    xcss('#conteudo h2','border', 'none');
 
 
 
@@ -417,23 +493,6 @@ $(document).ready(function(){
     //Mudar icone impressora
     xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
 
-    //Inserir icones nos botões modulos, caixa postal...
-    //Modulos
-    var botaoModulos = document.querySelector('#painel-usuario #menu-usuario li.modulos a');
-    if (botaoModulos != null){ botaoModulos.insertAdjacentHTML('afterbegin', '<img src="' + iconeModulos + '" width="12px" height="12px">&nbsp;'); }
-    //Caixa Postal
-    var botaoPostal = document.querySelector('#painel-usuario #menu-usuario li.caixa-postal a');
-    if (botaoPostal != null){ botaoPostal.insertAdjacentHTML('afterbegin', '<img src="' + iconeCaixaPostal + '" width="12px" height="12px">&nbsp;'); }
-    //Chamado
-    var botaoChamado = document.querySelector('#painel-usuario #menu-usuario li.chamado a');
-    if (botaoChamado != null){ botaoChamado.insertAdjacentHTML('afterbegin', '<img src="' + iconeChamado + '" width="12px" height="12px">&nbsp;'); }
-    //Menu discente
-    var botaoDiscente = document.querySelector('#painel-usuario #menu-usuario li.menus a');
-    if (botaoDiscente != null){ botaoDiscente.insertAdjacentHTML('afterbegin', '<img src="' + iconeMenuDiscente + '" width="12px" height="12px">&nbsp;'); }
-    //Alterar senha
-    var botaoSenha = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
-    if (botaoSenha != null){ botaoSenha.insertAdjacentHTML('afterbegin', '<img src="' + iconeSenha + '" width="12px" height="12px">&nbsp;'); }
-
     //Corrreção do tamanho da letra em consultar minhas notas
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
     //console.log(window.location.href);
@@ -467,96 +526,59 @@ $(document).ready(function(){
   }
   //Área de turmas anteriores
   else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#'){
-    //Mudar fonte
-    document.body.style.fontFamily = fontePadrao;
-    //Mudar tamanho da fonte para o tamanho normal
-    //document.body.style.fontSize = tamanhoFonte1;
+    mudancasBasicias();
+    mudancasBarraDeCima();
 
     xcss('#container','minWidth','102em');
-
-    xcss('#painel-usuario',"boxShadow", sombra1);
-
-    //Melhorar o Portal discente> todas as turmas
-    xcss('#conteudo h2','background', corTransparente);
-    xcss('#conteudo h2','border', 'none');
 
     //Melhorar o acessar turma virtual
     xcss('.infoAltRem','background', corTransparente);
     xcss('.infoAltRem','border', 'none');
 
-    //Melhorar tamanho fonte
-    xcss('#tempoSessao small em, #tempoSessao small span','fontSize','13.3px');
-    xcss('#info-sistema span.acessibilidade a','fontSize','17.6px');
-    xcss('#info-sistema h1 span','fontSize','21.12px');
-    xcss('#info-sistema h3','fontSize','17.6px');
-    xcss('#painel-usuario #info-usuario p','fontSize','16px');
-    xcss('#painel-usuario #menu-usuario li a','fontSize','13.4px');
 
-    //Remover fundo
-    xcss('html.background, body.background','background','white');
-    //Ajeitar a margem lateral
-    xcss('#container','width','auto');
     //Melhorar tamanho da letra
     xcss('table.listagem, table.subListagem','fontSize',tamanhoFonte2);
     //Melhorar a margem
     xcss('table.listagem, table.subListagem','width','90%');
-    //Esconder rodapé
-    xcss('#rodape','display','none');
-
-    ///escurecer sistema de gestão...
-    xcss('#info-sistema','background',cor1);
-    xcss('#info-sistema','color',corFonteClara1);
-    xcss('#info-sistema','borderBottom',"1px solid" + cor3);
-
-    //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
-    xcss('#info-sistema span.acessibilidade','border','solid ' + cor3);
-    xcss('#info-sistema span.acessibilidade','borderWidth','0 1px 0 0');
-
-    //Mudar cor do botão sair
-    xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
-
-    //Mudar o fundo dá área do nome, departamento, semestre da barra de cima
-    xcss('#painel-usuario','background',cor1);
-    xcss('#painel-usuario','color',corFonteClara1);
-    xcss('#painel-usuario','borderBottom',"1px solid" + cor3);
-    //correção do tamanho da barra de cima
-    xcss('#painel-usuario','minHeight',"55px");
-
-    //mudar cores do fundo do menu com os botões modulos , menu discente...
-    xcss('#painel-usuario #menu-usuario','background',cor1);
-    xcss('#painel-usuario #menu-usuario','color',corFonteClara1);
-
-    //Mudar botões modulos, caixa postal, discente, senha....
-    xcss('#painel-usuario #menu-usuario li a','background',cor1); //Remover icones
-    xcss('#painel-usuario #menu-usuario li a','color',corFonteClara1);
-    xcss('#painel-usuario #menu-usuario li a','textAlign',"center");
-    xcss('#painel-usuario #menu-usuario li a','padding',"2px 0px 2px 0px");
-    xcss('#painel-usuario #menu-usuario li a','border',"1px solid " +cor4);
-    xcss('#painel-usuario #menu-usuario li a','borderRadius',arrendondamentoBorda1);
-    xcss('#painel-usuario #menu-usuario li a','marginTop','auto');
 
     //Mudar 'todas as turmas virtuais'
     xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','background',cor1);
     xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','border',"1px solid " +cor3);
     xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','borderRadius',arrendondamentoBorda1);
 
-    //Inserir icones nos botões modulos, caixa postal...
-    //Modulos
-    var botaoModulos2 = document.querySelector('#painel-usuario #menu-usuario li.modulos a');
-    if (botaoModulos2 != null){ botaoModulos2.insertAdjacentHTML('afterbegin', '<img src="' + iconeModulos + '" width="12px" height="12px">&nbsp;'); }
-    //Caixa Postal
-    var botaoPostal2 = document.querySelector('#painel-usuario #menu-usuario li.caixa-postal a');
-    if (botaoPostal2 != null){ botaoPostal2.insertAdjacentHTML('afterbegin', '<img src="' + iconeCaixaPostal + '" width="12px" height="12px">&nbsp;'); }
-    //Chamado
-    var botaoChamado2 = document.querySelector('#painel-usuario #menu-usuario li.chamado a');
-    if (botaoChamado2 != null){ botaoChamado2.insertAdjacentHTML('afterbegin', '<img src="' + iconeChamado + '" width="12px" height="12px">&nbsp;'); }
-    //Menu discente
-    var botaoDiscente2 = document.querySelector('#painel-usuario #menu-usuario li.menus a');
-    if (botaoDiscente2 != null){ botaoDiscente2.insertAdjacentHTML('afterbegin', '<img src="' + iconeMenuDiscente + '" width="12px" height="12px">&nbsp;'); }
-    //Alterar senha
-    var botaoSenha2 = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
-    if (botaoSenha2 != null){ botaoSenha2.insertAdjacentHTML('afterbegin', '<img src="' + iconeSenha + '" width="12px" height="12px">&nbsp;'); }
-
+  }
+  //Área de Matrícula
+  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf#'){
+    mudancasBasicias();
+    corrigirFonte();
+    mudancasBarraDeCima();
+    xcss('label','fontSize', '16px');
+  }
+  //Área de Atualizar dados pessoais
+  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#'){
+    mudancasBasicias();
+    mudancasBarraDeCima();
+  }
+  //Área de Mudar foto
+  else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf#'){
+    mudancasBasicias();
+    mudancasBarraDeCima();
+    corrigirFonte();
+    //Mudar foto
+    xsrc('.fotoPerfil, img','https://sig.unb.br/sigaa/img/no_picture.png','https://svgshare.com/i/Y09.svg');
+  }
+  //Área da caixa postal
+  else if (window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#'){
+    mudancasBasicias();
+    mudancasBarraDeCima();
+    corrigirFonte();
+  }
+  //Tela de login
+  else if (window.location.href == 'https://sig.unb.br/sigaa/verTelaLogin.do' || window.location.href == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff'){
+   mudancasBasicias();
+   mudancasBarraDeCima();
+   corrigirFonte();
+   xcss('.logon h3','background', '#C8D5EC');
   }
  }
 
