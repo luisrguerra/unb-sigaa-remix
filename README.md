@@ -17,4 +17,5 @@ Ao clicar no link "Instalar SIGAA Remix" aprecerá essa tela, clique em instalar
 Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
 <br>
 ![Tela 3](tela3.png)
+![Tela 4](tela4.png)
 <br>
