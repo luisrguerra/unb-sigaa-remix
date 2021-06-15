@@ -7,9 +7,10 @@ Extensão que melhora a experiência do usuário na plataforma SIGAA da UnB. Nec
 
 Download:
 <br>
-1º) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
+1ª Etapa) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
 [Site Oficial do Tampermonkey](https://www.tampermonkey.net/)<br>
-2º) [Instalar o SIGAA Remix no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
+2ª Etapa) [Instalar o SIGAA Remix no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
+<br>
 <br>
 Ao clicar no link "Instalar SIGAA Remix" aprecerá essa tela, clique em instalar para terminar de instalar a extensão.
 <br>
