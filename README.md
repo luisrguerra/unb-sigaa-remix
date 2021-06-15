@@ -25,3 +25,4 @@ Clicando no nome SIGAA Remix você pode desativar e ou remover o script.
 Para remover a extensão Tampermonkey do seu navegar vá em mais ferramentas, extensões e na página de extensões encontre o Tampermonkey e clique em remover.
 <br>
 ![Tela 5](tela5.png)
+![Tela 6](tela6.png)
