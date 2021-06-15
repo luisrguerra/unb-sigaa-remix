@@ -11,4 +11,8 @@ Download:
 2º) [Instalar o SIGAA Remix no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
 <br>
 Ao clicar no link "Instalar SIGAA Remix" aprecerá essa tela, clique em instalar para terminar de instalar a extensão.
-![Tela 1](tela2.png)
+![Tela 2](tela2.png)
+<br>
+Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
+![Tela 3](tela3.png)
+<br>
