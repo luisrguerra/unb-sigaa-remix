@@ -4,6 +4,10 @@ Atravéz de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aq
 e aumentando o tamanho das letras. Para evitar qualquer problema com atulizações futuras, é adicionado um botão no final do
 site que permite desativar as modificações.
 <br>
+Antes:
+<br>
+![Tela 0](tela0.png)
+Depois:
 <br>
 ![Tela 1](tela1.png)
 <br>
