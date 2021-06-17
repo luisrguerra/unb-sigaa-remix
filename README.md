@@ -16,7 +16,9 @@ Novos ícones em alta resolução:
 <br>
 ![Tela 7](fotos/tela7.png)
 <br>
+<br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
+<br>
 <br>
 ![Tela 8](fotos/tela8.png)
 <br>
