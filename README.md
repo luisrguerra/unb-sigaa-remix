@@ -7,14 +7,14 @@ site que permite desativar as modificações.
 <br>
 Antes:
 <br>
-![Tela 0](fotos/tela0.png)
+![Tela 0](fotos\tela0.png)
 Depois:
 <br>
-![Tela 1](fotos/tela1.png)
+![Tela 1](fotos\tela1.png)
 <br>
 Novos ícones em alta resolução:
 <br>
-![Tela 7](fotos/tela7.png)
+![Tela 7](fotos\tela7.png)
 <br>
 
 
@@ -27,15 +27,15 @@ Download:
 <br>
 Ao clicar no link "Instalar SIGAA Remix" aprecerá essa tela, clique em instalar para terminar de instalar a extensão.
 <br>
-![Tela 2](fotos/tela2.png)
+![Tela 2](fotos\tela2.png)
 <br>
 Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey (ícone preto) no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
 Clicando no nome SIGAA Remix você pode desativar e ou remover o script. 
 <br>
-![Tela 3](fotos/tela3.png)
-![Tela 4](fotos/tela4.png)
+![Tela 3](fotos\tela3.png)
+![Tela 4](fotos\tela4.png)
 <br>
 Para remover a extensão Tampermonkey do seu navegar vá em mais ferramentas, extensões e na página de extensões encontre o Tampermonkey e clique em remover.
 <br>
-![Tela 5](fotos/tela5.png)
-![Tela 6](fotos/tela6.png)
+![Tela 5](fotos\tela5.png)
+![Tela 6](fotos\tela6.png)
