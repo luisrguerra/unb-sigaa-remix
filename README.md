@@ -10,7 +10,7 @@ Antes:
 ![Tela 0](fotos\tela0.png)
 Depois:
 <br>
-![Tela 1](fotos\tela1.png)
+![Tela 1](fotos/tela1.png)
 <br>
 Novos ícones em alta resolução:
 <br>
