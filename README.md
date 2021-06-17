@@ -1,4 +1,4 @@
-# SIGAA Remix Beta Versão 0.5
+# SIGAA Remix Beta Versão 0.6
 O SIGAA Remix é uma extensão para Google Chrome desenvolvida com o foco de melhorar a experiência do usuário na plataforma SIGAA da UnB. 
 Através de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aquela cara de anos 90, melhorando a aparência 
 e aumentando o tamanho das letras.
@@ -28,7 +28,7 @@ Download:
 <br>
 1ª Etapa) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
 [Site Oficial do Tampermonkey](https://www.tampermonkey.net/)<br>
-2ª Etapa) [Instalar o SIGAA Remix versão 0.5 no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
+2ª Etapa) [Instalar o SIGAA Remix versão 0.6 no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
 <br>
 <br>
 Ao clicar no link "Instalar SIGAA Remix" aprecerá essa tela, clique em instalar para terminar de instalar a extensão.

@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.5
+// @version      0.6
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -14,6 +14,7 @@
 /*globals $*/
 
 'use strict';
+const versao = '0.6';
 
 var ativado = localStorage.getItem("ativado");
 
@@ -116,6 +117,12 @@ function xcss (regra, propriedade, valor){
        else if (propriedade == 'padding'){
           x[i].style.padding = valor;
        }
+       else if (propriedade == 'paddingLeft'){
+          x[i].style.paddingLeft = valor;
+       }
+       else if (propriedade == 'paddingRight'){
+          x[i].style.paddingRight = valor;
+       }
        else if (propriedade == 'textAlign'){
           x[i].style.textAlign = valor;
        }
@@ -193,6 +200,8 @@ $(document).ready(function(){
     xcss('#container','width','auto');
     //Esconder rodapé
     xcss('#rodape','display','none');
+    //Corrigir o bug
+    xcss('#container','minWidth','70em');
  }
  function mudancasBarraDeCima(){
     //Escurecer sistema de gestão...
@@ -407,6 +416,8 @@ $(document).ready(function(){
     xcss('.ThemeOfficeMainItem','borderRight',"2px solid" + cor3);
     xcss('.ThemeOfficeMainItem','borderBottom',"5px solid" + cor2);
     xcss('.ThemeOfficeMainItem','borderTop',"5px solid" + cor2);
+    xcss('.ThemeOfficeMainItem','paddingLeft','15px');
+    xcss('.ThemeOfficeMainItem','paddingRight','15px');
 
     //ensino, cadastro, bolsas..... icones
     //xcss('.ThemeOfficeMainFolderLeft','display','none'); //remover
@@ -554,6 +565,18 @@ $(document).ready(function(){
     mudancasBarraDeCima();
     xcss('label','fontSize', '16px');
   }
+  //Área de de turmas selecionadas na Matrícula.
+  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf'){
+    mudancasBasicias();
+    corrigirFonte();
+    mudancasBarraDeCima();
+  }
+  //Área imprimir compovante
+  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf#'){
+    mudancasBasicias();
+    corrigirFonte();
+    xcss('td','fontSize', '14px');
+  }
   //Área de Atualizar dados pessoais
   else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#'){
     mudancasBasicias();
@@ -582,16 +605,41 @@ $(document).ready(function(){
   }
  }
 
+ //beta teste
+ /*var logo = document.createElement("img");
+ logo.src = 'https://svgshare.com/i/YFt.svg';
+ logo.style.width = '100px';
+ logo.style.position = 'fixed';
+ logo.style.left = '10px';
+ logo.style.bottom = '10px'; */
+ //document.getElementsByTagName("body")[0].appendChild(logo);
+
+ //beta teste
+ /*var logo2 = document.createElement("button");
+ logo2.innerHTML = "SIGAA Remix";
+ logo2.style.backgroundColor = 'white';
+ logo2.style.border = 'none';
+ logo2.style.color = 'black';
+ logo2.style.fontSize = '24px';
+ logo2.style.padding = '0px 8px';
+ logo2.style.borderRadius = '6px';
+ //logo2.style.boxShadow = sombra2;
+ logo2.style.position = 'fixed';
+ logo2.style.left = '5px';
+ logo2.style.bottom = '5px';
+ logo2.style.fontFamily = 'Bebas Neue'; */
+ //document.getElementsByTagName("body")[0].appendChild(logo2);
+
  //Botão de ativar e desativar
  // Criar botão
  var button = document.createElement("button");
  if (ativado == 'false'){
-     button.innerHTML = "Ativar SIGAA Remix";
+     button.innerHTML = "Ativar SIGAA Remix Versão " + versao;
      button.style.backgroundColor = '#379638';
      //
  }
  else{
-     button.innerHTML = "Desativar SIGAA Remix";
+     button.innerHTML = "Desativar SIGAA Remix Versão " + versao;
      button.style.backgroundColor = '#2553ca';
  }
  button.style.border = 'none';
@@ -604,6 +652,7 @@ $(document).ready(function(){
  button.style.marginRight = 'auto';
  button.style.borderRadius = '12px';
  button.style.boxShadow = sombra2;
+ button.style.display = 'flex';
 
  // Inserir Botão
  var body = document.getElementsByTagName("body")[0];
@@ -621,5 +670,26 @@ $(document).ready(function(){
    }
    document.location.reload(true);
  });
+
+  //Botão do github
+  var buttonGithub = document.createElement("button");
+  buttonGithub.style.backgroundColor = '#fafafa';
+  buttonGithub.innerHTML = 'Atualizações e mais informações sobre o SIGAA Remix';
+  buttonGithub.style.border = 'none';
+  buttonGithub.style.fontSize = '16px';
+  buttonGithub.style.padding = '1em';
+  buttonGithub.style.marginTop = '1em';
+  buttonGithub.style.marginBottom = '1em';
+  buttonGithub.style.marginLeft = 'auto';
+  buttonGithub.style.marginRight = 'auto';
+  buttonGithub.style.borderRadius = '12px';
+  buttonGithub.style.boxShadow = sombra2;
+  buttonGithub.style.display = 'flex';
+  buttonGithub.onclick = function(){
+    alert("Será aberta uma nova janela na página do Github do projeto, lá você pode checar se há novas atualizações (É importante fazer isso!), ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
+    window.open("https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey");
+  };
+
+  body.appendChild(buttonGithub);
 
 });
