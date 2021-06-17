@@ -7,7 +7,7 @@ site que permite desativar as modificações.
 <br>
 Antes:
 <br>
-![Tela 0](fotos\tela0.png)
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix-tampermonkey/master/tela0.png" />
 Depois:
 <br>
 ![Tela 1](fotos/tela1.png)
