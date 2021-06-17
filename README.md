@@ -10,8 +10,7 @@ Depois:
 <br>
 ![Tela 1](fotos\tela1.png)
 <br>
-Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do
-site que permite desativar as modificações. Abaixo dele há um botão que você tem acesso a página do projeto no Github:<br>
+Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações. Abaixo dele há um botão que você tem acesso a página do projeto no Github:<br>
 <br>
 ![Tela 8](fotos\tela8.png)
 <br>
