@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.6
+// @version      0.7
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -14,9 +14,10 @@
 /*globals $*/
 
 'use strict';
-const versao = '0.6';
+const versao = '0.7';
 
 var ativado = localStorage.getItem("ativado");
+var temaAtivado = localStorage.getItem("temaAtivado");
 
 //Cores
 var cor1 = '#2f3c52'; //cor escura //bkp #535353 //bk2 #232D3F
@@ -60,6 +61,7 @@ const iconeExtensao = 'https://svgshare.com/i/XuM.svg';
 const iconeBolsas = 'https://svgshare.com/i/XvU.svg';
 const iconeRelacoesInternacionais = 'https://svgshare.com/i/Xus.svg';
 const iconeOutros = 'https://svgshare.com/i/XvT.svg';
+const iconeSetaDireita = 'https://svgshare.com/i/YQU.svg';
 
 function tema(cor){
    if (cor == 'azul'){
@@ -75,10 +77,34 @@ function tema(cor){
       cor4 = '#686868';
    }
    else if(cor == 'ciano'){
-      cor1 = '#314352';
-      cor2 = '#253540';
-      cor3 = '#151E25';
-      cor4 = '#606F7D';
+      cor1 = '#0C4651';
+      cor2 = '#07393D';
+      cor3 = '#041F24';
+      cor4 = '#3E737D';
+   }
+   else if(cor == 'vermelhoPreto'){
+      cor1 = '#252525';
+      cor2 = '#252525';
+      cor3 = '#AF0404';
+      cor4 = '#AF0404';
+   }
+   else if(cor == 'verdePreto'){
+      cor1 = '#0f231c';
+      cor2 = '#0f231c';
+      cor3 = '#1b4332';
+      cor4 = '#1b4332';
+   }
+   else if(cor == 'rosaPreto'){
+      cor1 = '#252A34';
+      cor2 = '#252A34';
+      cor3 = '#FF2E63';
+      cor4 = '#FF2E63';
+   }
+   else if(cor == 'vermelho'){
+      cor1 = '#252A34';
+      cor2 = '#252A34';
+      cor3 = '#FF2E63';
+      cor4 = '#FF2E63';
    }
    else{
       cor1 = '#2f3c52';
@@ -293,7 +319,7 @@ $(document).ready(function(){
  }
 
  if (ativado != "false"){
-  tema('azul');
+  tema(temaAtivado);
 
   //Mudar o ícone de interroção dos horários para um ícone de relógio
   xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif',iconeRelogio);
@@ -312,6 +338,9 @@ $(document).ready(function(){
   //Mudar icone de restrição reserva matrizes curriculares especificas
   xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/restricao_reserva.png',iconeTurmaReservada);
 
+  //Mudar icone de seta para direita
+  xsrc('img','https://sig.unb.br/sigaa/img/avancar.gif',iconeSetaDireita);
+
   //Página inicial
   if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
     mudancasBasicias();
@@ -321,7 +350,7 @@ $(document).ready(function(){
 
 
     //Mudança daborda de cima do ver turmas anteriores
-    xcss('#portal-docente .mais','borderTop', '0.5px solid #e0e0e0');
+    xcss('#portal-docente .mais','borderTop', '0.5px solid #eeeeee');
 
     //Mudar Fundo da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','border', brancoBorda1);
@@ -375,7 +404,7 @@ $(document).ready(function(){
     xcss(/*regra:*/'#main-docente table td',/*propriedade:*/'background',/*valor:*/corTransparente);
 
     // Mudar cor do fundo da disciplina na lista de componente curricular, que funciona como uma colorida, uma não para melhor visualizar
-    xcss('.odd','background',corTransparente);
+    xcss('#main-docente tr.odd','background','#f5f5f5'); //cor cinza de contraste
 
     // Mudar fundo da tag TH que é usada em uma barra
     xcss('#main-docente thead th','background',corTransparente);
@@ -508,6 +537,9 @@ $(document).ready(function(){
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
     //console.log(window.location.href);
 
+    //Correção de bug nos botões no menu da turma virtual
+    xcss('.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default','height','auto');
+    xcss('.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default','fontSize','14px');
 
   }
   //Consultar indices acadêmicos
@@ -605,30 +637,17 @@ $(document).ready(function(){
   }
  }
 
- //beta teste
- /*var logo = document.createElement("img");
- logo.src = 'https://svgshare.com/i/YFt.svg';
- logo.style.width = '100px';
- logo.style.position = 'fixed';
- logo.style.left = '10px';
- logo.style.bottom = '10px'; */
- //document.getElementsByTagName("body")[0].appendChild(logo);
-
- //beta teste
- /*var logo2 = document.createElement("button");
- logo2.innerHTML = "SIGAA Remix";
- logo2.style.backgroundColor = 'white';
- logo2.style.border = 'none';
- logo2.style.color = 'black';
- logo2.style.fontSize = '24px';
- logo2.style.padding = '0px 8px';
- logo2.style.borderRadius = '6px';
- //logo2.style.boxShadow = sombra2;
- logo2.style.position = 'fixed';
- logo2.style.left = '5px';
- logo2.style.bottom = '5px';
- logo2.style.fontFamily = 'Bebas Neue'; */
- //document.getElementsByTagName("body")[0].appendChild(logo2);
+ var body = document.getElementsByTagName("body")[0];
+ var divBotoes = document.createElement("div");
+ divBotoes.setAttribute("id", "idBotoes");
+ divBotoes.style.display = 'flex';
+ divBotoes.style.alignItems = 'center';
+ divBotoes.style.justifyContent = 'center';
+ divBotoes.style.marginLeft = 'auto';
+ divBotoes.style.marginRight = 'auto';
+ divBotoes.style.marginTop = '1em';
+ divBotoes.style.marginBottom = '1em';
+ body.appendChild(divBotoes);
 
  //Botão de ativar e desativar
  // Criar botão
@@ -640,23 +659,27 @@ $(document).ready(function(){
  }
  else{
      button.innerHTML = "Desativar SIGAA Remix Versão " + versao;
-     button.style.backgroundColor = '#2553ca';
+     button.style.backgroundColor = '#c62828';
  }
  button.style.border = 'none';
  button.style.color = 'white';
  button.style.fontSize = '16px';
- button.style.padding = '1em';
- button.style.marginTop = '1em';
- button.style.marginBottom = '1em';
- button.style.marginLeft = 'auto';
- button.style.marginRight = 'auto';
- button.style.borderRadius = '12px';
+ button.style.padding = '0.5em';
+ button.style.paddingLeft = '2em';
+ button.style.minWidth = 'fit-content';
+ button.style.maxHeight = '35px';
+ button.style.marginLeft = '0.5em';
+ button.style.marginRight = '0.5em';
+ button.style.borderRadius = '4px';
  button.style.boxShadow = sombra2;
  button.style.display = 'flex';
+ button.style.cursor = 'pointer';
+ button.style.backgroundImage = 'url("https://svgshare.com/i/YcA.svg")';
+ button.style.backgroundRepeat = 'no-repeat';
+ button.style.backgroundPosition = '2% 50%';
 
  // Inserir Botão
- var body = document.getElementsByTagName("body")[0];
- body.appendChild(button);
+ document.getElementById("idBotoes").appendChild(button);
 
 
  button.addEventListener ("click", function() {
@@ -677,19 +700,94 @@ $(document).ready(function(){
   buttonGithub.innerHTML = 'Atualizações e mais informações sobre o SIGAA Remix';
   buttonGithub.style.border = 'none';
   buttonGithub.style.fontSize = '16px';
-  buttonGithub.style.padding = '1em';
-  buttonGithub.style.marginTop = '1em';
-  buttonGithub.style.marginBottom = '1em';
-  buttonGithub.style.marginLeft = 'auto';
-  buttonGithub.style.marginRight = 'auto';
-  buttonGithub.style.borderRadius = '12px';
+  buttonGithub.style.padding = '0.5em';
+  buttonGithub.style.paddingLeft = '2em';
+  buttonGithub.style.minWidth = 'fit-content';
+  buttonGithub.style.maxHeight = '35px';
+  buttonGithub.style.marginLeft = '0.5em';
+  buttonGithub.style.marginRight = '0.5em';
+  buttonGithub.style.borderRadius = '4px';
   buttonGithub.style.boxShadow = sombra2;
   buttonGithub.style.display = 'flex';
+  buttonGithub.style.cursor = 'pointer';
+  buttonGithub.style.backgroundImage = 'url("https://svgshare.com/i/Yau.svg")';
+  buttonGithub.style.backgroundRepeat = 'no-repeat';
+  buttonGithub.style.backgroundPosition = '1% 50%';
   buttonGithub.onclick = function(){
     alert("Será aberta uma nova janela na página do Github do projeto, lá você pode checar se há novas atualizações (É importante fazer isso!), ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
     window.open("https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey");
   };
 
-  body.appendChild(buttonGithub);
+  document.getElementById("idBotoes").appendChild(buttonGithub);
+
+
+
+  //Seletor de tema
+  var temaSeletor = document.createElement("select");
+  temaSeletor.setAttribute("id", "temaSeletor");
+  temaSeletor.setAttribute("onchange", "localStorage.setItem('temaAtivado', document.getElementById('temaSeletor').value); document.location.reload(true);window.scrollTo(0, 0);");
+  temaSeletor.style.boxShadow = sombra2;
+
+  var temaSeletorCss = document.createElement('style');
+  temaSeletorCss.innerHTML = `
+  #temaSeletor {
+    background: #fafafa;
+    padding: 0.5em;
+    width: 13em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    appearence: none;
+    -webkit-appearance: none;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    background-image: url("https://svgshare.com/i/YcU.svg");
+    background-repeat: no-repeat;
+    background-position: 3% 50%;
+    max-height: 34px;
+  };
+  `;
+  document.head.appendChild(temaSeletorCss);
+
+  document.getElementById("idBotoes").appendChild(temaSeletor);
+
+  var opcao1 = document.createElement("option");
+  opcao1.setAttribute("value", "none");
+  var opcao1Texto = document.createTextNode("\u00A0\u00A0\u00A0\u00A0 Selecionar um tema \u00A0\u00A0\u00A0\u00A0");
+  opcao1.appendChild(opcao1Texto);
+  document.getElementById("temaSeletor").appendChild(opcao1);
+
+  var opcao2 = document.createElement("option");
+  opcao2.setAttribute("value", "preto");
+  var opcao2Texto = document.createTextNode("Preto");
+  opcao2.appendChild(opcao2Texto);
+  document.getElementById("temaSeletor").appendChild(opcao2);
+
+  var opcao3 = document.createElement("option");
+  opcao3.setAttribute("value", "ciano");
+  var opcao3Texto = document.createTextNode("Ciano");
+  opcao3.appendChild(opcao3Texto);
+  document.getElementById("temaSeletor").appendChild(opcao3);
+
+
+  var opcao4 = document.createElement("option");
+  opcao4.setAttribute("value", "azul");
+  var opcao4Texto = document.createTextNode("Azul");
+  opcao4.appendChild(opcao4Texto);
+  document.getElementById("temaSeletor").appendChild(opcao4);
+
+  //Esconder botões na impressão
+  var impressaoCss = document.createElement('style');
+  impressaoCss.innerHTML = `
+  @media print{
+   #idBotoes{
+       visibility: hidden;
+   }
+  }
+  `;
+  document.head.appendChild(impressaoCss);
 
 });
