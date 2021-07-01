@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.7
+// @version      0.8
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
@@ -14,16 +14,16 @@
 /*globals $*/
 
 'use strict';
-const versao = '0.7';
+const versao = '0.8';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
 
 //Cores
-var cor1 = '#2f3c52'; //cor escura //bkp #535353 //bk2 #232D3F
-var cor2 = '#232f40'; //cor escura //bkp #424242 //bkp2 #1C2532
-var cor3 = '#141A25'; //cor escura //bkp #383838
-var cor4 = '#5e697d'; //cor escura botão //bkp #747474
+var cor1 = '#2f3c52';
+var cor2 = '#232f40';
+var cor3 = '#141A25';
+var cor4 = '#5e697d';
 var corFundo1 = "white";
 var corTransparente = "rgb(255 255 255 / 0%)";
 
@@ -62,6 +62,21 @@ const iconeBolsas = 'https://svgshare.com/i/XvU.svg';
 const iconeRelacoesInternacionais = 'https://svgshare.com/i/Xus.svg';
 const iconeOutros = 'https://svgshare.com/i/XvT.svg';
 const iconeSetaDireita = 'https://svgshare.com/i/YQU.svg';
+const iconeSetaEsquerda = 'https://svgshare.com/i/Yhf.svg';
+const iconeAluno = 'https://svgshare.com/i/YfE.svg';
+const iconeProfessorFuncionario = 'https://svgshare.com/i/Ydj.svg';
+const iconeLogOff = 'https://svgshare.com/i/Yge.svg';
+
+const temas = [
+    ['Preto', 'preto'],
+    ['Ciano', 'ciano'],
+    ['Azul', 'azul'],
+    ['Azul +Claro', 'azulClaro'],
+    ['Vermelho', 'vermelho'],
+    ['Rosa', 'rosa'],
+    ['Verde Esmeralda', 'esmeralda'],
+    ['Verde', 'verde']
+];
 
 function tema(cor){
    if (cor == 'azul'){
@@ -76,23 +91,29 @@ function tema(cor){
       cor3 = '#191919';
       cor4 = '#686868';
    }
+   else if(cor == 'azulClaro'){
+      cor1 = '#0B406D';
+      cor2 = '#073254';
+      cor3 = '#061B30';
+      cor4 = '#386A9C';
+   }
    else if(cor == 'ciano'){
       cor1 = '#0C4651';
       cor2 = '#07393D';
       cor3 = '#041F24';
       cor4 = '#3E737D';
    }
-   else if(cor == 'vermelhoPreto'){
-      cor1 = '#252525';
-      cor2 = '#252525';
-      cor3 = '#AF0404';
-      cor4 = '#AF0404';
+   else if(cor == 'verde'){
+      cor1 = '#375406';
+      cor2 = '#2E3F06';
+      cor3 = '#192506';
+      cor4 = '#5F8229';
    }
-   else if(cor == 'verdePreto'){
-      cor1 = '#0f231c';
-      cor2 = '#0f231c';
-      cor3 = '#1b4332';
-      cor4 = '#1b4332';
+   else if(cor == 'esmeralda'){
+      cor1 = '#0D5249';
+      cor2 = '#0A4036';
+      cor3 = '#062320';
+      cor4 = '#31786F';
    }
    else if(cor == 'rosaPreto'){
       cor1 = '#252A34';
@@ -101,10 +122,16 @@ function tema(cor){
       cor4 = '#FF2E63';
    }
    else if(cor == 'vermelho'){
-      cor1 = '#252A34';
-      cor2 = '#252A34';
-      cor3 = '#FF2E63';
-      cor4 = '#FF2E63';
+      cor1 = '#65292B';
+      cor2 = '#501F22';
+      cor3 = '#2F1313';
+      cor4 = '#874C4D';
+   }
+   else if(cor == 'rosa'){
+      cor1 = '#6D1B40';
+      cor2 = '#541435';
+      cor3 = '#320C1D';
+      cor4 = '#8F3F63';
    }
    else{
       cor1 = '#2f3c52';
@@ -197,6 +224,12 @@ function xcss (regra, propriedade, valor){
        else if (propriedade == 'boxShadow'){
           x[i].style.boxShadow = valor;
        }
+       else if (propriedade == 'textContent'){
+          x[i].textContent = valor;
+       }
+       else if (propriedade == 'position'){
+          x[i].style.position = valor;
+       }
       }
 }
 
@@ -215,8 +248,16 @@ function xsrc (regra, antigo, novo){
       }
 }
 
-$(document).ready(function(){
+function removerTexto (regra, texto){
+    var x = document.querySelectorAll(regra);
+    for (var i = 0; i < x.length; i++) {
+        if (x[i].textContent == texto){
+            x[i].style.display = 'none';
+        }
+    }
+}
 
+$(document).ready(function(){
   function mudancasBasicias(){
     //Mudar fonte
     document.body.style.fontFamily = fontePadrao;
@@ -258,6 +299,10 @@ $(document).ready(function(){
 
     //Mudar cor do botão sair
     xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
+    var botaoSair = document.querySelector('#info-sistema span.sair-sistema a');
+    if (botaoSair != null){ botaoSair.insertAdjacentHTML('beforeEnd', '&nbsp;<img src="' + iconeLogOff + '" width="19px" height="19px">'); }
+    //Corrigir barra de cima
+    //xcss('#info-sistema div.dir','position','relative');
 
     //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
     xcss('#info-sistema span.acessibilidade','border','solid ' + cor3);
@@ -340,6 +385,12 @@ $(document).ready(function(){
 
   //Mudar icone de seta para direita
   xsrc('img','https://sig.unb.br/sigaa/img/avancar.gif',iconeSetaDireita);
+
+  //Mudar icone impressora
+  xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
+
+  //Mudar o ícone seta para esquerda
+  xcss('tr > td.voltar > a','background', 'url(' + iconeSetaEsquerda + ') no-repeat');
 
   //Página inicial
   if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
@@ -489,15 +540,6 @@ $(document).ready(function(){
     xcss('#main-docente .simple-panel','border',brancoBorda1);
     xcss('#main-docente .simple-panel','borderRadius',arrendondamentoBorda1);
 
-    //Mudar a are portal docente> Lista de avaliações...
-    //xcss('#conteudo #form h2','background',cor2);
-    //xcss('#conteudo #form h2','color',corFonteClara1);
-    //xcss('#conteudo #form a','color',corFonteClara1);
-    //xcss('#conteudo #form h2','borderBottom',"1px solid" + cor3);
-    //xcss('#conteudo #form h2','boxShadow', sombra1);
-
-
-
     //Adicionar sombra no menu de dropdown
     xcss('.ThemeOfficeSubMenu',"boxShadow", sombra1);
 
@@ -530,9 +572,6 @@ $(document).ready(function(){
     xcss('#relatorio-paisagem-container',"width", '90%');
     xcss('#relatorio-paisagem-container',"minWidth", '60em');
 
-    //Mudar icone impressora
-    xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
-
     //Corrreção do tamanho da letra em consultar minhas notas
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
     //console.log(window.location.href);
@@ -540,6 +579,9 @@ $(document).ready(function(){
     //Correção de bug nos botões no menu da turma virtual
     xcss('.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default','height','auto');
     xcss('.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default','fontSize','14px');
+
+    //Mudar o texto portal do discente
+    removerTexto ('div > a:link', 'Portal do Discente');
 
   }
   //Consultar indices acadêmicos
@@ -564,8 +606,6 @@ $(document).ready(function(){
     xcss('#relatorio-cabecalho','border',brancoBorda1);
     xcss('#relatorio-cabecalho','borderRadius',arrendondamentoBorda1);
 
-    //Mudar icone impressora
-    xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
   }
   //Área de turmas anteriores
   else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#'){
@@ -581,13 +621,27 @@ $(document).ready(function(){
 
     //Melhorar tamanho da letra
     xcss('table.listagem, table.subListagem','fontSize',tamanhoFonte2);
+    xcss('div.infoAltRem','fontSize','18px');
     //Melhorar a margem
     xcss('table.listagem, table.subListagem','width','90%');
 
     //Mudar 'todas as turmas virtuais'
-    xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','background',cor1);
-    xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','border',"1px solid " +cor3);
-    xcss('table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela','borderRadius',arrendondamentoBorda1);
+    xcss('table.listagem caption','background',cor1);
+    xcss('table.listagem caption','borderRadius',arrendondamentoBorda1);
+
+    //Mudar barras
+    xcss('table thead, table tr.linhaCinza','background','white');
+    xcss('table.listagem tr td.periodo','background','#bdbdbd');
+    xcss('.linhaPar','background','white');
+    xcss('.linhaImpar','background','#ececec');
+    xcss('table.listagem > tfoot, table.listagem > tfoot td','background',cor1);
+    xcss('table.listagem > tfoot, table.listagem > tfoot td','borderRadius',arrendondamentoBorda1);
+
+    //Remover Portal do dicente/Turma Virtual de baixo
+    removerTexto ('div> a:link', 'Portal do Discente');
+    removerTexto ('div> a:link', 'Turma Virtual');
+    //Removerborda
+    xcss('table.listagem, table.subListagem','border',"none");
 
   }
   //Área de Matrícula
@@ -629,13 +683,47 @@ $(document).ready(function(){
     corrigirFonte();
   }
   //Tela de login
-  else if (window.location.href == 'https://sig.unb.br/sigaa/verTelaLogin.do' || window.location.href == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff'){
+  else if (window.location.href == 'https://sig.unb.br/sigaa/verTelaLogin.do' || window.location.href == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || window.location.href == 'https://sig.unb.br/sipac/?modo=classico' || window.location.href == 'https://sig.unb.br/sigrh/login.jsf' || window.location.href == 'https://sig.unb.br/admin/login.jsf' || window.location.href == 'https://sig.unb.br/sipac/'){
    mudancasBasicias();
    mudancasBarraDeCima();
    corrigirFonte();
    xcss('.logon h3','background', '#C8D5EC');
+   //aluno
+   xsrc('img','https://sig.unb.br/sigaa/img/user.png', iconeAluno);
+   //professor funcionário
+   xsrc('img','https://sig.unb.br/sigaa/img/novo_usuario.gif',iconeProfessorFuncionario);
+   xsrc('img','https://sig.unb.br/sipac/img_css/novo_usuario.gif',iconeProfessorFuncionario);
+   xsrc('img','https://sig.unb.br/shared/img/novo_usuario.gif',iconeProfessorFuncionario);
+
+   //Remover fundo azul de aviso
+   xcss('#conteudo div','background', 'white');
+
+   xcss('.logon h3','background', '#eeeeee');
+   xcss('.logon h3','border', 'none');
+
+   var loginCss = document.createElement('style');
+   loginCss.innerHTML = `
+   .logon table{
+       border: none;
+   }
+   td.azulMedio{
+       background-color: white;
+   }
+   td.painel{
+       background-color: #f5f5f5;
+       border-radius: 4px;
+   }
+   td.sistemaAtual{
+       background-color: #e0e0e0;
+       border-radius: 4px;
+   };
+   `;
+   document.head.appendChild(loginCss);
   }
  }
+
+
+ //Parte de baixo
 
  var body = document.getElementsByTagName("body")[0];
  var divBotoes = document.createElement("div");
@@ -646,43 +734,60 @@ $(document).ready(function(){
  divBotoes.style.marginLeft = 'auto';
  divBotoes.style.marginRight = 'auto';
  divBotoes.style.marginTop = '1em';
- divBotoes.style.marginBottom = '1em';
+ divBotoes.style.marginBottom = '0.5em';
+ divBotoes.style.maxWidth = '100em';
+ divBotoes.style.flexWrap = 'wrap';
  body.appendChild(divBotoes);
+
+
+ var botaoCss = document.createElement('style');
+ botaoCss.innerHTML = `
+ .botaoTema {
+    background-color: #fafafa;
+    background-repeat: no-repeat;
+    padding: 0.5em;
+    min-width: fit-content;
+    max-height: 34px;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
+ }
+ .botaoTema:hover {
+    background-color: #f5f5f5;
+ };
+ `;
+ document.head.appendChild(botaoCss);
 
  //Botão de ativar e desativar
  // Criar botão
- var button = document.createElement("button");
+ var buttonPower = document.createElement("button");
+ buttonPower.setAttribute("class", "botaoTema");
  if (ativado == 'false'){
-     button.innerHTML = "Ativar SIGAA Remix Versão " + versao;
-     button.style.backgroundColor = '#379638';
+     buttonPower.innerHTML = "Ativar SIGAA Remix Versão " + versao;
+     buttonPower.style.backgroundColor = '#379638';
      //
  }
  else{
-     button.innerHTML = "Desativar SIGAA Remix Versão " + versao;
-     button.style.backgroundColor = '#c62828';
+     buttonPower.innerHTML = "Desativar SIGAA Remix Versão " + versao;
+     buttonPower.style.backgroundColor = '#c62828';
  }
- button.style.border = 'none';
- button.style.color = 'white';
- button.style.fontSize = '16px';
- button.style.padding = '0.5em';
- button.style.paddingLeft = '2em';
- button.style.minWidth = 'fit-content';
- button.style.maxHeight = '35px';
- button.style.marginLeft = '0.5em';
- button.style.marginRight = '0.5em';
- button.style.borderRadius = '4px';
- button.style.boxShadow = sombra2;
- button.style.display = 'flex';
- button.style.cursor = 'pointer';
- button.style.backgroundImage = 'url("https://svgshare.com/i/YcA.svg")';
- button.style.backgroundRepeat = 'no-repeat';
- button.style.backgroundPosition = '2% 50%';
+ buttonPower.style.color = 'white';
+ buttonPower.style.paddingLeft = '2em';
+ buttonPower.style.backgroundImage = 'url("https://svgshare.com/i/YcA.svg")';
+ buttonPower.style.backgroundPosition = '2% 50%';
 
  // Inserir Botão
- document.getElementById("idBotoes").appendChild(button);
+ document.getElementById("idBotoes").appendChild(buttonPower);
 
 
- button.addEventListener ("click", function() {
+ buttonPower.addEventListener ("click", function() {
    if (ativado == 'false'){
        localStorage.setItem("ativado", 'true');
        alert("SIGAA Remix Ativado");
@@ -696,88 +801,64 @@ $(document).ready(function(){
 
   //Botão do github
   var buttonGithub = document.createElement("button");
-  buttonGithub.style.backgroundColor = '#fafafa';
+  buttonGithub.setAttribute("class", "botaoTema");
   buttonGithub.innerHTML = 'Atualizações e mais informações sobre o SIGAA Remix';
-  buttonGithub.style.border = 'none';
-  buttonGithub.style.fontSize = '16px';
-  buttonGithub.style.padding = '0.5em';
   buttonGithub.style.paddingLeft = '2em';
-  buttonGithub.style.minWidth = 'fit-content';
-  buttonGithub.style.maxHeight = '35px';
-  buttonGithub.style.marginLeft = '0.5em';
-  buttonGithub.style.marginRight = '0.5em';
-  buttonGithub.style.borderRadius = '4px';
-  buttonGithub.style.boxShadow = sombra2;
-  buttonGithub.style.display = 'flex';
-  buttonGithub.style.cursor = 'pointer';
   buttonGithub.style.backgroundImage = 'url("https://svgshare.com/i/Yau.svg")';
-  buttonGithub.style.backgroundRepeat = 'no-repeat';
   buttonGithub.style.backgroundPosition = '1% 50%';
   buttonGithub.onclick = function(){
     alert("Será aberta uma nova janela na página do Github do projeto, lá você pode checar se há novas atualizações (É importante fazer isso!), ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
     window.open("https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey");
   };
-
   document.getElementById("idBotoes").appendChild(buttonGithub);
 
-
+  //Botão da calculadora
+  var buttonCalculadora = document.createElement("button");
+  buttonCalculadora.setAttribute("class", "botaoTema");
+  buttonCalculadora.innerHTML = 'Calculadora de Horários';
+  buttonCalculadora.style.paddingLeft = '2em';
+  buttonCalculadora.style.backgroundImage = 'url("https://svgshare.com/i/YeE.svg")';
+  buttonCalculadora.style.backgroundPosition = '3% 50%';
+  buttonCalculadora.onclick = function(){
+    window.open("https://sites.google.com/view/classificados-unb/calculadora-sigaa/claculadora-sigaa-online");
+  };
+  document.getElementById("idBotoes").appendChild(buttonCalculadora);
 
   //Seletor de tema
   var temaSeletor = document.createElement("select");
   temaSeletor.setAttribute("id", "temaSeletor");
+  temaSeletor.setAttribute("class", "botaoTema");
   temaSeletor.setAttribute("onchange", "localStorage.setItem('temaAtivado', document.getElementById('temaSeletor').value); document.location.reload(true);window.scrollTo(0, 0);");
-  temaSeletor.style.boxShadow = sombra2;
 
   var temaSeletorCss = document.createElement('style');
   temaSeletorCss.innerHTML = `
   #temaSeletor {
-    background: #fafafa;
-    padding: 0.5em;
     width: 13em;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    border: none;
-    border-radius: 4px;
-    display: flex;
+    min-width: 13em;
     appearence: none;
     -webkit-appearance: none;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
     background-image: url("https://svgshare.com/i/YcU.svg");
-    background-repeat: no-repeat;
     background-position: 3% 50%;
-    max-height: 34px;
   };
   `;
   document.head.appendChild(temaSeletorCss);
 
   document.getElementById("idBotoes").appendChild(temaSeletor);
 
-  var opcao1 = document.createElement("option");
-  opcao1.setAttribute("value", "none");
-  var opcao1Texto = document.createTextNode("\u00A0\u00A0\u00A0\u00A0 Selecionar um tema \u00A0\u00A0\u00A0\u00A0");
-  opcao1.appendChild(opcao1Texto);
-  document.getElementById("temaSeletor").appendChild(opcao1);
-
-  var opcao2 = document.createElement("option");
-  opcao2.setAttribute("value", "preto");
-  var opcao2Texto = document.createTextNode("Preto");
-  opcao2.appendChild(opcao2Texto);
-  document.getElementById("temaSeletor").appendChild(opcao2);
-
-  var opcao3 = document.createElement("option");
-  opcao3.setAttribute("value", "ciano");
-  var opcao3Texto = document.createTextNode("Ciano");
-  opcao3.appendChild(opcao3Texto);
-  document.getElementById("temaSeletor").appendChild(opcao3);
+  var opcaoTitulo = document.createElement("option");
+  opcaoTitulo.setAttribute("value", "none");
+  var opcaoTituloTexto = document.createTextNode("\u00A0\u00A0\u00A0\u00A0 Selecionar um tema \u00A0\u00A0\u00A0\u00A0");
+  opcaoTitulo.appendChild(opcaoTituloTexto);
+  document.getElementById("temaSeletor").appendChild(opcaoTitulo);
 
 
-  var opcao4 = document.createElement("option");
-  opcao4.setAttribute("value", "azul");
-  var opcao4Texto = document.createTextNode("Azul");
-  opcao4.appendChild(opcao4Texto);
-  document.getElementById("temaSeletor").appendChild(opcao4);
+  for (var contagem = 0; contagem < temas.length; contagem++) {
+    var opcao = document.createElement("option");
+    opcao.setAttribute("value", temas[contagem][1]);
+    var opcaoTexto = document.createTextNode(temas[contagem][0]);
+    opcao.appendChild(opcaoTexto);
+    document.getElementById("temaSeletor").appendChild(opcao);
+  };
 
   //Esconder botões na impressão
   var impressaoCss = document.createElement('style');
