@@ -1,9 +1,8 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.8
+// @version      0.9
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
-// @require      http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js
 // @match        https://sig.unb.br/*
 // @grant        none
 // @supportURL   https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/
@@ -13,8 +12,9 @@
 
 /*globals $*/
 
+
 'use strict';
-const versao = '0.8';
+const versao = '0.9';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -26,6 +26,7 @@ var cor3 = '#141A25';
 var cor4 = '#5e697d';
 var corFundo1 = "white";
 var corTransparente = "rgb(255 255 255 / 0%)";
+var corErro = "#ff6023";
 
 //Borda
 var brancoBorda1 = "1px solid #e0e0e0";
@@ -67,71 +68,81 @@ const iconeAluno = 'https://svgshare.com/i/YfE.svg';
 const iconeProfessorFuncionario = 'https://svgshare.com/i/Ydj.svg';
 const iconeLogOff = 'https://svgshare.com/i/Yge.svg';
 
+//Temas
 const temas = [
-    ['Preto', 'preto'],
-    ['Ciano', 'ciano'],
-    ['Azul', 'azul'],
-    ['Azul +Claro', 'azulClaro'],
-    ['Vermelho', 'vermelho'],
-    ['Rosa', 'rosa'],
-    ['Verde Esmeralda', 'esmeralda'],
-    ['Verde', 'verde']
+    'Preto',
+    'Ciano',
+    'Azul',
+    'Azul +Claro',
+    'Marrom',
+    'Rosa',
+    'Vinho',
+    'Verde Esmeralda',
+    'Verde',
+    'Tema Customizado',
 ];
 
 function tema(cor){
-   if (cor == 'azul'){
+   if (cor == 'Azul'){
       cor1 = '#2f3c52';
       cor2 = '#232f40';
       cor3 = '#141A25';
       cor4 = '#5e697d';
    }
-   else if(cor == 'preto'){
+   else if(cor == 'Preto'){
       cor1 = '#3A3A3A';
       cor2 = '#2D2D2D';
       cor3 = '#191919';
       cor4 = '#686868';
    }
-   else if(cor == 'azulClaro'){
+   else if(cor == 'Azul +Claro'){
       cor1 = '#0B406D';
       cor2 = '#073254';
       cor3 = '#061B30';
       cor4 = '#386A9C';
    }
-   else if(cor == 'ciano'){
+   else if(cor == 'Ciano'){
       cor1 = '#0C4651';
       cor2 = '#07393D';
       cor3 = '#041F24';
       cor4 = '#3E737D';
    }
-   else if(cor == 'verde'){
-      cor1 = '#375406';
-      cor2 = '#2E3F06';
+   else if(cor == 'Verde'){
+      cor1 = '#48631b';
+      cor2 = '#3c4e12';
       cor3 = '#192506';
-      cor4 = '#5F8229';
+      cor4 = '#8ba06a';
    }
-   else if(cor == 'esmeralda'){
+   else if(cor == 'Verde Esmeralda'){
       cor1 = '#0D5249';
       cor2 = '#0A4036';
       cor3 = '#062320';
       cor4 = '#31786F';
    }
-   else if(cor == 'rosaPreto'){
-      cor1 = '#252A34';
-      cor2 = '#252A34';
-      cor3 = '#FF2E63';
-      cor4 = '#FF2E63';
+   else if(cor == 'Rosa'){
+      cor1 = '#ca144f';
+      cor2 = '#a71041';
+      cor3 = '#8e0b36';
+      cor4 = '#ff628a';
+      corErro = "#ff9d9d";
    }
-   else if(cor == 'vermelho'){
+   else if(cor == 'Marrom'){
       cor1 = '#65292B';
       cor2 = '#501F22';
       cor3 = '#2F1313';
       cor4 = '#874C4D';
    }
-   else if(cor == 'rosa'){
-      cor1 = '#6D1B40';
-      cor2 = '#541435';
+   else if(cor == 'Vinho'){
+      cor1 = '#801c49';
+      cor2 = '#670d3b';
       cor3 = '#320C1D';
-      cor4 = '#8F3F63';
+      cor4 = '#9c486f';
+   }
+   else if(cor == 'Tema Customizado'){
+      cor1 = localStorage.getItem("cor1Customizado");
+      cor2 = localStorage.getItem("cor2Customizado");
+      cor3 = localStorage.getItem("cor3Customizado");
+      cor4 = localStorage.getItem("cor4Customizado");
    }
    else{
       cor1 = '#2f3c52';
@@ -140,6 +151,17 @@ function tema(cor){
       cor4 = '#5e697d';
    }
 }
+
+function lerTemas (){
+    for (var contagem = 0; contagem < temas.length; contagem++) {
+         var opcao = document.createElement("option");
+         opcao.setAttribute("value", temas[contagem]);
+         var opcaoTexto = document.createTextNode(temas[contagem]);
+         opcao.appendChild(opcaoTexto);
+         document.getElementById("temaSeletor").appendChild(opcao);
+     };
+};
+//Fim Temas
 
 //Função para alterar a aparência de  acordo com a regra do cssw
 function xcss (regra, propriedade, valor){
@@ -257,7 +279,7 @@ function removerTexto (regra, texto){
     }
 }
 
-$(document).ready(function(){
+function executar (){
   function mudancasBasicias(){
     //Mudar fonte
     document.body.style.fontFamily = fontePadrao;
@@ -300,9 +322,7 @@ $(document).ready(function(){
     //Mudar cor do botão sair
     xcss('#info-sistema span.sair-sistema a','color',corFonteClara1);
     var botaoSair = document.querySelector('#info-sistema span.sair-sistema a');
-    if (botaoSair != null){ botaoSair.insertAdjacentHTML('beforeEnd', '&nbsp;<img src="' + iconeLogOff + '" width="19px" height="19px">'); }
-    //Corrigir barra de cima
-    //xcss('#info-sistema div.dir','position','relative');
+    if (botaoSair != null){ botaoSair.insertAdjacentHTML('beforeEnd', '&nbsp;<img src="' + iconeLogOff + '" width="19px" height="19px">'); };
 
     //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
     xcss('#info-sistema span.acessibilidade','border','solid ' + cor3);
@@ -351,17 +371,63 @@ $(document).ready(function(){
     xcss('#painel-erros','color',corFonteClara1);
     xcss('#painel-erros a','color',corFonteClara1);
     xcss('#painel-erros ul.erros','background','none'); //remover icone de erro feio
-    xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
+    //xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
     xcss('#painel-erros ul.info','background','none'); //Esconder icone de informação
     xcss('#painel-erros ul.warning','background','none'); //Esconder icone de alerta
     xcss('#painel-erros ul.warning li','color','#ffeb3b'); //Mudar do aviso de alerta
     xcss('#painel-erros ul','padding','0'); //Remover o padding desnecessário
-    xcss('#painel-erros ul.erros li','color','#ff6023'); //Letra vermelha do aviso de erro
+    xcss('#painel-erros ul.erros li','color',corErro); //Letra vermelha do aviso de erro
 
  }
- function corrigirFonte(){
+ //Fim mudanças barra de cima
+
+function mudancasTurma(){
+   //Corrigir altura da página e do rodapé
+   xcss('div#baseLayout','height','945px');
+   //Mudar o menu lateral da direita
+   //xcss('#toggleDireita','background','#f5f5f5');
+   //xcss('#toggleDireita','border','none');
+
+   var turmaCss = document.createElement('style');
+   turmaCss.innerHTML = `
+     /* Remover fundo azul */
+     body {
+       background: white;
+     }
+     #baseLayout > #cabecalho {
+       background: none;
+     }
+     #baseLayout > .ui-layout-resizer {
+       background: none;
+     }
+    .ui-layout-pane {
+      border: 1px solid #e0e0e0;
+    }
+    /* Botão troca de turma */
+    button.ui-button{
+      border: 1px solid #e0e0e0;
+      background: white;
+      color: inherit;
+    }
+    button.ui-button:hover{
+      background-color: #f5f5f5;
+    }
+    /* Menu lateral */
+    .rich-panelbar {
+      background: #f5f5f5;
+      border: 1px solid #e0e0e0;
+    }
+    .rich-stglpanel {
+      border-color: #e0e0e0;
+    }
+
+   `;
+   document.head.appendChild(turmaCss);
+};
+
+function corrigirFonte(){
    document.body.style.fontSize = tamanhoFonte1;
- }
+}
 
  if (ativado != "false"){
   tema(temaAtivado);
@@ -396,7 +462,7 @@ $(document).ready(function(){
   if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
     mudancasBasicias();
     mudancasBarraDeCima();
-
+    //mudancasTurma();
     corrigirFonte();
 
 
@@ -657,7 +723,7 @@ $(document).ready(function(){
     corrigirFonte();
     mudancasBarraDeCima();
   }
-  //Área imprimir compovante
+  //Área imprimir comprovante
   else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf#'){
     mudancasBasicias();
     corrigirFonte();
@@ -828,7 +894,27 @@ $(document).ready(function(){
   var temaSeletor = document.createElement("select");
   temaSeletor.setAttribute("id", "temaSeletor");
   temaSeletor.setAttribute("class", "botaoTema");
-  temaSeletor.setAttribute("onchange", "localStorage.setItem('temaAtivado', document.getElementById('temaSeletor').value); document.location.reload(true);window.scrollTo(0, 0);");
+  temaSeletor.setAttribute("onchange", `
+
+  const temaSelecionado = document.getElementById('temaSeletor').value;
+  localStorage.setItem('temaAtivado', temaSelecionado);
+
+  if ( temaSelecionado == 'Tema Customizado' ){
+
+       let cor1Customizado = prompt("Código Hexadecimal da Cor 1:", "#2f3c52");
+       let cor2Customizado = prompt("Código Hexadecimal da Cor 2:", "#232f40");
+       let cor3Customizado = prompt("Código Hexadecimal da Cor 3:", "#141A25");
+       let cor4Customizado = prompt("Código Hexadecimal da Cor 4:", "#141A25");
+
+       localStorage.setItem('cor1Customizado', cor1Customizado);
+       localStorage.setItem('cor2Customizado', cor2Customizado);
+       localStorage.setItem('cor3Customizado', cor3Customizado);
+       localStorage.setItem('cor4Customizado', cor4Customizado);
+  };
+  document.location.reload(true);
+  window.scrollTo(0, 0);
+
+  `);
 
   var temaSeletorCss = document.createElement('style');
   temaSeletorCss.innerHTML = `
@@ -851,14 +937,7 @@ $(document).ready(function(){
   opcaoTitulo.appendChild(opcaoTituloTexto);
   document.getElementById("temaSeletor").appendChild(opcaoTitulo);
 
-
-  for (var contagem = 0; contagem < temas.length; contagem++) {
-    var opcao = document.createElement("option");
-    opcao.setAttribute("value", temas[contagem][1]);
-    var opcaoTexto = document.createTextNode(temas[contagem][0]);
-    opcao.appendChild(opcaoTexto);
-    document.getElementById("temaSeletor").appendChild(opcao);
-  };
+  lerTemas ();
 
   //Esconder botões na impressão
   var impressaoCss = document.createElement('style');
@@ -871,4 +950,6 @@ $(document).ready(function(){
   `;
   document.head.appendChild(impressaoCss);
 
-});
+};
+
+executar ();
