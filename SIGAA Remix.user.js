@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.9
+// @version      0.10
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '0.9';
+const versao = '0.10';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -27,6 +27,41 @@ var cor4 = '#5e697d';
 var corFundo1 = "white";
 var corTransparente = "rgb(255 255 255 / 0%)";
 var corErro = "#ff6023";
+var corAtivar = '#379638';
+
+//Cores customizadas, carregar
+var cor1Customizado;
+if (localStorage.getItem("cor1Customizado") == null) {
+    localStorage.setItem('cor1Customizado', cor1);
+}
+else{
+    cor1Customizado = localStorage.getItem("cor1Customizado");
+};
+
+var cor2Customizado;
+if (localStorage.getItem("cor2Customizado") == null) {
+    localStorage.setItem('cor2Customizado', cor2);
+}
+else{
+    cor2Customizado = localStorage.getItem("cor2Customizado");
+};
+
+var cor3Customizado;
+if (localStorage.getItem("cor3Customizado") == null) {
+    localStorage.setItem('cor3Customizado', cor3);
+}
+else{
+    cor3Customizado = localStorage.getItem("cor3Customizado");
+};
+
+var cor4Customizado;
+if (localStorage.getItem("cor4Customizado") == null) {
+    localStorage.setItem('cor4Customizado', cor3);
+}
+else{
+    cor4Customizado = localStorage.getItem("cor4Customizado");
+};
+//Fim cores customizadas, carregar
 
 //Borda
 var brancoBorda1 = "1px solid #e0e0e0";
@@ -67,6 +102,9 @@ const iconeSetaEsquerda = 'https://svgshare.com/i/Yhf.svg';
 const iconeAluno = 'https://svgshare.com/i/YfE.svg';
 const iconeProfessorFuncionario = 'https://svgshare.com/i/Ydj.svg';
 const iconeLogOff = 'https://svgshare.com/i/Yge.svg';
+const iconeCheck = 'https://svgshare.com/i/Yps.svg';
+
+let menuCorRGB = localStorage.getItem("menuCorRGB");
 
 //Temas
 const temas = [
@@ -75,6 +113,7 @@ const temas = [
     'Azul',
     'Azul +Claro',
     'Marrom',
+    'Alto Contraste',
     'Rosa',
     'Vinho',
     'Verde Esmeralda',
@@ -120,7 +159,7 @@ function tema(cor){
       cor4 = '#31786F';
    }
    else if(cor == 'Rosa'){
-      cor1 = '#ca144f';
+      cor1 = '#c71d54';
       cor2 = '#a71041';
       cor3 = '#8e0b36';
       cor4 = '#ff628a';
@@ -138,6 +177,12 @@ function tema(cor){
       cor3 = '#320C1D';
       cor4 = '#9c486f';
    }
+   else if(cor == 'Alto Contraste'){
+      cor1 = '#000000';
+      cor2 = '#000000';
+      cor3 = '#ffffff';
+      cor4 = '#ffffff';
+   }
    else if(cor == 'Tema Customizado'){
       cor1 = localStorage.getItem("cor1Customizado");
       cor2 = localStorage.getItem("cor2Customizado");
@@ -152,6 +197,7 @@ function tema(cor){
    }
 }
 
+//Ler temas customizados e adicionar a lista de opções
 function lerTemas (){
     for (var contagem = 0; contagem < temas.length; contagem++) {
          var opcao = document.createElement("option");
@@ -163,7 +209,7 @@ function lerTemas (){
 };
 //Fim Temas
 
-//Função para alterar a aparência de  acordo com a regra do cssw
+//Função para alterar a aparência de  acordo com a regra do css
 function xcss (regra, propriedade, valor){
      var x,i ;
      x = document.querySelectorAll(regra);
@@ -270,6 +316,7 @@ function xsrc (regra, antigo, novo){
       }
 }
 
+//Escoder texto
 function removerTexto (regra, texto){
     var x = document.querySelectorAll(regra);
     for (var i = 0; i < x.length; i++) {
@@ -279,6 +326,16 @@ function removerTexto (regra, texto){
     }
 }
 
+function substituirTexto (regra, antigo, novo){
+    var x = document.querySelectorAll(regra);
+    for (var i = 0; i < x.length; i++) {
+        if (x[i].textContent == antigo){
+            x[i].textContent = novo;
+        }
+    }
+}
+
+//Aplicar as mudanças na página
 function executar (){
   function mudancasBasicias(){
     //Mudar fonte
@@ -378,10 +435,13 @@ function executar (){
     xcss('#painel-erros ul','padding','0'); //Remover o padding desnecessário
     xcss('#painel-erros ul.erros li','color',corErro); //Letra vermelha do aviso de erro
 
+    substituirTexto('#info-sistema h1 span','UnB - SIGAA -','SIGAA Remix');
+    removerTexto ('#info-sistema h3', 'Sistema Integrado de Gestão de Atividades Acadêmicas');
+
  }
  //Fim mudanças barra de cima
 
-function mudancasTurma(){
+ function mudancasTurma(){
    //Corrigir altura da página e do rodapé
    xcss('div#baseLayout','height','945px');
    //Mudar o menu lateral da direita
@@ -423,12 +483,13 @@ function mudancasTurma(){
 
    `;
    document.head.appendChild(turmaCss);
-};
+ };
 
-function corrigirFonte(){
+ function corrigirFonte(){
    document.body.style.fontSize = tamanhoFonte1;
-}
+ }
 
+ //Se o sigaa remix estiver ativado
  if (ativado != "false"){
   tema(temaAtivado);
 
@@ -458,8 +519,17 @@ function corrigirFonte(){
   //Mudar o ícone seta para esquerda
   xcss('tr > td.voltar > a','background', 'url(' + iconeSetaEsquerda + ') no-repeat');
 
+  //Endereços de páginas
+  const enderecosPaginaInicial = window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
+  const enderecosIndicesAcademicos = window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
+  const enderecosTurmasAnteriores = window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
+  const enderecosCaixaPostal = window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#';
+  const enderecosLogin = window.location.href == 'https://sig.unb.br/sigaa/verTelaLogin.do' || window.location.href == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || window.location.href == 'https://sig.unb.br/sipac/?modo=classico' || window.location.href == 'https://sig.unb.br/sigrh/login.jsf' || window.location.href == 'https://sig.unb.br/admin/login.jsf' || window.location.href == 'https://sig.unb.br/sipac/';
+  const enderecosAtualizarDadosPessoais = window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#';
+  //Fim endereços de páginas
+
   //Página inicial
-  if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#'){
+  if (enderecosPaginaInicial){
     mudancasBasicias();
     mudancasBarraDeCima();
     //mudancasTurma();
@@ -651,7 +721,7 @@ function corrigirFonte(){
 
   }
   //Consultar indices acadêmicos
-  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#'){
+  else if (enderecosIndicesAcademicos){
     //Mudar fonte
     document.body.style.fontFamily = fontePadrao;
     //Mudar tamanho da fonte para o tamanho normal
@@ -674,7 +744,7 @@ function corrigirFonte(){
 
   }
   //Área de turmas anteriores
-  else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#'){
+  else if (enderecosTurmasAnteriores){
     mudancasBasicias();
     mudancasBarraDeCima();
 
@@ -730,7 +800,7 @@ function corrigirFonte(){
     xcss('td','fontSize', '14px');
   }
   //Área de Atualizar dados pessoais
-  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#'){
+  else if (enderecosAtualizarDadosPessoais){
     mudancasBasicias();
     mudancasBarraDeCima();
   }
@@ -743,13 +813,13 @@ function corrigirFonte(){
     xsrc('.fotoPerfil, img','https://sig.unb.br/sigaa/img/no_picture.png','https://svgshare.com/i/Y09.svg');
   }
   //Área da caixa postal
-  else if (window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#'){
+  else if (enderecosCaixaPostal){
     mudancasBasicias();
     mudancasBarraDeCima();
     corrigirFonte();
   }
   //Tela de login
-  else if (window.location.href == 'https://sig.unb.br/sigaa/verTelaLogin.do' || window.location.href == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || window.location.href == 'https://sig.unb.br/sipac/?modo=classico' || window.location.href == 'https://sig.unb.br/sigrh/login.jsf' || window.location.href == 'https://sig.unb.br/admin/login.jsf' || window.location.href == 'https://sig.unb.br/sipac/'){
+  else if (enderecosLogin){
    mudancasBasicias();
    mudancasBarraDeCima();
    corrigirFonte();
@@ -792,6 +862,20 @@ function corrigirFonte(){
  //Parte de baixo
 
  var body = document.getElementsByTagName("body")[0];
+
+ var divBotoesCor = document.createElement("div");
+ divBotoesCor.setAttribute("id", "idBotoesCor");
+ divBotoesCor.style.display = 'none';
+ divBotoesCor.style.alignItems = 'center';
+ divBotoesCor.style.justifyContent = 'center';
+ divBotoesCor.style.marginLeft = 'auto';
+ divBotoesCor.style.marginRight = 'auto';
+ divBotoesCor.style.marginTop = 'none';
+ divBotoesCor.style.marginBottom = 'none';
+ divBotoesCor.style.maxWidth = '100em';
+ divBotoesCor.style.flexWrap = 'wrap';
+ body.appendChild(divBotoesCor);
+
  var divBotoes = document.createElement("div");
  divBotoes.setAttribute("id", "idBotoes");
  divBotoes.style.display = 'flex';
@@ -837,7 +921,7 @@ function corrigirFonte(){
  buttonPower.setAttribute("class", "botaoTema");
  if (ativado == 'false'){
      buttonPower.innerHTML = "Ativar SIGAA Remix Versão " + versao;
-     buttonPower.style.backgroundColor = '#379638';
+     buttonPower.style.backgroundColor = corAtivar;
      //
  }
  else{
@@ -899,18 +983,9 @@ function corrigirFonte(){
   const temaSelecionado = document.getElementById('temaSeletor').value;
   localStorage.setItem('temaAtivado', temaSelecionado);
 
-  if ( temaSelecionado == 'Tema Customizado' ){
+  if(temaSelecionado == 'Tema Customizado'){ localStorage.setItem('menuCorRGB', 'true'); }
+  else{ localStorage.setItem('menuCorRGB', 'false'); };
 
-       let cor1Customizado = prompt("Código Hexadecimal da Cor 1:", "#2f3c52");
-       let cor2Customizado = prompt("Código Hexadecimal da Cor 2:", "#232f40");
-       let cor3Customizado = prompt("Código Hexadecimal da Cor 3:", "#141A25");
-       let cor4Customizado = prompt("Código Hexadecimal da Cor 4:", "#141A25");
-
-       localStorage.setItem('cor1Customizado', cor1Customizado);
-       localStorage.setItem('cor2Customizado', cor2Customizado);
-       localStorage.setItem('cor3Customizado', cor3Customizado);
-       localStorage.setItem('cor4Customizado', cor4Customizado);
-  };
   document.location.reload(true);
   window.scrollTo(0, 0);
 
@@ -936,8 +1011,102 @@ function corrigirFonte(){
   var opcaoTituloTexto = document.createTextNode("\u00A0\u00A0\u00A0\u00A0 Selecionar um tema \u00A0\u00A0\u00A0\u00A0");
   opcaoTitulo.appendChild(opcaoTituloTexto);
   document.getElementById("temaSeletor").appendChild(opcaoTitulo);
-
   lerTemas ();
+
+  //Botões de customização de cores
+
+  var temaBotaoCorCss = document.createElement('style');
+  temaBotaoCorCss.innerHTML = `
+  .temaBotaoCor {
+     border: none;
+     width: 28px;
+     height: 32px;
+     cursor: pointer;
+     margin-left: 4px;
+     margin-right: 4px;
+     background-color: transparent;
+     border-radius: 100%;
+  }
+  .temaBotaoCor::-webkit-color-swatch{
+     border-radius: 100%;
+     border: none;
+     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
+  };
+  `;
+  document.head.appendChild(temaBotaoCorCss);
+
+  var botaoCor1 = document.createElement("INPUT");
+  botaoCor1.setAttribute("type", "color");
+  botaoCor1.setAttribute("class", "temaBotaoCor");
+  botaoCor1.setAttribute("id", "botaoCor1");
+  botaoCor1.setAttribute("value", cor1Customizado);
+  divBotoesCor.appendChild(botaoCor1);
+
+  var botaoCor2 = document.createElement("INPUT");
+  botaoCor2.setAttribute("type", "color");
+  botaoCor2.setAttribute("class", "temaBotaoCor");
+  botaoCor2.setAttribute("id", "botaoCor2");
+  botaoCor2.setAttribute("value", cor2Customizado);
+  divBotoesCor.appendChild(botaoCor2);
+
+  var botaoCor3 = document.createElement("INPUT");
+  botaoCor3.setAttribute("type", "color");
+  botaoCor3.setAttribute("class", "temaBotaoCor");
+  botaoCor3.setAttribute("id", "botaoCor3");
+  botaoCor3.setAttribute("value", cor3Customizado);
+  divBotoesCor.appendChild(botaoCor3);
+
+  var botaoCor4 = document.createElement("INPUT");
+  botaoCor4.setAttribute("type", "color");
+  botaoCor4.setAttribute("class", "temaBotaoCor");
+  botaoCor4.setAttribute("id", "botaoCor4");
+  botaoCor4.setAttribute("value", cor4Customizado);
+  divBotoesCor.appendChild(botaoCor4);
+
+  var temabotaoCorAplicarCss = document.createElement('style');
+  temabotaoCorAplicarCss.innerHTML = `
+  #botaoCorAplicar {
+     border: none;
+     width: 24px;
+     height: 24px;
+     cursor: pointer;
+     margin-inline: 4px;
+     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
+     border-radius: 100%;
+     cursor: pointer;
+  };
+  `;
+  document.head.appendChild(temabotaoCorAplicarCss);
+
+  var botaoCorAplicar = document.createElement("IMG");
+  botaoCorAplicar.setAttribute("id", "botaoCorAplicar");
+  botaoCorAplicar.style.backgroundColor = corAtivar;
+
+  if (menuCorRGB == 'true'){divBotoesCor.style.display = "flex";}
+  else{divBotoesCor.style.display = "none";};
+
+  botaoCorAplicar.src = iconeCheck;
+  botaoCorAplicar.setAttribute("onclick", `
+
+       let cor1Customizado = document.getElementById("botaoCor1").value;
+       let cor2Customizado = document.getElementById("botaoCor2").value;
+       let cor3Customizado = document.getElementById("botaoCor3").value;
+       let cor4Customizado = document.getElementById("botaoCor4").value;
+
+       localStorage.setItem('cor1Customizado', cor1Customizado);
+       localStorage.setItem('cor2Customizado', cor2Customizado);
+       localStorage.setItem('cor3Customizado', cor3Customizado);
+       localStorage.setItem('cor4Customizado', cor4Customizado);
+
+       localStorage.setItem('menuCorRGB', 'false');
+
+       document.location.reload(true);
+       window.scrollTo(0, 0);
+
+  `);
+  divBotoesCor.appendChild(botaoCorAplicar);
+
+  //Fim de botões de customização de cores
 
   //Esconder botões na impressão
   var impressaoCss = document.createElement('style');
@@ -953,3 +1122,4 @@ function corrigirFonte(){
 };
 
 executar ();
+
