@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      0.10
+// @version      1.0
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '0.10';
+const versao = '1.0';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -536,7 +536,7 @@ function executar (){
     corrigirFonte();
 
 
-    //Mudança daborda de cima do ver turmas anteriores
+    //Mudança da borda de cima do ver turmas anteriores
     xcss('#portal-docente .mais','borderTop', '0.5px solid #eeeeee');
 
     //Mudar Fundo da área de dados pessoais
@@ -922,7 +922,6 @@ function executar (){
  if (ativado == 'false'){
      buttonPower.innerHTML = "Ativar SIGAA Remix Versão " + versao;
      buttonPower.style.backgroundColor = corAtivar;
-     //
  }
  else{
      buttonPower.innerHTML = "Desativar SIGAA Remix Versão " + versao;
@@ -936,7 +935,6 @@ function executar (){
  // Inserir Botão
  document.getElementById("idBotoes").appendChild(buttonPower);
 
-
  buttonPower.addEventListener ("click", function() {
    if (ativado == 'false'){
        localStorage.setItem("ativado", 'true');
@@ -948,6 +946,7 @@ function executar (){
    }
    document.location.reload(true);
  });
+ //Fim botão de ativar e desativar
 
   //Botão do github
   var buttonGithub = document.createElement("button");
@@ -1121,5 +1120,6 @@ function executar (){
 
 };
 
+//Executar tema
 executar ();
 
