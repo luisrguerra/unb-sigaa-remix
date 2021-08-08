@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      1.0
+// @version      1.1
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '1.0';
+const versao = '1.1';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -106,103 +106,54 @@ const iconeCheck = 'https://svgshare.com/i/Yps.svg';
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
-//Temas
-const temas = [
-    'Preto',
-    'Ciano',
-    'Azul',
-    'Azul +Claro',
-    'Marrom',
-    'Alto Contraste',
-    'Rosa',
-    'Vinho',
-    'Verde Esmeralda',
-    'Verde',
-    'Tema Customizado',
+const temas2 = [
+  //Nome da cor, cor1, cor2, cor3, cor4, cor erro
+  ['Azul', '#2f3c52','#232f40','#141A25','#5e697d',''],
+  ['Preto', '#3A3A3A','#2D2D2D','#191919','#686868',''],
+  ['Azul +Claro', '#0B406D','#073254','#061B30','#386A9C',''],
+  ['Ciano', '#0C4651','#07393D','#041F24','#3E737D',''],
+  ['Verde', '#48631b','#3c4e12','#192506','#8ba06a',''],
+  ['Verde Esmeralda', '#0D5249','#0A4036','#062320','#31786F',''],
+  ['Rosa', '#c71d54','#a71041','#8e0b36','#ff628a', '#ff9d9d'],
+  ['Marrom', '#65292B','#501F22','#2F1313','#874C4D',''],
+  ['Vinho', '#801c49','#670d3b','#320C1D','#9c486f',''],
+  ['Alto Contraste', '#000000','#000000','#ffffff','#ffffff',''],
+  ['Tema Customizado', '','','','',''],
 ];
 
 function tema(cor){
-   if (cor == 'Azul'){
-      cor1 = '#2f3c52';
-      cor2 = '#232f40';
-      cor3 = '#141A25';
-      cor4 = '#5e697d';
-   }
-   else if(cor == 'Preto'){
-      cor1 = '#3A3A3A';
-      cor2 = '#2D2D2D';
-      cor3 = '#191919';
-      cor4 = '#686868';
-   }
-   else if(cor == 'Azul +Claro'){
-      cor1 = '#0B406D';
-      cor2 = '#073254';
-      cor3 = '#061B30';
-      cor4 = '#386A9C';
-   }
-   else if(cor == 'Ciano'){
-      cor1 = '#0C4651';
-      cor2 = '#07393D';
-      cor3 = '#041F24';
-      cor4 = '#3E737D';
-   }
-   else if(cor == 'Verde'){
-      cor1 = '#48631b';
-      cor2 = '#3c4e12';
-      cor3 = '#192506';
-      cor4 = '#8ba06a';
-   }
-   else if(cor == 'Verde Esmeralda'){
-      cor1 = '#0D5249';
-      cor2 = '#0A4036';
-      cor3 = '#062320';
-      cor4 = '#31786F';
-   }
-   else if(cor == 'Rosa'){
-      cor1 = '#c71d54';
-      cor2 = '#a71041';
-      cor3 = '#8e0b36';
-      cor4 = '#ff628a';
-      corErro = "#ff9d9d";
-   }
-   else if(cor == 'Marrom'){
-      cor1 = '#65292B';
-      cor2 = '#501F22';
-      cor3 = '#2F1313';
-      cor4 = '#874C4D';
-   }
-   else if(cor == 'Vinho'){
-      cor1 = '#801c49';
-      cor2 = '#670d3b';
-      cor3 = '#320C1D';
-      cor4 = '#9c486f';
-   }
-   else if(cor == 'Alto Contraste'){
-      cor1 = '#000000';
-      cor2 = '#000000';
-      cor3 = '#ffffff';
-      cor4 = '#ffffff';
-   }
-   else if(cor == 'Tema Customizado'){
+   var achouTema = false;
+   for (var contagem = 0; contagem < temas2.length; contagem++) {
+        if (cor == temas2[contagem][0]){
+            cor1 = temas2[contagem][1];
+            cor2 = temas2[contagem][2];
+            cor3 = temas2[contagem][3];
+            cor4 = temas2[contagem][4];
+            if(temas2[contagem][5] != ''){corErro = temas2[contagem][5]};
+            achouTema = true;
+        };
+   };
+   if(cor == 'Tema Customizado'){
       cor1 = localStorage.getItem("cor1Customizado");
       cor2 = localStorage.getItem("cor2Customizado");
       cor3 = localStorage.getItem("cor3Customizado");
       cor4 = localStorage.getItem("cor4Customizado");
+      achouTema = true;
    }
-   else{
-      cor1 = '#2f3c52';
-      cor2 = '#232f40';
-      cor3 = '#141A25';
-      cor4 = '#5e697d';
+   if(achouTema == false){
+            cor1 = '#2f3c52';
+            cor2 = '#232f40';
+            cor3 = '#141A25';
+            cor4 = '#5e697d';
    }
 }
 
 //Ler temas customizados e adicionar a lista de opções
 function lerTemas (){
-    for (var contagem = 0; contagem < temas.length; contagem++) {
+    for (var contagem = 0; contagem < temas2.length; contagem++) {
          var opcao = document.createElement("option");
-         opcao.setAttribute("value", temas[contagem]);
-         var opcaoTexto = document.createTextNode(temas[contagem]);
+         opcao.setAttribute("value", temas2[contagem][0]);
+         var opcaoTexto = document.createTextNode(temas2[contagem][0]);
          opcao.appendChild(opcaoTexto);
          document.getElementById("temaSeletor").appendChild(opcao);
      };
@@ -969,7 +920,7 @@ function executar (){
   buttonCalculadora.style.backgroundImage = 'url("https://svgshare.com/i/YeE.svg")';
   buttonCalculadora.style.backgroundPosition = '3% 50%';
   buttonCalculadora.onclick = function(){
-    window.open("https://sites.google.com/view/classificados-unb/calculadora-sigaa/claculadora-sigaa-online");
+    window.open("https://luisrguerra.github.io/calculadora-horarios-sigaa-unb-html/");
   };
   document.getElementById("idBotoes").appendChild(buttonCalculadora);
 
