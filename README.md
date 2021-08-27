@@ -24,6 +24,7 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 ![Tela 8](fotos/tela8.png)
 <br>
 
+# Como instalar:
 
 Download:
 <br>
