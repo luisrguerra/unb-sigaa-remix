@@ -5,13 +5,13 @@ Através de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aq
 e aumentando o tamanho das letras.
 <br>
 <br>
+Depois de instalado:
+<br>
+![Tela 1](fotos/tela1.png)
+<br>
 Antes:
 <br>
 ![Tela 1](fotos/tela0.png)
-<br>
-Depois:
-<br>
-![Tela 1](fotos/tela1.png)
 <br>
 Novos ícones em alta resolução:
 <br>
@@ -26,17 +26,20 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 
 # Como instalar:
 
+Para instalar o SIGAA Remix você precisará instalar primeiro a extensão Tampermonkey para o SIGAA Remix funcionar.
+
 Download:
 <br>
 1ª Etapa) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
-[Site Oficial do Tampermonkey](https://www.tampermonkey.net/)<br>
+[Site Oficial do Tampermonkey para mais informações](https://www.tampermonkey.net/)<br>
 2ª Etapa) [Instalar o SIGAA Remix versão 1.1.1 no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
 <br>
 <br>
-Ao clicar no link "Instalar SIGAA Remix" aprecerá essa tela, clique em instalar para terminar de instalar a extensão.
+Ao clicar no link "Instalar SIGAA Remix" aparecerá essa tela, clique em instalar para terminar de instalar a extensão. Após instalada a extensão, toda vez que você acessar o SIGAA UnB o SIGAA Remix será executado.
 <br>
 ![Tela 2](fotos/tela2.png)
 <br>
+# Desinstalação:
 Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey (ícone preto) no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
 Clicando no nome SIGAA Remix você pode desativar e ou remover o script. 
 <br>
