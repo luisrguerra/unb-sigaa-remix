@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      1.1
+// @version      1.1.1
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '1.1';
+const versao = '1.1.1';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -64,6 +64,7 @@ else{
 //Fim cores customizadas, carregar
 
 //Borda
+var corBrancoBorda = "#e0e0e0"
 var brancoBorda1 = "1px solid #e0e0e0";
 var arrendondamentoBorda1 = "2px";
 
@@ -110,14 +111,15 @@ const temas2 = [
   //Nome da cor, cor1, cor2, cor3, cor4, cor erro
   ['Azul', '#2f3c52','#232f40','#141A25','#5e697d',''],
   ['Preto', '#3A3A3A','#2D2D2D','#191919','#686868',''],
-  ['Azul +Claro', '#0B406D','#073254','#061B30','#386A9C',''],
+  ['Azul +Claro', '#0B406D','#073254','#061B30','#587ea2',''],
   ['Ciano', '#0C4651','#07393D','#041F24','#3E737D',''],
   ['Verde', '#48631b','#3c4e12','#192506','#8ba06a',''],
   ['Verde Esmeralda', '#0D5249','#0A4036','#062320','#31786F',''],
-  ['Rosa', '#c71d54','#a71041','#8e0b36','#ff628a', '#ff9d9d'],
+  ['Rosa', '#b9164a','#a71041','#8e0b36','#e25175', '#ff9d9d'],
   ['Marrom', '#65292B','#501F22','#2F1313','#874C4D',''],
   ['Vinho', '#801c49','#670d3b','#320C1D','#9c486f',''],
   ['Alto Contraste', '#000000','#000000','#ffffff','#ffffff',''],
+  ['Alto Contraste+', '#000000','#000000','#000000','#000000',''],
   ['Tema Customizado', '','','','',''],
 ];
 
@@ -267,6 +269,23 @@ function xsrc (regra, antigo, novo){
       }
 }
 
+//Função para trocar plano de fundo
+function xbackground (regra, antigo, novo){
+     var x,i ;
+     var urlnova = 'url("' + novo + '")';
+     x = document.querySelectorAll(regra);
+      for (i = 0; i < x.length; i++) {
+          var endereco = x[i].style.background;
+          console.log(endereco);
+          if (endereco.search(antigo) >= 0){
+            x[i].style.background = urlnova;
+          }
+          else if (antigo == 'all'){
+            x[i].style.background = urlnova;
+          }
+      }
+}
+
 //Escoder texto
 function removerTexto (regra, texto){
     var x = document.querySelectorAll(regra);
@@ -405,9 +424,8 @@ function executar (){
      body {
        background: white;
      }
-     #baseLayout > #cabecalho {
-       background: none;
-     }
+     /* Remover fundo azul */
+     #baseLayout > #cabecalho,
      #baseLayout > .ui-layout-resizer {
        background: none;
      }
@@ -431,9 +449,40 @@ function executar (){
     .rich-stglpanel {
       border-color: #e0e0e0;
     }
+    /* Menu lateral correção tamanho das letras */
+    .rich-panelbar-header, .rich-panelbar-header-act {
+      font-size: 1em;
+      font-weight: inherit;
+    }
+    /* Remover borda infeior azul nos itens do menu*/
+    div.itemMenuHeaderTurma{
+       border-bottom: 1px solid #CCCCCC;
+    }
+    #toggleDireita , .itemMenuHeaderAlunos, .itemMenuHeaderMateriais, .itemMenuHeaderAtividades, .itemMenuHeaderRelatorios, .itemMenuHeaderAjuda{
+       border-bottom: 1px solid #CCCCCC;
+    }
 
    `;
    document.head.appendChild(turmaCss);
+
+   //remover fundo da barra da interface "menu turma virtual" e o do lado direito
+   xbackground("div > table > tbody > tr > td",'painel_bg.png','');
+   //Correção do tamanho da letra nas informções do estudante, abaixo do nome
+   //xcss('#painelDadosUsuario > div','fontSize','inherit');
+
+   //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
+   xcss('#info-sistema span','border','solid ' + cor3);
+   xcss('#info-sistema span','borderWidth','0 1px 0 0');
+   xcss('#info-sistema a','borderWidth','0 0 0 0');
+   xcss('#info-sistema #sair-sistema','borderWidth','0 0 0 0');
+
+   //Mudar a cor do texto amarelo
+   xcss('#info-sistema a','color',corFonteClara1);
+   xcss('#tempoSessao','color',corFonteClara1);
+
+   //Remover borda azul
+   xcss('#barraEsquerda table','border','none');
+   //xcss('#barraEsquerda table','borderWidth','0 0 1px 0');
  };
 
  function corrigirFonte(){
@@ -470,13 +519,19 @@ function executar (){
   //Mudar o ícone seta para esquerda
   xcss('tr > td.voltar > a','background', 'url(' + iconeSetaEsquerda + ') no-repeat');
 
+  const urlAtual = window.location.href;
   //Endereços de páginas
-  const enderecosPaginaInicial = window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
-  const enderecosIndicesAcademicos = window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
-  const enderecosTurmasAnteriores = window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
-  const enderecosCaixaPostal = window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || window.location.href == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#';
-  const enderecosLogin = window.location.href == 'https://sig.unb.br/sigaa/verTelaLogin.do' || window.location.href == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || window.location.href == 'https://sig.unb.br/sipac/?modo=classico' || window.location.href == 'https://sig.unb.br/sigrh/login.jsf' || window.location.href == 'https://sig.unb.br/admin/login.jsf' || window.location.href == 'https://sig.unb.br/sipac/';
-  const enderecosAtualizarDadosPessoais = window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#';
+  const enderecosPaginaInicial = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
+  const enderecosIndicesAcademicos = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
+  const enderecosTurmasAnteriores = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
+  const enderecosCaixaPostal = urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#';
+  const enderecosLogin = urlAtual == 'https://sig.unb.br/sigaa/verTelaLogin.do' || urlAtual == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || urlAtual == 'https://sig.unb.br/sipac/?modo=classico' || urlAtual == 'https://sig.unb.br/sigrh/login.jsf' || urlAtual == 'https://sig.unb.br/admin/login.jsf' || urlAtual == 'https://sig.unb.br/sipac/';
+  const enderecosAtualizarDadosPessoais = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#';
+  const enderecosMatricula = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf#';
+  const enderecosImprimirComprovante = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf#';
+  const enderecosAreaMudarFoto = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf#';
+  const enderecosTurmasSelecionadas = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf' ;
+  const enderecosAvisoCovid = urlAtual == 'https://sig.unb.br/sigaa/telaAvisoLogon.jsf' || urlAtual == 'https://sig.unb.br/sigaa/telaAvisoLogon.jsf#';
   //Fim endereços de páginas
 
   //Página inicial
@@ -661,6 +716,13 @@ function executar (){
 
     //Corrreção do tamanho da letra em consultar minhas notas
     xcss('#relatorio-rodape table tr td','fontSize',tamanhoFonte1);
+
+    //Mudar as bordas
+    xcss('#relatorio-rodape','border',brancoBorda1);
+    xcss('#relatorio-rodape','borderRadius',arrendondamentoBorda1);
+    xcss('#relatorio-cabecalho','border',brancoBorda1);
+    xcss('#relatorio-cabecalho','borderRadius',arrendondamentoBorda1);
+
     //console.log(window.location.href);
 
     //Correção de bug nos botões no menu da turma virtual
@@ -669,6 +731,14 @@ function executar (){
 
     //Mudar o texto portal do discente
     removerTexto ('div > a:link', 'Portal do Discente');
+
+    //Remover texto de links quebrados
+    removerTexto ('p > a:link', `
+					Calendário Acadêmico de Graduação
+					`);
+    removerTexto ('p > a:link', `
+				Regulamento dos Cursos de Graduação
+				`);
 
   }
   //Consultar indices acadêmicos
@@ -732,42 +802,31 @@ function executar (){
 
   }
   //Área de Matrícula
-  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf#'){
+  else if (enderecosMatricula){
     mudancasBasicias();
     corrigirFonte();
     mudancasBarraDeCima();
     xcss('label','fontSize', '16px');
   }
-  //Área de de turmas selecionadas na Matrícula.
-  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf#' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf'){
+  //Correção de Página genéricas
+  else if (enderecosTurmasSelecionadas || enderecosAvisoCovid || enderecosCaixaPostal || enderecosAtualizarDadosPessoais){
     mudancasBasicias();
     corrigirFonte();
     mudancasBarraDeCima();
   }
   //Área imprimir comprovante
-  else if (window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf' || window.location.href == 'https://sig.unb.br/sigaa/graduacao/matricula/comprovante_solicitacoes.jsf#'){
+  else if (enderecosImprimirComprovante){
     mudancasBasicias();
     corrigirFonte();
     xcss('td','fontSize', '14px');
   }
-  //Área de Atualizar dados pessoais
-  else if (enderecosAtualizarDadosPessoais){
-    mudancasBasicias();
-    mudancasBarraDeCima();
-  }
   //Área de Mudar foto
-  else if (window.location.href == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf' || window.location.href == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf#'){
+  else if (enderecosAreaMudarFoto){
     mudancasBasicias();
     mudancasBarraDeCima();
     corrigirFonte();
     //Mudar foto
     xsrc('.fotoPerfil, img','https://sig.unb.br/sigaa/img/no_picture.png','https://svgshare.com/i/Y09.svg');
-  }
-  //Área da caixa postal
-  else if (enderecosCaixaPostal){
-    mudancasBasicias();
-    mudancasBarraDeCima();
-    corrigirFonte();
   }
   //Tela de login
   else if (enderecosLogin){
@@ -1073,4 +1132,3 @@ function executar (){
 
 //Executar tema
 executar ();
-
