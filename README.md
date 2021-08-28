@@ -13,7 +13,7 @@ Antes:
 <br>
 ![Tela 1](fotos/tela0.png)
 <br>
-# Recursos do SIGAA Remix:
+### Recursos do SIGAA Remix:
 Novos ícones em alta resolução:
 <br>
 ![Tela 7](fotos/tela7.png)
@@ -40,7 +40,7 @@ Ao clicar no link "Instalar SIGAA Remix" aparecerá essa tela, clique em instala
 <br>
 ![Tela 2](fotos/tela2.png)
 <br>
-# Desinstalação:
+### Desinstalação:
 Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey (ícone preto) no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
 Clicando no nome SIGAA Remix você pode desativar e ou remover o script. 
 <br>
