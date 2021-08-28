@@ -13,7 +13,7 @@ Antes:
 <br>
 ![Tela 1](fotos/tela0.png)
 <br>
-# Recusrsos do SIGAA Remix:
+# Recursos do SIGAA Remix:
 Novos ícones em alta resolução:
 <br>
 ![Tela 7](fotos/tela7.png)
