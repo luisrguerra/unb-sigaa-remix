@@ -27,7 +27,7 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 
 # Como instalar:
 
-Para instalar o SIGAA Remix você precisará instalar primeiro a extensão Tampermonkey para o SIGAA Remix funcionar.
+Para instalar o SIGAA Remix você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
 
 Download:
 <br>
