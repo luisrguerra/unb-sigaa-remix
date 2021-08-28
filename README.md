@@ -1,4 +1,4 @@
-![Tela 1](fotos/logo.png)
+![](fotos/logo.png)
 # SIGAA Remix Versão 1.1.1
 O SIGAA Remix é uma extensão para Google Chrome desenvolvida com o foco de melhorar a experiência do usuário na plataforma SIGAA da UnB. 
 Através de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aquela cara de anos 90, melhorando a aparência 
@@ -17,6 +17,11 @@ Antes:
 Novos ícones em alta resolução:
 <br>
 ![Tela 7](fotos/tela7.png)
+<br>
+<br>
+Vários temas para customizar a interface do seu SIGAA:
+<br>
+![](fotos/temas.png)
 <br>
 <br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
