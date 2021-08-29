@@ -23,6 +23,8 @@ Vários temas para customizar a interface do seu SIGAA:
 <br>
 ![](fotos/temas.png)
 <br>
+![](fotos/temas_menu.png)
+<br>
 <br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
 <br>
