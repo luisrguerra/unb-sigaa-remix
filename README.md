@@ -26,6 +26,11 @@ Vários temas para customizar a interface do seu SIGAA:
 ![](fotos/temas_menu.png)
 <br>
 <br>
+No SIGAA Remix você pode criar um tema customizado do seu jeito:
+<br>
+![](fotos/tela9.png)
+<br>
+<br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
 <br>
 <br>
