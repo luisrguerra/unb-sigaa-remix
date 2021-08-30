@@ -37,7 +37,10 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 ![Tela 8](fotos/tela8.png)
 <br>
 
-# Como instalar:
+# Como instalar (Chrome Web Store):
+[Página do SIGAA Remix na Chrome Web Store](https://chrome.google.com/webstore/detail/sigaa-remix/plpmdkigbdddlaihbfbpjgcknmefjijf?hl=pt-BR&authuser=0)<br>
+
+# Como instalar (Versão Tampermonkey):
 
 Para instalar o SIGAA Remix você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
 
