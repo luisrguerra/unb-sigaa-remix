@@ -42,7 +42,7 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 
 # Como instalar (Versão Tampermonkey):
 
-Para instalar o SIGAA Remix você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
+Para instalar o SIGAA Remix (Versão Tampermonkey) você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
 
 ### Download:
 
@@ -54,7 +54,7 @@ Ao clicar no link "Instalar SIGAA Remix" aparecerá essa tela, clique em instala
 <br>
 ![Tela 2](fotos/tela2.png)
 <br>
-### Desinstalação:
+### Desinstalação (Versão Tampermonkey):
 Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey (ícone preto) no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
 Clicando no nome SIGAA Remix você pode desativar e ou remover o script. 
 <br>
