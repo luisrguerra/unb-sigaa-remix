@@ -1,4 +1,7 @@
-![](fotos/logo.png)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/logo.png" />
+</p>
+
 # SIGAA Remix Versão 1.1.1
 O SIGAA Remix é uma extensão para Google Chrome desenvolvida com o foco de melhorar a experiência do usuário na plataforma SIGAA da UnB. 
 Através de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aquela cara de anos 90, melhorando a aparência 
