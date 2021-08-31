@@ -38,6 +38,15 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 <br>
 
 # Como instalar (Chrome Web Store):
+
+![](fotos/tela10.png)
+<br>
+
+![](fotos/tela11.png)
+<br>
+(Mensagem padrão de instalação de extenção no Chrome)
+
+### Download:
 [Página do SIGAA Remix na Chrome Web Store](https://chrome.google.com/webstore/detail/sigaa-remix/plpmdkigbdddlaihbfbpjgcknmefjijf?hl=pt-BR&authuser=0)<br>
 
 # Como instalar (Versão Tampermonkey):
