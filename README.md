@@ -26,34 +26,27 @@ Vários temas para customizar a interface do seu SIGAA:
 ![](fotos/temas_menu.png)
 <br>
 <br>
+No SIGAA Remix você pode criar um tema customizado do seu jeito:
+<br>
+![](fotos/tela9.png)
+<br>
+<br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
 <br>
 <br>
 ![Tela 8](fotos/tela8.png)
 <br>
 
-# Como instalar:
+# Como instalar (Chrome Web Store):
+[Página do SIGAA Remix na Chrome Web Store](https://chrome.google.com/webstore/detail/sigaa-remix/plpmdkigbdddlaihbfbpjgcknmefjijf?hl=pt-BR&authuser=0)<br>
 
-Para instalar o SIGAA Remix você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
+# Como instalar (Versão Tampermonkey):
+
+[Guia de Instalação SIGAA Remix (Versão Tampermoneky)](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Guia-de-Instala%C3%A7%C3%A3o-SIGAA-Remix-(Vers%C3%A3o-Tampermoneky))
+
+Para instalar o SIGAA Remix (Versão Tampermonkey) você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
 
 ### Download:
 
 1ª Etapa) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
 2ª Etapa) [Instalar o SIGAA Remix versão 1.1.1 no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
-<br>
-<br>
-Ao clicar no link "Instalar SIGAA Remix" aparecerá essa tela, clique em instalar para terminar de instalar a extensão. Após instalada a extensão, toda vez que você acessar o SIGAA UnB o SIGAA Remix será executado.
-<br>
-![Tela 2](fotos/tela2.png)
-<br>
-### Desinstalação:
-Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey (ícone preto) no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
-Clicando no nome SIGAA Remix você pode desativar e ou remover o script. 
-<br>
-![Tela 3](fotos/tela3.png)
-![Tela 4](fotos/tela4.png)
-<br>
-Para remover a extensão Tampermonkey do seu navegar vá em mais ferramentas, extensões e na página de extensões encontre o Tampermonkey e clique em remover.
-<br>
-![Tela 5](fotos/tela5.png)
-![Tela 6](fotos/tela6.png)
