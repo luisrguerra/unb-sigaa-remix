@@ -46,22 +46,7 @@ Para instalar o SIGAA Remix (Versão Tampermonkey) você precisará instalar pri
 
 ### Download:
 
+[Guia de Instalação SIGAA Remix (Versão Tampermoneky)](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Guia-de-Instala%C3%A7%C3%A3o-SIGAA-Remix-(Vers%C3%A3o-Tampermoneky))
+
 1ª Etapa) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
 2ª Etapa) [Instalar o SIGAA Remix versão 1.1.1 no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
-<br>
-<br>
-Ao clicar no link "Instalar SIGAA Remix" aparecerá essa tela, clique em instalar para terminar de instalar a extensão. Após instalada a extensão, toda vez que você acessar o SIGAA UnB o SIGAA Remix será executado.
-<br>
-![Tela 2](fotos/tela2.png)
-<br>
-### Desinstalação (Versão Tampermonkey):
-Ao ter tudo instalado aparecerá o icone da extensão do Tampermonkey (ícone preto) no seu Google Chrome, nela aparecerá o SIGAA Remix ativado se ele foi instalado corretamente.
-Clicando no nome SIGAA Remix você pode desativar e ou remover o script. 
-<br>
-![Tela 3](fotos/tela3.png)
-![Tela 4](fotos/tela4.png)
-<br>
-Para remover a extensão Tampermonkey do seu navegar vá em mais ferramentas, extensões e na página de extensões encontre o Tampermonkey e clique em remover.
-<br>
-![Tela 5](fotos/tela5.png)
-![Tela 6](fotos/tela6.png)
