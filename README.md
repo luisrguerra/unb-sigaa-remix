@@ -8,11 +8,12 @@ Através de vários pequenos ajustes, o SIGAA Remix moderniza o site, tirando aq
 e aumentando o tamanho das letras.
 <br>
 <br>
-Depois de instalado:
+**Depois de instalado:**
+<br>
 <br>
 ![Tela 1](fotos/tela1.png)
 <br>
-Antes:
+**Antes:**
 <br>
 
 ![](fotos/tela0.png)
