@@ -56,13 +56,10 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 
 # Como instalar (Chrome Web Store):
 
+[Guia de Instalação SIGAA Remix](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Guia-de-Instala%C3%A7%C3%A3o)
+
 
 <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/tela10.png" width="500" />
-
-<br>
-
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/tela11.png" />
-(Mensagem padrão de instalação de extenção no Chrome)
 
 ### Download:
 [Página do SIGAA Remix na Chrome Web Store](https://chrome.google.com/webstore/detail/sigaa-remix/plpmdkigbdddlaihbfbpjgcknmefjijf?hl=pt-BR&authuser=0)<br>
