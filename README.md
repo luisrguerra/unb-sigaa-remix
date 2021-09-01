@@ -19,33 +19,20 @@ e aumentando o tamanho das letras.
 ![](fotos/tela0.png)
 <br>
 ### Recursos do SIGAA Remix:
-Novos ícones em alta resolução:
-<br>
-![Tela 7](fotos/tela7.png)
-<br>
-<br>
+
+[Guia de Recursos do SIGAA Remix](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Recursos-do-SIGAA-Remix)
+
 Vários temas para customizar a interface do seu SIGAA:
 <br>
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="50%"/> 
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas_menu.png"/>
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="600"/> 
 </p>
 
 
 <br>
 
-No SIGAA Remix você pode criar um tema customizado do seu jeito:
-<br>
-<br>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/tela9.png" />
-</p>
-
-<br>
-<br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
 <br>
 <br>
@@ -56,13 +43,10 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 
 # Como instalar (Chrome Web Store):
 
+[Guia de Instalação SIGAA Remix](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Guia-de-Instala%C3%A7%C3%A3o)
+
 
 <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/tela10.png" width="500" />
-
-<br>
-
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/tela11.png" />
-(Mensagem padrão de instalação de extenção no Chrome)
 
 ### Download:
 [Página do SIGAA Remix na Chrome Web Store](https://chrome.google.com/webstore/detail/sigaa-remix/plpmdkigbdddlaihbfbpjgcknmefjijf?hl=pt-BR&authuser=0)<br>
