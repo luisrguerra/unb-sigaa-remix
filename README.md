@@ -25,7 +25,7 @@ e aumentando o tamanho das letras.
 Vários temas para customizar a interface do seu SIGAA:
 <br>
 
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="600"/> 
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="500"/> 
 
 <br>
 
