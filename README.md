@@ -25,19 +25,15 @@ e aumentando o tamanho das letras.
 Vários temas para customizar a interface do seu SIGAA:
 <br>
 
-
-<p align="center">
 <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="600"/> 
-</p>
-
 
 <br>
 
-Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
+Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar/ativar as modificações:
 <br>
 <br>
 
-![Tela 8](fotos/tela8.png)
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/desativar.png"/> <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/ativar.png"/> 
 
 <br>
 
