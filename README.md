@@ -25,7 +25,7 @@ e aumentando o tamanho das letras.
 Vários temas para customizar a interface do seu SIGAA:
 <br>
 
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="600"/> 
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="500"/> 
 
 <br>
 
@@ -50,10 +50,3 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 # Como instalar (Versão Tampermonkey):
 
 [Guia de Instalação SIGAA Remix (Versão Tampermoneky)](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Guia-de-Instala%C3%A7%C3%A3o-SIGAA-Remix-(Vers%C3%A3o-Tampermoneky))
-
-Para instalar o SIGAA Remix (Versão Tampermonkey) você precisará instalar primeiro a extensão ```Tampermonkey``` para o SIGAA Remix funcionar.
-
-### Download:
-
-1ª Etapa) [Instalar a extensão Tampermonkey para executar o SIGAA Remix](https://chrome.google.com/webstore/detail/dhdgffkkebhmkfjojejmpbldmpobfkfo)<br>
-2ª Etapa) [Instalar o SIGAA Remix versão 1.1.1 no Tampermonkey](https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js)
