@@ -19,33 +19,21 @@ e aumentando o tamanho das letras.
 ![](fotos/tela0.png)
 <br>
 ### Recursos do SIGAA Remix:
-Novos ícones em alta resolução:
-<br>
-![Tela 7](fotos/tela7.png)
-<br>
-<br>
+
+[Recursos do SIGAA Remix](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Recursos-do-SIGAA-Remix)
+
 Vários temas para customizar a interface do seu SIGAA:
 <br>
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="50%"/> 
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="500"/> 
 <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas_menu.png"/>
 </p>
 
 
 <br>
 
-No SIGAA Remix você pode criar um tema customizado do seu jeito:
-<br>
-<br>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/tela9.png" />
-</p>
-
-<br>
-<br>
 Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado um botão no final do site que permite desativar as modificações e outro botão que dá acesso à página do Github do projeto:
 <br>
 <br>
