@@ -27,8 +27,7 @@ Vários temas para customizar a interface do seu SIGAA:
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="500"/> 
-<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas_menu.png"/>
+<img src="https://raw.githubusercontent.com/luisrguerra/unb-sigaa-remix/main/fotos/temas.png" width="600"/> 
 </p>
 
 
