@@ -20,7 +20,7 @@ e aumentando o tamanho das letras.
 <br>
 ### Recursos do SIGAA Remix:
 
-[Recursos do SIGAA Remix](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Recursos-do-SIGAA-Remix)
+[Guia de Recursos do SIGAA Remix](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Recursos-do-SIGAA-Remix)
 
 Vários temas para customizar a interface do seu SIGAA:
 <br>
