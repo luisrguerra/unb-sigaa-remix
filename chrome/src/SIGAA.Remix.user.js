@@ -1,20 +1,20 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      1.1.1
+// @version      1.1.2
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
 // @grant        none
-// @supportURL   https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/
-// @updateURL    https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
-// @downloadURL  https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey/raw/main/SIGAA%20Remix.user.js
+// @supportURL   https://github.com/luisrguerra/unb-sigaa-remix/
+// @updateURL    https://github.com/luisrguerra/unb-sigaa-remix/raw/main/SIGAA%20Remix.user.js
+// @downloadURL  https://github.com/luisrguerra/unb-sigaa-remix/raw/main/SIGAA%20Remix.user.js
 // ==/UserScript==
 
 /*globals $*/
 
 
 'use strict';
-const versao = '1.1.1';
+const versao = '1.1.2';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -115,7 +115,7 @@ const temas2 = [
   ['Ciano', '#0C4651','#07393D','#041F24','#3E737D',''],
   ['Verde', '#48631b','#3c4e12','#192506','#8ba06a',''],
   ['Verde Esmeralda', '#0D5249','#0A4036','#062320','#31786F',''],
-  ['Rosa', '#b9164a','#a71041','#8e0b36','#e25175', '#ff9d9d'],
+  ['Rosa', '#b9164a','#a71041','#8e0b36','#ef6b8c', '#ff9d9d'],
   ['Marrom', '#65292B','#501F22','#2F1313','#874C4D',''],
   ['Vinho', '#801c49','#670d3b','#320C1D','#9c486f',''],
   ['Alto Contraste', '#000000','#000000','#ffffff','#ffffff',''],
@@ -251,6 +251,9 @@ function xcss (regra, propriedade, valor){
        else if (propriedade == 'position'){
           x[i].style.position = valor;
        }
+       else if (propriedade == 'inset'){
+          x[i].style.inset = valor;
+       }
       }
 }
 
@@ -381,9 +384,8 @@ function executar (){
     xcss('#painel-usuario #info-usuario p','fontSize','16px');
     xcss('#info-sistema h1 span','fontSize','18.72px');
     xcss('#tempoSessao small em, #tempoSessao small span','fontSize','13.28px');
-    xcss('#info-sistema span.acessibilidade a','fontSize','18.72px');
     xcss('#painel-usuario #menu-usuario li a','fontSize','14px');
-    xcss('#info-sistema span.sair-sistema a','fontSize','18.72px');
+    xcss('#info-sistema a , #sair-sistema a','fontSize','18.72px'); //portal publico, ajuda, sair
 
     //Adicionar sombra
     xcss('#painel-usuario',"boxShadow", sombra1);
@@ -412,14 +414,13 @@ function executar (){
  //Fim mudanças barra de cima
 
  function mudancasTurma(){
-   //Corrigir altura da página e do rodapé
-   xcss('div#baseLayout','height','945px');
-   //Mudar o menu lateral da direita
-   //xcss('#toggleDireita','background','#f5f5f5');
-   //xcss('#toggleDireita','border','none');
 
    var turmaCss = document.createElement('style');
    turmaCss.innerHTML = `
+     /* Corrigir altura da página e do rodapé */
+     div#baseLayout{
+       height: 945px !important;
+     }
      /* Remover fundo azul */
      body {
        background: white;
@@ -429,6 +430,7 @@ function executar (){
      #baseLayout > .ui-layout-resizer {
        background: none;
      }
+    /* remover borda azul */
     .ui-layout-pane {
       border: 1px solid #e0e0e0;
     }
@@ -459,16 +461,83 @@ function executar (){
        border-bottom: 1px solid #CCCCCC;
     }
     #toggleDireita , .itemMenuHeaderAlunos, .itemMenuHeaderMateriais, .itemMenuHeaderAtividades, .itemMenuHeaderRelatorios, .itemMenuHeaderAjuda{
-       border-bottom: 1px solid #CCCCCC;
+       border-bottom: 1px solid #e0e0e0;
     }
-
+    /* Ajeitar texto cortado no menu lateral*/
+    .itemMenu{
+       height: min-content;
+       text-indent: inherit;
+    }
+    /* correção do tamanho do texto no botão trocar de turma */
+    .ui-widget{
+      font-size: 14px;
+    }
+    /* Remover fundo com imagem e ajeitar borda do menu lateral, Andamento das Aulas, Notícias, Enquetes, ... */
+    .headerBloco{
+      background: white;
+      border: none;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    /* esconder departamento do aluno */
+    #painelDadosUsuario > div {
+       display: none;
+    }
+    /* centralizar nome do aluno e ajeitar o padding */
+    #painelDadosUsuario > p{
+      padding-top: 3px;
+      padding-right: 4px;
+    }
+    /*Adicionar borda arrendodada e melhorar margem da janela de atenção */
+    #scroll-wrapper > #painel-erros {
+      border-radius: 4px;
+      margin-bottom: 0.5em;
+      border-bottom: none !important;
+    }
+    /* Melhorar a posição do botão de remover a janela de atenção */
+    #scroll-wrapper > #painel-erros > #fechar-painel-erros {
+      right: 8px !important;
+      bottom: 5px !important;
+    }
+    /* ajeitar tamanho e posição do texto da barra de cima portal público, ajuda?, sair */
+    #info-sistema div.dir{
+      top: 0px;
+    }
+    /* corrigir bug da margem do conteúdo */
+    div #conteudo {
+      width: auto !important;
+    }
+    /* melhoria do tamanho da letra no menu da direita */
+    .rich-stglpanel-body {
+      font-size: 14px;
+    }
+    .headerBloco{
+      font-size: 14px;
+    }
+    #barraEsquerda > table > tbody > tr > td {
+      font-size: 14px !important;
+    }
+    /* mudanças no aviso amarelo */
+    div.descricaoOperacao {
+      background: white;
+      border-radius: 4px;
+      border: 1px solid #e0e0e0;
+    }
+    /* Melhoria tamanho da letra em dados do progrma */
+    #relatorio-rodape table tr td {
+      font-size: 1em;
+    }
+    /* mudanças no aviso cinza sobre a turma virtual */
+    div.intro-aval div.textos {
+      background: white !important;
+      border-radius: 4px;
+      border: 1px solid #e0e0e0;
+    }
    `;
    document.head.appendChild(turmaCss);
 
    //remover fundo da barra da interface "menu turma virtual" e o do lado direito
    xbackground("div > table > tbody > tr > td",'painel_bg.png','');
-   //Correção do tamanho da letra nas informções do estudante, abaixo do nome
-   //xcss('#painelDadosUsuario > div','fontSize','inherit');
+
 
    //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
    xcss('#info-sistema span','border','solid ' + cor3);
@@ -476,22 +545,64 @@ function executar (){
    xcss('#info-sistema a','borderWidth','0 0 0 0');
    xcss('#info-sistema #sair-sistema','borderWidth','0 0 0 0');
 
-   //Mudar a cor do texto amarelo
+   //Mudar a cor do texto amarelo da barra de cima
    xcss('#info-sistema a','color',corFonteClara1);
    xcss('#tempoSessao','color',corFonteClara1);
 
    //Remover borda azul
    xcss('#barraEsquerda table','border','none');
-   //xcss('#barraEsquerda table','borderWidth','0 0 1px 0');
+
+   //Remover fundo e ajeitar borda do menu lateral retraido
+   xcss('.botaoDireita','background','white url("/sigaa/ava/img/painel_seta_esq.png") no-repeat 5px 5px');
+   xcss('.botaoDireita','border','1px solid #e0e0e0');
+
+   // Melhoria na borda lateral do nome
+   xcss('#painelDadosUsuario','borderRight', '1px solid #e0e0e0');
+
+   //Adicionar sombra na barra de cima
+   xcss('#info-sistema',"boxShadow", sombra1);
+
+   //Corrigir tamanho do nome do aluno
+   xcss('#painelDadosUsuario > p','fontSize', tamanhoFonte1);
+
  };
 
  function corrigirFonte(){
    document.body.style.fontSize = tamanhoFonte1;
  }
+ function mudarScrollBar(){
+   var scrollCss = document.createElement('style');
+   scrollCss.innerHTML = `
+      /* width */
+      ::-webkit-scrollbar {
+         width: 6px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #00000014;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+         background: #00000026;
+         border-radius: 3px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+         background: #00000078;
+      }
+
+   `;
+   document.head.appendChild(scrollCss);
+ }
 
  //Se o sigaa remix estiver ativado
  if (ativado != "false"){
   tema(temaAtivado);
+
+  mudarScrollBar();
 
   //Mudar o ícone de interroção dos horários para um ícone de relógio
   xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif',iconeRelogio);
@@ -521,6 +632,7 @@ function executar (){
 
   const urlAtual = window.location.href;
   //Endereços de páginas
+  // || urlAtual == ''
   const enderecosPaginaInicial = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
   const enderecosIndicesAcademicos = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
   const enderecosTurmasAnteriores = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
@@ -532,6 +644,8 @@ function executar (){
   const enderecosAreaMudarFoto = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/perfil.jsf#';
   const enderecosTurmasSelecionadas = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf' ;
   const enderecosAvisoCovid = urlAtual == 'https://sig.unb.br/sigaa/telaAvisoLogon.jsf' || urlAtual == 'https://sig.unb.br/sigaa/telaAvisoLogon.jsf#';
+  const enderecosPlanoMatricula = urlAtual == 'https://sig.unb.br/sigaa/geral/componente_curricular/busca_geral.jsf' || urlAtual == 'https://sig.unb.br/sigaa/geral/componente_curricular/busca_geral.jsf#';
+  const enderecosTurmaVirtual = urlAtual == 'https://sig.unb.br/sigaa/ava/index.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/index.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/PerfilUsuarioAva/form.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/PerfilUsuarioAva/form.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/participantes.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/participantes.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/FrequenciaAluno/mapa.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/FrequenciaAluno/mapa.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/NoticiaTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/NoticiaTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ConteudoTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ConteudoTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ForumTurma/lista.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ForumTurma/lista.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/GrupoDiscentes/ver_grupo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/GrupoDiscentes/ver_grupo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/IndicacaoReferencia/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/IndicacaoReferencia/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/Relatorios/timeline.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Relatorios/timeline.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/estatisticas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/estatisticas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Enquete/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Enquete/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/VideoTurma/listar_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/VideoTurma/listar_discente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/DataAvaliacao/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/DataAvaliacao/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/TarefaTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/TarefaTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ArquivoTurma/listar_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ArquivoTurma/listar_discente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/QuestionarioTurma/listarDiscente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/QuestionarioTurma/listarDiscente.jsf#';
   //Fim endereços de páginas
 
   //Página inicial
@@ -809,10 +923,17 @@ function executar (){
     xcss('label','fontSize', '16px');
   }
   //Correção de Página genéricas
-  else if (enderecosTurmasSelecionadas || enderecosAvisoCovid || enderecosCaixaPostal || enderecosAtualizarDadosPessoais){
+  else if (enderecosTurmasSelecionadas || enderecosAvisoCovid || enderecosCaixaPostal || enderecosAtualizarDadosPessoais || enderecosPlanoMatricula){
     mudancasBasicias();
     corrigirFonte();
     mudancasBarraDeCima();
+  }
+  //Correção de Página genéricas
+  else if (enderecosTurmaVirtual){
+    mudancasBasicias();
+    corrigirFonte();
+    mudancasBarraDeCima();
+    //mudancasTurma();
   }
   //Área imprimir comprovante
   else if (enderecosImprimirComprovante){
@@ -967,7 +1088,7 @@ function executar (){
   buttonGithub.style.backgroundPosition = '1% 50%';
   buttonGithub.onclick = function(){
     alert("Será aberta uma nova janela na página do Github do projeto, lá você pode checar se há novas atualizações (É importante fazer isso!), ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
-    window.open("https://github.com/luisrguerra/unb-sigaa-remix-tampermonkey");
+    window.open("https://github.com/luisrguerra/unb-sigaa-remix");
   };
   document.getElementById("idBotoes").appendChild(buttonGithub);
 
