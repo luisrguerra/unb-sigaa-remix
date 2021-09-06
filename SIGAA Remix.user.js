@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      1.1.2
+// @version      2.0.1
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '1.1.2';
+const versao = '2.0.1';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -66,7 +66,7 @@ else{
 //Borda
 var corBrancoBorda = "#e0e0e0"
 var brancoBorda1 = "1px solid #e0e0e0";
-var arrendondamentoBorda1 = "2px";
+var arrendondamentoBorda1 = "3px";
 
 //Fonte
 var tamanhoFonte1 = "1em";
@@ -279,7 +279,7 @@ function xbackground (regra, antigo, novo){
      x = document.querySelectorAll(regra);
       for (i = 0; i < x.length; i++) {
           var endereco = x[i].style.background;
-          console.log(endereco);
+          //console.log(endereco);
           if (endereco.search(antigo) >= 0){
             x[i].style.background = urlnova;
           }
@@ -532,6 +532,48 @@ function executar (){
       border-radius: 4px;
       border: 1px solid #e0e0e0;
     }
+    /* Mudança no ícone de seta para esquerda */
+    .botaoDireita {
+      background: white url("https://svgshare.com/i/_sf.svg") no-repeat 5px 5px !important;
+    }
+    /* Mudar borda azul (elemento visual) que aparece do lado de titulos */
+    fieldset {
+      border-top: 1px solid #e0e0e0;
+    }
+    /* Mudar tamanho e cor dos titulos azuis */
+    fieldset legend {
+      color: #212121;
+      font-size: 1em;
+      font-variant: inherit;
+    }
+    /* Mudar cor do texto vermelho */
+    p.empty-listing {
+      color: #212121;
+      font-weight: inherit;
+    }
+    /* Trocar a cor do Turma Virtual! de azul para preto  */
+    div.intro-aval h4 {
+      color: #212121 !important;
+    }
+    /* Trocar a cor do Ampliando os horizontes... de azul para preto  */
+    div.intro-aval h5 {
+      color: #212121 !important;
+    }
+    /*  */
+    .progress {
+      background-image: none !important;
+      background-color: #f5f5f5;
+    }
+    .progress-bar {
+      background-color: #e2e2e2 !important;
+      box-shadow: none !important;
+      color: black !important;
+    }
+    /* Imagem turma virtual */
+    div.intro-aval {
+         background: white url(https://svgshare.com/i/_tf.svg) no-repeat left top !important;
+    }
+
    `;
    document.head.appendChild(turmaCss);
 
@@ -553,7 +595,6 @@ function executar (){
    xcss('#barraEsquerda table','border','none');
 
    //Remover fundo e ajeitar borda do menu lateral retraido
-   xcss('.botaoDireita','background','white url("/sigaa/ava/img/painel_seta_esq.png") no-repeat 5px 5px');
    xcss('.botaoDireita','border','1px solid #e0e0e0');
 
    // Melhoria na borda lateral do nome
@@ -565,6 +606,15 @@ function executar (){
    //Corrigir tamanho do nome do aluno
    xcss('#painelDadosUsuario > p','fontSize', tamanhoFonte1);
 
+   //Mudar o ícone de seta para a direita
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_dir.png","https://svgshare.com/i/_qq.svg");
+
+   //Mudar o ícone de seta para a cima
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_cima.png","https://svgshare.com/i/_t9.svg");
+
+   //Mudar o ícone da sra para baixo
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_baixo.png","https://svgshare.com/i/_rT.svg");
+
  };
 
  function corrigirFonte(){
@@ -575,7 +625,7 @@ function executar (){
    scrollCss.innerHTML = `
       /* width */
       ::-webkit-scrollbar {
-         width: 6px;
+         width: 8px;
       }
 
       /* Track */
@@ -586,7 +636,7 @@ function executar (){
       /* Handle */
       ::-webkit-scrollbar-thumb {
          background: #00000026;
-         border-radius: 3px;
+         border-radius: 4px;
       }
 
       /* Handle on hover */
@@ -645,16 +695,30 @@ function executar (){
   const enderecosTurmasSelecionadas = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/instrucoes/instrucoes_regular.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/resumo_solicitacoes.jsf' ;
   const enderecosAvisoCovid = urlAtual == 'https://sig.unb.br/sigaa/telaAvisoLogon.jsf' || urlAtual == 'https://sig.unb.br/sigaa/telaAvisoLogon.jsf#';
   const enderecosPlanoMatricula = urlAtual == 'https://sig.unb.br/sigaa/geral/componente_curricular/busca_geral.jsf' || urlAtual == 'https://sig.unb.br/sigaa/geral/componente_curricular/busca_geral.jsf#';
-  const enderecosTurmaVirtual = urlAtual == 'https://sig.unb.br/sigaa/ava/index.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/index.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/PerfilUsuarioAva/form.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/PerfilUsuarioAva/form.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/participantes.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/participantes.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/FrequenciaAluno/mapa.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/FrequenciaAluno/mapa.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/NoticiaTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/NoticiaTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ConteudoTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ConteudoTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ForumTurma/lista.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ForumTurma/lista.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/GrupoDiscentes/ver_grupo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/GrupoDiscentes/ver_grupo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/IndicacaoReferencia/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/IndicacaoReferencia/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/Relatorios/timeline.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Relatorios/timeline.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/estatisticas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/estatisticas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Enquete/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Enquete/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/VideoTurma/listar_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/VideoTurma/listar_discente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/DataAvaliacao/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/DataAvaliacao/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/TarefaTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/TarefaTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ArquivoTurma/listar_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ArquivoTurma/listar_discente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/QuestionarioTurma/listarDiscente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/QuestionarioTurma/listarDiscente.jsf#';
+  const enderecosTurmaVirtual = urlAtual == 'https://sig.unb.br/sigaa/ava/index.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/index.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/PerfilUsuarioAva/form.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/PerfilUsuarioAva/form.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/participantes.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/participantes.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/FrequenciaAluno/mapa.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/FrequenciaAluno/mapa.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/NoticiaTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/NoticiaTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ConteudoTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ConteudoTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ForumTurma/lista.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ForumTurma/lista.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/GrupoDiscentes/ver_grupo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/GrupoDiscentes/ver_grupo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/IndicacaoReferencia/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/IndicacaoReferencia/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/Relatorios/timeline.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Relatorios/timeline.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/estatisticas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/estatisticas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Enquete/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/Enquete/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/VideoTurma/listar_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/VideoTurma/listar_discente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/DataAvaliacao/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/DataAvaliacao/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/TarefaTurma/listar.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/TarefaTurma/listar.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/ArquivoTurma/listar_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/ArquivoTurma/listar_discente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/ava/QuestionarioTurma/listarDiscente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/ava/QuestionarioTurma/listarDiscente.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
   //Fim endereços de páginas
 
   //Página inicial
   if (enderecosPaginaInicial){
     mudancasBasicias();
     mudancasBarraDeCima();
-    //mudancasTurma();
+    mudancasTurma();
     corrigirFonte();
 
+
+    var inicialCss = document.createElement('style');
+    inicialCss.innerHTML = `
+    /* Mudar as letras que estavam forçadas em maiusculo */
+    #main-docente .simple-panel h4 {
+      font-variant: inherit !important;
+    }
+    /* Tirar o não há atividades cadastradas.. do itálico */
+    #main-docente .simple-panel p.vazio {
+      font-style: inherit !important;
+    }
+
+    `;
+    document.head.appendChild(inicialCss);
 
     //Mudança da borda de cima do ver turmas anteriores
     xcss('#portal-docente .mais','borderTop', '0.5px solid #eeeeee');
@@ -933,7 +997,7 @@ function executar (){
     mudancasBasicias();
     corrigirFonte();
     mudancasBarraDeCima();
-    //mudancasTurma();
+    mudancasTurma();
   }
   //Área imprimir comprovante
   else if (enderecosImprimirComprovante){
