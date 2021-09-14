@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.1
+// @version      2.0.2
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.1';
+const versao = '2.0.2';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -76,7 +76,7 @@ var corFonteClara1 = "#fbfbfb"; //bkp #f0f0f0
 var paddingPadrao = "1em";
 
 //Sombras
-var sombra1 = 'rgb(0 0 0 / 30%) 0px 1px 4px';
+var sombra1 = 'rgb(0 0 0 / 8%) 0px 6px 6px';
 var sombra2 = '0px 3px 5px rgba(0, 0, 0, 0.20)';
 
 //Imagens e icones
@@ -97,7 +97,7 @@ const iconePesquisa = 'https://svgshare.com/i/XvR.svg';
 const iconeExtensao = 'https://svgshare.com/i/XuM.svg';
 const iconeBolsas = 'https://svgshare.com/i/XvU.svg';
 const iconeRelacoesInternacionais = 'https://svgshare.com/i/Xus.svg';
-const iconeOutros = 'https://svgshare.com/i/XvT.svg';
+const iconeOutros = 'https://svgshare.com/i/aB1.svg';
 const iconeSetaDireita = 'https://svgshare.com/i/YQU.svg';
 const iconeSetaEsquerda = 'https://svgshare.com/i/Yhf.svg';
 const iconeAluno = 'https://svgshare.com/i/YfE.svg';
@@ -112,6 +112,8 @@ const temas2 = [
   ['Azul', '#2f3c52','#232f40','#141A25','#5e697d',''],
   ['Preto', '#3A3A3A','#2D2D2D','#191919','#686868',''],
   ['Azul +Claro', '#0B406D','#073254','#061B30','#587ea2',''],
+  ['Matrícula Web', '#004080','#004080','#00172f','#6186b1',''],
+  ['Matrícula Web+', '#004080','#004080','#004080','#004080',''],
   ['Ciano', '#0C4651','#07393D','#041F24','#3E737D',''],
   ['Verde', '#48631b','#3c4e12','#192506','#8ba06a',''],
   ['Verde Esmeralda', '#0D5249','#0A4036','#062320','#31786F',''],
@@ -323,6 +325,15 @@ function executar (){
     xcss('#container','minWidth','70em');
  }
  function mudancasBarraDeCima(){
+    var mudancasBarraDeCimaCss = document.createElement('style');
+    mudancasBarraDeCimaCss.innerHTML = `
+    /* remover a barra lateral do lado do título do sigaa */
+    #info-sistema h1 span{
+      border-width: 0px !important;
+    }
+    `;
+    document.head.appendChild(mudancasBarraDeCimaCss);
+
     //Escurecer sistema de gestão...
     xcss('#info-sistema','background',cor1);
     xcss('#info-sistema','color',corFonteClara1);
@@ -417,13 +428,11 @@ function executar (){
 
    var turmaCss = document.createElement('style');
    turmaCss.innerHTML = `
-     /* Corrigir altura da página e do rodapé */
-     div#baseLayout{
-       height: 945px !important;
-     }
      /* Remover fundo azul */
      body {
        background: white;
+       /* Melhorar o redimiensionamento da página evitando textos quebrados */
+       min-width: 800px;
      }
      /* Remover fundo azul */
      #baseLayout > #cabecalho,
@@ -515,6 +524,8 @@ function executar (){
     }
     #barraEsquerda > table > tbody > tr > td {
       font-size: 14px !important;
+      /* Mudar a cor do texto de azul para preto */
+      color: #212121 !important;
     }
     /* mudanças no aviso amarelo */
     div.descricaoOperacao {
@@ -559,7 +570,7 @@ function executar (){
     div.intro-aval h5 {
       color: #212121 !important;
     }
-    /*  */
+    /* Alterar a barra de progresso da carga horária da turma */
     .progress {
       background-image: none !important;
       background-color: #f5f5f5;
@@ -571,8 +582,63 @@ function executar (){
     }
     /* Imagem turma virtual */
     div.intro-aval {
-         background: white url(https://svgshare.com/i/_tf.svg) no-repeat left top !important;
+      background: white url(https://svgshare.com/i/_tf.svg) no-repeat left top !important;
     }
+    /* Alterar o ícone de impressora */
+    .botaoImprimir {
+      background-image: url("https://svgshare.com/i/a91.svg") !important;
+      background-position: center !important;
+    }
+    /*  Alterar o ícone de casa/home  */
+    .botaoPortal {
+      background-image: url("https://svgshare.com/i/a9f.svg") !important;
+      background-position: center !important;
+    }
+    /* Mudar ícone de ajuda do menu da esquerda */
+    .itemMenuHeaderAjuda {
+      background-image: url("https://svgshare.com/i/_zS.svg");
+    }
+    /* Mudar ícone de estastistica */
+    .itemMenuHeaderRelatorios {
+      background-image: url("https://svgshare.com/i/_y5.svg");
+    }
+    /* Mudar ícone de cadeira */
+    .itemMenuHeaderTurma {
+      background-image: url("https://svgshare.com/i/_x4.svg");
+    }
+    /* Mudar ícone Materias/Livro*/
+    .itemMenuHeaderMateriais {
+      background-image: url("https://svgshare.com/i/_yB.svg");
+    }
+    /* ícone atividades */
+    .itemMenuHeaderAtividades {
+      background-image: url("https://svgshare.com/i/_xw.svg");
+    }
+    /* ícone alunos */
+    .itemMenuHeaderAlunos {
+      background-image: url("https://svgshare.com/i/_wm.svg");
+    }
+    /*ícone opções turmas */
+    .botaoOpcoesTurma {
+      background-image: url("https://svgshare.com/i/aA_.svg") !important;
+      background-position: center !important;
+    }
+    /* Mudar ícone Aula paginadas (setas)  */
+    .botaoAulasPaginadas {
+      background-image: url("https://svgshare.com/i/a8H.svg") !important;
+      background-position: center !important;
+    }
+    /* Mudar ícone Aula em lista (setas verticais)  */
+    .botaoAulasEmLista {
+      background-image: url("https://svgshare.com/i/aAk.svg") !important;
+      background-position: center !important;
+    }
+    /* Mudar ícone trocar de turma (seta ondulada) */
+    .botaoTrocarTurma{
+      background-image: url("https://svgshare.com/i/_zm.svg") !important;
+      background-position: center !important;
+    }
+
 
    `;
    document.head.appendChild(turmaCss);
@@ -581,9 +647,9 @@ function executar (){
    xbackground("div > table > tbody > tr > td",'painel_bg.png','');
 
 
-   //Mudar a cor das bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
-   xcss('#info-sistema span','border','solid ' + cor3);
-   xcss('#info-sistema span','borderWidth','0 1px 0 0');
+   //Mudar as bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
+   //xcss('#info-sistema span','border','solid ' + cor3);
+   xcss('#info-sistema span','borderWidth','0px');
    xcss('#info-sistema a','borderWidth','0 0 0 0');
    xcss('#info-sistema #sair-sistema','borderWidth','0 0 0 0');
 
@@ -636,7 +702,7 @@ function executar (){
       /* Handle */
       ::-webkit-scrollbar-thumb {
          background: #00000026;
-         border-radius: 4px;
+         border-radius: 8px;
       }
 
       /* Handle on hover */
@@ -945,9 +1011,11 @@ function executar (){
   //Área de turmas anteriores
   else if (enderecosTurmasAnteriores){
     mudancasBasicias();
+    corrigirFonte();
     mudancasBarraDeCima();
+    mudancasTurma();
 
-    xcss('#container','minWidth','102em');
+    xcss('#container','minWidth','60em');
 
     //Melhorar o acessar turma virtual
     xcss('.infoAltRem','background', corTransparente);
