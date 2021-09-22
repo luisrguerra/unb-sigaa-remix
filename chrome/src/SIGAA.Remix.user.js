@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.2
+// @version      2.0.3
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.2';
+const versao = '2.0.3';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -104,6 +104,7 @@ const iconeAluno = 'https://svgshare.com/i/YfE.svg';
 const iconeProfessorFuncionario = 'https://svgshare.com/i/Ydj.svg';
 const iconeLogOff = 'https://svgshare.com/i/Yge.svg';
 const iconeCheck = 'https://svgshare.com/i/Yps.svg';
+const iconeInfo = 'https://svgshare.com/i/aRq.svg';
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -111,13 +112,13 @@ const temas2 = [
   //Nome da cor, cor1, cor2, cor3, cor4, cor erro
   ['Azul', '#2f3c52','#232f40','#141A25','#5e697d',''],
   ['Preto', '#3A3A3A','#2D2D2D','#191919','#686868',''],
-  ['Azul +Claro', '#0B406D','#073254','#061B30','#587ea2',''],
+  ['Azul +Claro', '#0B406D','#0c385f','#061B30','#587ea2',''],
   ['Matrícula Web', '#004080','#004080','#00172f','#6186b1',''],
   ['Matrícula Web+', '#004080','#004080','#004080','#004080',''],
   ['Ciano', '#0C4651','#07393D','#041F24','#3E737D',''],
   ['Verde', '#48631b','#3c4e12','#192506','#8ba06a',''],
   ['Verde Esmeralda', '#0D5249','#0A4036','#062320','#31786F',''],
-  ['Rosa', '#b9164a','#a71041','#8e0b36','#ef6b8c', '#ff9d9d'],
+  ['Rosa', '#bb2052','#af194a','#8e0b36','#ef6b8c', '#ff9d9d'],
   ['Marrom', '#65292B','#501F22','#2F1313','#874C4D',''],
   ['Vinho', '#801c49','#670d3b','#320C1D','#9c486f',''],
   ['Alto Contraste', '#000000','#000000','#ffffff','#ffffff',''],
@@ -304,7 +305,7 @@ function removerTexto (regra, texto){
 function substituirTexto (regra, antigo, novo){
     var x = document.querySelectorAll(regra);
     for (var i = 0; i < x.length; i++) {
-        if (x[i].textContent == antigo){
+        if (x[i].textContent == antigo || antigo == 'all'){
             x[i].textContent = novo;
         }
     }
@@ -330,6 +331,60 @@ function executar (){
     /* remover a barra lateral do lado do título do sigaa */
     #info-sistema h1 span{
       border-width: 0px !important;
+    }
+    /* Melhorar padding de ensino,pesquisa,extensão,... */
+    #menu-dropdown {
+      background: #EFEBDE;
+      padding: 0px;
+      /*padding: 1px 0px 1px 0px;*/
+    }
+
+    /* Melhorias na área de módulos */
+    /* Melhoria no texto dos módulos*/
+    #menu_principal .tooltip, #menu_principal ul li a, #menu_principal ul li a:hover{
+       color: black;
+       font-size: 14px;
+    }
+    /* Melhoria no fundo dos módulos*/
+    #menu_principal ul li.off{
+       background-color: white;
+    }
+    #menu_principal ul li.off a{
+       background: none;
+       background-color: #f1f1f1 !important;
+       border-radius: 2px;
+    }
+    /* Itens com fundo azul */
+    #menu_principal ul li{
+       border-radius: 2px;
+       background-color: #edf0f7;
+    }
+    #menu_principal li a{
+       background: none;
+       background-color: #C4D2EB;
+       border-radius: 2px;
+    }
+    /* Fundo azul da janela para branco */
+    .ydlg .ydlg-dlg-body{
+       background: none;
+       background-color: white;
+    }
+    /* Remover borda desnecessária da janela de módulos*/
+    #menu_principal.popup{
+       border: none;
+    }
+    /* Mudar borda da janela de módulos*/
+    .ydlg .ydlg-dlg-body{
+       border: 1px solid #bfbfbf;
+       border-radius: 0px 0px 3px 3px;
+    }
+    /* remover sombra tosca da janela de módulos */
+    .ydlg-shadow{
+       display:none !important;
+    }
+    /* Nova sombra janela modulos */
+    #painel-modulos{
+       box-shadow: rgb(0 0 0 / 8%) 6px 6px 12px;
     }
     `;
     document.head.appendChild(mudancasBarraDeCimaCss);
@@ -752,7 +807,7 @@ function executar (){
   const enderecosPaginaInicial = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
   const enderecosIndicesAcademicos = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
   const enderecosTurmasAnteriores = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
-  const enderecosCaixaPostal = urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#';
+  const enderecosCaixaPostal = urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf#' || urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#';
   const enderecosLogin = urlAtual == 'https://sig.unb.br/sigaa/verTelaLogin.do' || urlAtual == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || urlAtual == 'https://sig.unb.br/sipac/?modo=classico' || urlAtual == 'https://sig.unb.br/sigrh/login.jsf' || urlAtual == 'https://sig.unb.br/admin/login.jsf' || urlAtual == 'https://sig.unb.br/sipac/';
   const enderecosAtualizarDadosPessoais = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#';
   const enderecosMatricula = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf#';
@@ -878,7 +933,7 @@ function executar (){
     xcss('.ThemeOfficeMainItem','background',cor2);
     xcss('.ThemeOfficeMainItem','color',corFonteClara1);
     xcss('.ThemeOfficeMainItem','textAlign',"center");
-    xcss('.ThemeOfficeMainItem','borderLeft',"2px solid" + cor3);
+    //xcss('.ThemeOfficeMainItem','borderLeft',"2px solid" + cor3);
     xcss('.ThemeOfficeMainItem','borderRight',"2px solid" + cor3);
     xcss('.ThemeOfficeMainItem','borderBottom',"5px solid" + cor2);
     xcss('.ThemeOfficeMainItem','borderTop',"5px solid" + cor2);
@@ -1055,10 +1110,82 @@ function executar (){
     xcss('label','fontSize', '16px');
   }
   //Correção de Página genéricas
-  else if (enderecosTurmasSelecionadas || enderecosAvisoCovid || enderecosCaixaPostal || enderecosAtualizarDadosPessoais || enderecosPlanoMatricula){
+  else if (enderecosTurmasSelecionadas || enderecosAvisoCovid || enderecosAtualizarDadosPessoais || enderecosPlanoMatricula){
     mudancasBasicias();
     corrigirFonte();
     mudancasBarraDeCima();
+
+  }
+  // àrea de mensagens
+  else if (enderecosCaixaPostal){
+    mudancasBasicias();
+    corrigirFonte();
+    mudancasBarraDeCima();
+
+    var caixaPostalCss = document.createElement('style');
+    caixaPostalCss.innerHTML = `
+    /* Mudanças no título caixa postal */
+    #form > h2 {
+     background: white;
+     border-bottom: none;
+     font-variant: inherit;
+     padding: inherit;
+     color: black;
+    }
+    /* Melhorar a margem da caixa de mensagens */
+    #form {
+     margin: 1em 1em !important;
+    }
+
+    /* área caixa de entrada, caisa de saída, lixeira */
+    #pastas{
+       background: white !important;
+       border: none !important;
+    }
+    #pastas ul li.marcarMsg{
+       background: white !important;
+    }
+
+    /* Remover fundo azul */
+    #mensagens table caption{
+       background: white !important;
+    }
+    .rich-table-subheader{
+       background: white;
+    }
+
+    /* Remover borda */
+    #mensagens{
+       border: none !important;
+    }
+
+    /* Corrigir tamanho letra */
+    .rich-table-subheadercell{
+       font-size: inherit;
+    }
+    .rich-table-cell{
+       font-size: inherit !important;
+    }
+
+    /* mudar o estilos da fonte do títlo caixa de entrada */
+    #mensagens table caption{
+       font-variant: inherit !important;
+       padding: 1em 0 !important;
+    }
+
+    /* mudar cor da borda todos, assuntos, Remetente*/
+    #mensagens table thead{
+       border-bottom: 1px solid #C0C0C0 !important;
+    }
+
+    `;
+    document.head.appendChild(caixaPostalCss);
+
+    //Corrigir o ícone de informação errado, com o relógio
+    xsrc('img','https://svgshare.com/i/Y9w.svg',iconeInfo);
+
+    //Substituir nome SIGAA por SIGAA Remix
+    substituirTexto('#info-sistema h1','all','SIGAA Remix');
   }
   //Correção de Página genéricas
   else if (enderecosTurmaVirtual){
@@ -1148,7 +1275,7 @@ function executar (){
  divBotoes.style.marginRight = 'auto';
  divBotoes.style.marginTop = '1em';
  divBotoes.style.marginBottom = '0.5em';
- divBotoes.style.maxWidth = '100em';
+ divBotoes.style.maxWidth = '89em';
  divBotoes.style.flexWrap = 'wrap';
  body.appendChild(divBotoes);
 
@@ -1171,6 +1298,7 @@ function executar (){
     cursor: pointer;
     outline: none;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
+    border-top: 1px solid #ffffff38;
  }
  .botaoTema:hover {
     background-color: #f5f5f5;
@@ -1214,7 +1342,7 @@ function executar (){
   //Botão do github
   var buttonGithub = document.createElement("button");
   buttonGithub.setAttribute("class", "botaoTema");
-  buttonGithub.innerHTML = 'Atualizações e mais informações sobre o SIGAA Remix';
+  buttonGithub.innerHTML = 'Informações sobre o SIGAA Remix';
   buttonGithub.style.paddingLeft = '2em';
   buttonGithub.style.backgroundImage = 'url("https://svgshare.com/i/Yau.svg")';
   buttonGithub.style.backgroundPosition = '1% 50%';
@@ -1281,7 +1409,7 @@ function executar (){
   temaBotaoCorCss.innerHTML = `
   .temaBotaoCor {
      border: none;
-     width: 28px;
+     width: 30px;
      height: 32px;
      cursor: pointer;
      margin-left: 4px;
