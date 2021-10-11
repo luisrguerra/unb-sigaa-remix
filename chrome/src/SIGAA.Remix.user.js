@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.3
+// @version      2.0.4
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.3';
+const versao = '2.0.4';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -105,6 +105,12 @@ const iconeProfessorFuncionario = 'https://svgshare.com/i/Ydj.svg';
 const iconeLogOff = 'https://svgshare.com/i/Yge.svg';
 const iconeCheck = 'https://svgshare.com/i/Yps.svg';
 const iconeInfo = 'https://svgshare.com/i/aRq.svg';
+const iconeEncaminharEmail ='https://svgshare.com/i/aTn.svg';
+const iconeRemoverX = 'https://svgshare.com/i/aSS.svg';
+const iconeEditarEmail ='https://svgshare.com/i/aT5.svg';
+const iconePainelSetaDireita = 'https://svgshare.com/i/_qq.svg';
+const iconePainelSetaCima = 'https://svgshare.com/i/_t9.svg';
+const iconePainelSetaBaixo = 'https://svgshare.com/i/_rT.svg';
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -386,6 +392,55 @@ function executar (){
     #painel-modulos{
        box-shadow: rgb(0 0 0 / 8%) 6px 6px 12px;
     }
+    /* Correção do tamanho da barra de cima */
+    #painel-usuario{
+       min-height: 56px;
+    }
+
+    /* Esconder ajuste de tamanho de letra  */
+    a.fonteMaior{
+       display: none;
+    }
+    a.fonteMenor{
+       display: none;
+    }
+
+    /* Melhorar o Portal discente> todas as turmas ... e outros */
+    #conteudo h2{
+       background: none;
+       border: none;
+    }
+
+    /* Melhorar Tamanho da letra */
+    #info-sistema h3{
+       font-size: 18.72px !important;
+    }
+    /* Nome do usuário */
+    #painel-usuario #info-usuario p{
+       font-size: 16px !important;
+    }
+    #info-sistema h1 span{
+       font-size: 18.72px !important;
+    }
+    #tempoSessao small em, #tempoSessao small span{
+       font-size: 13.28px !important;
+    }
+    #painel-usuario #menu-usuario li a{
+       font-size: 14px !important;
+    }
+    #info-sistema a , #sair-sistema a{
+       font-size: 18.72px !important;
+    }
+
+    /* Mudar estilo da fonte para o padrão em "Acessar turma virtual"*/
+    .infoAltRem{
+       font-variant: inherit !important;
+    }
+
+    /* remover icone de erro feio */
+    #painel-erros ul.erros{
+        background: none;
+    }
     `;
     document.head.appendChild(mudancasBarraDeCimaCss);
 
@@ -399,8 +454,6 @@ function executar (){
     xcss('#painel-usuario','color',corFonteClara1);
     xcss('#painel-usuario','borderBottom',"1px solid" + cor3);
 
-    //Correção do tamanho da barra de cima
-    xcss('#painel-usuario','minHeight',"56px");
 
     //Mudar cores do fundo do menu com os botões modulos , menu discente...
     xcss('#painel-usuario #menu-usuario','background',cor1);
@@ -441,32 +494,14 @@ function executar (){
     var botaoSenha2 = document.querySelector('#painel-usuario #menu-usuario li.dados-pessoais a');
     if (botaoSenha2 != null){ botaoSenha2.insertAdjacentHTML('afterbegin', '<img src="' + iconeSenha + '" width="12px" height="12px">&nbsp;'); }
 
-    //Esconder ajuste de tamanho de letra
-    xcss('a.fonteMaior','display','none');
-    xcss('a.fonteMenor','display','none');
-
-    //Melhorar Tamanho da letra
-    xcss('#info-sistema h3','fontSize','18.72px');
-    xcss('#painel-usuario #info-usuario p','fontSize','16px');
-    xcss('#info-sistema h1 span','fontSize','18.72px');
-    xcss('#tempoSessao small em, #tempoSessao small span','fontSize','13.28px');
-    xcss('#painel-usuario #menu-usuario li a','fontSize','14px');
-    xcss('#info-sistema a , #sair-sistema a','fontSize','18.72px'); //portal publico, ajuda, sair
-
     //Adicionar sombra
     xcss('#painel-usuario',"boxShadow", sombra1);
-
-    //Melhorar o Portal discente> todas as turmas ... e outros
-    xcss('#conteudo h2','background', corTransparente);
-    xcss('#conteudo h2','border', 'none');
 
     //Mudar fundo avisso de erro
     xcss('#painel-erros','background',cor1);
     xcss('#painel-erros','borderBottom',"1px solid" + cor3);
     xcss('#painel-erros','color',corFonteClara1);
     xcss('#painel-erros a','color',corFonteClara1);
-    xcss('#painel-erros ul.erros','background','none'); //remover icone de erro feio
-    //xcss('#fechar-painel-erros','display','none'); // esconder o botão de fechar que não está funcionado
     xcss('#painel-erros ul.info','background','none'); //Esconder icone de informação
     xcss('#painel-erros ul.warning','background','none'); //Esconder icone de alerta
     xcss('#painel-erros ul.warning li','color','#ffeb3b'); //Mudar do aviso de alerta
@@ -694,6 +729,21 @@ function executar (){
       background-position: center !important;
     }
 
+    /* Mudar as bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão.... */
+    #info-sistema span{
+      border-width: 0px !important;
+    }
+    #info-sistema a{
+      border-width: 0 0 0 0 !important;
+    }
+    #info-sistema #sair-sistema{
+      border-width: 0 0 0 0 !important;
+    }
+
+    /* Remover borda azul */
+    #barraEsquerda table{
+      border: none !important;
+    }
 
    `;
    document.head.appendChild(turmaCss);
@@ -701,19 +751,9 @@ function executar (){
    //remover fundo da barra da interface "menu turma virtual" e o do lado direito
    xbackground("div > table > tbody > tr > td",'painel_bg.png','');
 
-
-   //Mudar as bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão....
-   //xcss('#info-sistema span','border','solid ' + cor3);
-   xcss('#info-sistema span','borderWidth','0px');
-   xcss('#info-sistema a','borderWidth','0 0 0 0');
-   xcss('#info-sistema #sair-sistema','borderWidth','0 0 0 0');
-
    //Mudar a cor do texto amarelo da barra de cima
    xcss('#info-sistema a','color',corFonteClara1);
    xcss('#tempoSessao','color',corFonteClara1);
-
-   //Remover borda azul
-   xcss('#barraEsquerda table','border','none');
 
    //Remover fundo e ajeitar borda do menu lateral retraido
    xcss('.botaoDireita','border','1px solid #e0e0e0');
@@ -728,13 +768,13 @@ function executar (){
    xcss('#painelDadosUsuario > p','fontSize', tamanhoFonte1);
 
    //Mudar o ícone de seta para a direita
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_dir.png","https://svgshare.com/i/_qq.svg");
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_dir.png",iconePainelSetaDireita);
 
    //Mudar o ícone de seta para a cima
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_cima.png","https://svgshare.com/i/_t9.svg");
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_cima.png",iconePainelSetaCima);
 
    //Mudar o ícone da sra para baixo
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_baixo.png","https://svgshare.com/i/_rT.svg");
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_baixo.png",iconePainelSetaBaixo);
 
  };
 
@@ -746,7 +786,8 @@ function executar (){
    scrollCss.innerHTML = `
       /* width */
       ::-webkit-scrollbar {
-         width: 8px;
+         width: 10px;
+         height: 12px;
       }
 
       /* Track */
@@ -798,6 +839,15 @@ function executar (){
   //Mudar icone impressora
   xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', iconeImpressora);
 
+  //Mudar ícone de encaminhar email
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/email_go.png', iconeEncaminharEmail);
+
+  //Mudar ícone de Remover X
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/cross.gif', iconeRemoverX);
+
+  //Mudar ícone de Responder Email
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/email_edit.gif', iconeEditarEmail);
+
   //Mudar o ícone seta para esquerda
   xcss('tr > td.voltar > a','background', 'url(' + iconeSetaEsquerda + ') no-repeat');
 
@@ -838,6 +888,38 @@ function executar (){
       font-style: inherit !important;
     }
 
+    /*Corrigir cor do texto cinza */
+
+    /*Dados instucionais*/
+    #perfil-docente #agenda-docente h4{
+       color: black !important;
+    }
+    /* tag td */
+    #perfil-docente #agenda-docente td{
+       color: black !important;
+    }
+
+    /* Esconder forum inutil */
+    #forum-portal{
+       display:none;
+    }
+
+    /* Esconder comunidade inutil */
+    #participantes{
+       display:none;
+    }
+
+
+    /* Corrigir bug em ensino, pesquisa, ... ao passar o mouse enquanto carrega */
+    .ThemeOfficeMainItem{
+        background-color: unset;
+        color: white;
+    }
+    .ThemeOfficeMainItemHover{
+        background-color: unset;
+        color: white;
+    }
+
     `;
     document.head.appendChild(inicialCss);
 
@@ -847,12 +929,6 @@ function executar (){
     //Mudar Fundo da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','border', brancoBorda1);
     xcss('#perfil-docente #agenda-docente','borderRadius', arrendondamentoBorda1);
-
-    //Corrigir cor do texto cinza
-    //Dados instucionais
-    xcss('#perfil-docente #agenda-docente h4','color', 'black');
-    //Tag td
-    xcss('#perfil-docente #agenda-docente td','color', 'black');
 
     //Corrigir tamanho letra em Detalhar
     xcss('tbody tr td form a','fontSize', tamanhoFonte1);
@@ -876,13 +952,6 @@ function executar (){
     xcss('#noticias-portal','borderRadius','arrendondamentoBorda1');
     //Melhorar margem da área de notícias
     xcss('#noticias-portal','marginTop','8px');
-
-    //Esconder forum inutil
-    xcss('#forum-portal','display','none');
-
-    //Esconder comunidade inutil
-    xcss('#participantes','display','none');
-
 
     //Evitar bug de redimensionamento
     xcss('#container','minWidth','68em');
@@ -934,7 +1003,7 @@ function executar (){
     xcss('.ThemeOfficeMainItem','color',corFonteClara1);
     xcss('.ThemeOfficeMainItem','textAlign',"center");
     //xcss('.ThemeOfficeMainItem','borderLeft',"2px solid" + cor3);
-    xcss('.ThemeOfficeMainItem','borderRight',"2px solid" + cor3);
+    //xcss('.ThemeOfficeMainItem','borderRight',"2px solid" + cor3);
     xcss('.ThemeOfficeMainItem','borderBottom',"5px solid" + cor2);
     xcss('.ThemeOfficeMainItem','borderTop',"5px solid" + cor2);
     xcss('.ThemeOfficeMainItem','paddingLeft','15px');
@@ -1176,6 +1245,24 @@ function executar (){
     /* mudar cor da borda todos, assuntos, Remetente*/
     #mensagens table thead{
        border-bottom: 1px solid #C0C0C0 !important;
+    }
+
+    /* Mudar caixa de mensagem */
+    .lerMsg{
+       border: 1px solid rgb(224, 224, 224) !important;
+    }
+    .lerMsg thead{
+       background: white !important;
+    }
+    table .opcoesMensagem{
+       background: white !important;
+    }
+
+    /* Título caixa de mensagem */
+    .lerMsg caption{
+       color: black !important;
+       background: white !important;
+       font-variant: inherit !important;
     }
 
     `;
