@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.4
+// @version      2.0.5
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.4';
+const versao = '2.0.5';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -96,6 +96,7 @@ const iconeEnsino = 'https://svgshare.com/i/Xw5.svg';
 const iconePesquisa = 'https://svgshare.com/i/XvR.svg';
 const iconeExtensao = 'https://svgshare.com/i/XuM.svg';
 const iconeBolsas = 'https://svgshare.com/i/XvU.svg';
+const iconeEstagio = 'https://svgshare.com/i/bRU.svg';
 const iconeRelacoesInternacionais = 'https://svgshare.com/i/Xus.svg';
 const iconeOutros = 'https://svgshare.com/i/aB1.svg';
 const iconeSetaDireita = 'https://svgshare.com/i/YQU.svg';
@@ -1020,6 +1021,8 @@ function executar (){
     xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/extensao_menu.gif', iconeExtensao);
     //Bolsas
     xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/bolsas.png', iconeBolsas);
+    //Estagio
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/estagio/estagio_menu.png', iconeEstagio);
     //Relações Internacionais
     xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/relacoes_internacionais/mobilidade.png', iconeRelacoesInternacionais);
     //Outros
