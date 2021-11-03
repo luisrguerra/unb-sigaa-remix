@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.5
+// @version      2.0.6
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.5';
+const versao = '2.0.6';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -1410,7 +1410,7 @@ function executar (){
  }
  buttonPower.style.color = 'white';
  buttonPower.style.paddingLeft = '2em';
- buttonPower.style.backgroundImage = 'url("https://svgshare.com/i/YcA.svg")';
+ buttonPower.style.backgroundImage = 'url("https://svgshare.com/i/bjb.svg")';
  buttonPower.style.backgroundPosition = '2% 50%';
 
  // Inserir Botão
