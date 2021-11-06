@@ -31,6 +31,18 @@
                    "img/internacionais-white.svg",
                    "img/outros-white.svg",
                    "img/avaliacao-institucional.svg",
+                   "img/senha-white.svg",
+                   "img/impressora.svg",
+                   "img/menu-dicente-white.svg",
+                   "img/chamado-white.svg",
+                   "img/caixa-postal-white.svg",
+                   "img/modulos-white.svg",
+                   "img/turma-reservada.svg",
+                   "img/matricula-permitida.svg",
+                   "img/matricula-negada.svg",
+                   "img/relogio-black.svg",
+                   "img/zoom-black.svg",
+                   "img/chave-black.svg",
                    "img/ensino-white.svg"
                  ],
     "matches": ["https://sig.unb.br/*"]
