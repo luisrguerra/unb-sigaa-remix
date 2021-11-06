@@ -118,6 +118,11 @@ const iconePower = chrome.runtime.getURL("img/power-white.svg");
 const iconeCalculadora = chrome.runtime.getURL("img/calculadora-black.svg");
 const iconeGitHub = chrome.runtime.getURL("img/github-black.svg");
 const iconeTema = chrome.runtime.getURL("img/tema-black.svg");
+const iconePause = chrome.runtime.getURL("img/pause-black.svg");
+const iconeTodasNoticias = chrome.runtime.getURL("img/todas-noticias-black.svg");
+const iconeProximo = chrome.runtime.getURL("img/proximo-black.svg");
+const iconeAnterior = chrome.runtime.getURL("img/anterior-black.svg");
+const iconeSetaDropdown = chrome.runtime.getURL("img/seta-dropdown-white.svg"); 
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -1075,17 +1080,17 @@ function executar (){
 
     //Mudar seta menu
     //Bug por conta da url
-    xsrc('.ThemeOfficeMenuFolderRight img','all','https://svgshare.com/i/XvL.svg');
+    xsrc('.ThemeOfficeMenuFolderRight img','all', iconeSetaDropdown);
 
     //Mudar botões noticias
     //Esquerda
-    xsrc('#controls img','https://sig.unb.br/shared/img/flash_volta.gif','https://svgshare.com/i/XvM.svg');
+    xsrc('#controls img','https://sig.unb.br/shared/img/flash_volta.gif',iconeAnterior);
     //Pause
-    xsrc('#controls img','https://sig.unb.br/shared/img/flash_pause.gif','https://svgshare.com/i/XvV.svg');
+    xsrc('#controls img','https://sig.unb.br/shared/img/flash_pause.gif', iconePause);
     //Direita
-    xsrc('#controls img','https://sig.unb.br/shared/img/flash_vai.gif','https://svgshare.com/i/XuJ.svg');
+    xsrc('#controls img','https://sig.unb.br/shared/img/flash_vai.gif', iconeProximo);
     //Todas
-    xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg','https://svgshare.com/i/Xuz.svg');
+    xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg', iconeTodasNoticias);
 
     //Remover imagem de telefone antigo inutil
     xsrc('img','https://sig.unb.br/sigaa/img/celular.jpg','');
