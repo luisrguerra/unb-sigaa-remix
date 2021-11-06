@@ -824,7 +824,7 @@ function executar (){
   mudarScrollBar();
 
   //Mudar o ícone de interroção dos horários para um ícone de relógio
-  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif',iconeRelogio);
+  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif',iconeInfo);
 
   //Mudar icone de Matricula negada
   xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png',iconeMatriculaNegada);
@@ -883,7 +883,9 @@ function executar (){
     mudancasTurma();
     corrigirFonte();
 
-
+    //Corrigir o ícone de relógio errado, com o ícone de informação
+    xsrc('img',iconeInfo,iconeRelogio);
+    
     var inicialCss = document.createElement('style');
     inicialCss.innerHTML = `
     /* Mudar as letras que estavam forçadas em maiusculo */
@@ -1276,9 +1278,6 @@ function executar (){
 
     `;
     document.head.appendChild(caixaPostalCss);
-
-    //Corrigir o ícone de informação errado, com o relógio
-    xsrc('img','https://svgshare.com/i/Y9w.svg',iconeInfo);
 
     //Substituir nome SIGAA por SIGAA Remix
     substituirTexto('#info-sistema h1','all','SIGAA Remix');
