@@ -99,19 +99,19 @@ const iconeBolsas = chrome.runtime.getURL("img/bolsas-white.svg");
 const iconeEstagio = chrome.runtime.getURL("img/estagio-white.svg");
 const iconeRelacoesInternacionais = chrome.runtime.getURL("img/internacionais-white.svg");
 const iconeOutros = chrome.runtime.getURL("img/outros-white.svg");
-const iconeSetaDireita = 'https://svgshare.com/i/YQU.svg';
-const iconeSetaEsquerda = 'https://svgshare.com/i/Yhf.svg';
-const iconeAluno = 'https://svgshare.com/i/YfE.svg';
-const iconeProfessorFuncionario = 'https://svgshare.com/i/Ydj.svg';
-const iconeLogOff = 'https://svgshare.com/i/Yge.svg';
-const iconeCheck = 'https://svgshare.com/i/Yps.svg';
-const iconeInfo = 'https://svgshare.com/i/aRq.svg';
-const iconeEncaminharEmail ='https://svgshare.com/i/aTn.svg';
-const iconeRemoverX = 'https://svgshare.com/i/aSS.svg';
-const iconeEditarEmail ='https://svgshare.com/i/aT5.svg';
-const iconePainelSetaDireita = 'https://svgshare.com/i/_qq.svg';
-const iconePainelSetaCima = 'https://svgshare.com/i/_t9.svg';
-const iconePainelSetaBaixo = 'https://svgshare.com/i/_rT.svg';
+const iconeSetaDireita = chrome.runtime.getURL("img/seta-direita-black.svg");
+const iconeSetaEsquerda = chrome.runtime.getURL("img/seta-esquerda-black.svg");
+const iconeAluno = chrome.runtime.getURL("img/aluno-black.svg");
+const iconeProfessorFuncionario = chrome.runtime.getURL("img/professor-funcionario-black.svg");
+const iconeLogOff = chrome.runtime.getURL("img/logoff-white.svg");
+const iconeCheck = chrome.runtime.getURL("img/check-white.svg");
+const iconeInfo = chrome.runtime.getURL("img/info-black.svg");
+const iconeEncaminharEmail = chrome.runtime.getURL("img/encaminhar-email-black.svg");
+const iconeRemoverX = chrome.runtime.getURL("img/remover-x-black.svg");
+const iconeEditarEmail = chrome.runtime.getURL("img/editar-email-black.svg");
+const iconePainelSetaDireita = chrome.runtime.getURL("img/painel-seta-direita-black.svg");
+const iconePainelSetaCima = chrome.runtime.getURL("img/painel-seta-cima-black.svg");
+const iconePainelSetaBaixo = chrome.runtime.getURL("img/painel-seta-baixo-black.svg");
 const iconeFoto = chrome.runtime.getURL("img/foto.svg");
 const iconeAvaliacaoInstucional = chrome.runtime.getURL("img/avaliacao-institucional.svg");
 
@@ -774,10 +774,10 @@ function executar (){
    xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_dir.png",iconePainelSetaDireita);
 
    //Mudar o ícone de seta para a cima
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_cima.png",iconePainelSetaCima);
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_cima.png",iconePainelSetaBaixo);
 
    //Mudar o ícone da sra para baixo
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_baixo.png",iconePainelSetaBaixo);
+   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_baixo.png",iconePainelSetaCima);
 
  };
 
