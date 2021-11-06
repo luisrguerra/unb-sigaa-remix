@@ -114,6 +114,10 @@ const iconePainelSetaCima = chrome.runtime.getURL("img/painel-seta-cima-black.sv
 const iconePainelSetaBaixo = chrome.runtime.getURL("img/painel-seta-baixo-black.svg");
 const iconeFoto = chrome.runtime.getURL("img/foto.svg");
 const iconeAvaliacaoInstucional = chrome.runtime.getURL("img/avaliacao-institucional.svg");
+const iconePower = chrome.runtime.getURL("img/power-white.svg");
+const iconeCalculadora = chrome.runtime.getURL("img/calculadora-black.svg");
+const iconeGitHub = chrome.runtime.getURL("img/github-black.svg");
+const iconeTema = chrome.runtime.getURL("img/tema-black.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -1412,7 +1416,7 @@ function executar (){
  }
  buttonPower.style.color = 'white';
  buttonPower.style.paddingLeft = '2em';
- buttonPower.style.backgroundImage = 'url(' + chrome.runtime.getURL("img/power-white.svg") + ')';
+ buttonPower.style.backgroundImage = 'url(' + iconePower + ')';
  buttonPower.style.backgroundPosition = '2% 50%';
 
  // Inserir Botão
@@ -1436,7 +1440,7 @@ function executar (){
   buttonGithub.setAttribute("class", "botaoTema");
   buttonGithub.innerHTML = 'Informações sobre o SIGAA Remix';
   buttonGithub.style.paddingLeft = '2em';
-  buttonGithub.style.backgroundImage = 'url("https://svgshare.com/i/Yau.svg")';
+  buttonGithub.style.backgroundImage = 'url("' + iconeGitHub + '")';
   buttonGithub.style.backgroundPosition = '1% 50%';
   buttonGithub.onclick = function(){
     alert("Será aberta uma nova janela na página do Github do projeto, lá você pode checar se há novas atualizações (É importante fazer isso!), ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
@@ -1449,7 +1453,7 @@ function executar (){
   buttonCalculadora.setAttribute("class", "botaoTema");
   buttonCalculadora.innerHTML = 'Calculadora de Horários';
   buttonCalculadora.style.paddingLeft = '2em';
-  buttonCalculadora.style.backgroundImage = 'url("https://svgshare.com/i/YeE.svg")';
+  buttonCalculadora.style.backgroundImage = 'url("' + iconeCalculadora + '")';
   buttonCalculadora.style.backgroundPosition = '3% 50%';
   buttonCalculadora.onclick = function(){
     window.open("https://luisrguerra.github.io/calculadora-horarios-sigaa-unb-html/");
@@ -1480,7 +1484,7 @@ function executar (){
     min-width: 13em;
     appearence: none;
     -webkit-appearance: none;
-    background-image: url("https://svgshare.com/i/YcU.svg");
+    background-image: url("` + iconeTema + `");
     background-position: 3% 50%;
   };
   `;
