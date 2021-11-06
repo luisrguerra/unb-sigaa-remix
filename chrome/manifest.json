@@ -1,7 +1,7 @@
 {
   "name": "SIGAA Remix",
-  "version": "2.0.6",
-  "version_name": "Versão 2.0.6",
+  "version": "2.0.7",
+  "version_name": "Versão 2.0.7",
   "manifest_version": 3,
   "description": "Melhorias diversas na plataforma SIGAA UnB",
   "icons" : {
@@ -16,6 +16,24 @@
       "matches": ["https://sig.unb.br/*"],
       "css": ["src/custom.css"],
       "js": ["src/SIGAA.Remix.user.js"]
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+    "resources": [
+                   "img/power-white.svg",
+                   "img/foto.svg",
+                   "img/bolsas-white.svg",
+                   "img/estagio-white.svg",
+                   "img/extensao-white.svg",
+                   "img/pesquisa-white.svg",
+                   "img/internacionais-white.svg",
+                   "img/outros-white.svg",
+                   "img/avaliacao-institucional.svg",
+                   "img/ensino-white.svg"
+                 ],
+    "matches": ["https://sig.unb.br/*"]
     }
   ]
 

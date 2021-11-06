@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.6
+// @version      2.0.7
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.6';
+const versao = '2.0.7';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -92,13 +92,13 @@ const iconeMatriculaNegada = 'https://svgshare.com/i/YA3.svg';
 const iconeRelogio = 'https://svgshare.com/i/Y9w.svg';
 const iconeZoom = 'https://svgshare.com/i/Y3h.svg';
 const iconeChave = 'https://svgshare.com/i/Y2n.svg';
-const iconeEnsino = 'https://svgshare.com/i/Xw5.svg';
-const iconePesquisa = 'https://svgshare.com/i/XvR.svg';
-const iconeExtensao = 'https://svgshare.com/i/XuM.svg';
-const iconeBolsas = 'https://svgshare.com/i/XvU.svg';
-const iconeEstagio = 'https://svgshare.com/i/bRU.svg';
-const iconeRelacoesInternacionais = 'https://svgshare.com/i/Xus.svg';
-const iconeOutros = 'https://svgshare.com/i/aB1.svg';
+const iconeEnsino = chrome.runtime.getURL("img/ensino-white.svg");
+const iconePesquisa = chrome.runtime.getURL("img/pesquisa-white.svg");
+const iconeExtensao = chrome.runtime.getURL("img/extensao-white.svg");
+const iconeBolsas = chrome.runtime.getURL("img/bolsas-white.svg");
+const iconeEstagio = chrome.runtime.getURL("img/estagio-white.svg");
+const iconeRelacoesInternacionais = chrome.runtime.getURL("img/internacionais-white.svg");
+const iconeOutros = chrome.runtime.getURL("img/outros-white.svg");
 const iconeSetaDireita = 'https://svgshare.com/i/YQU.svg';
 const iconeSetaEsquerda = 'https://svgshare.com/i/Yhf.svg';
 const iconeAluno = 'https://svgshare.com/i/YfE.svg';
@@ -112,6 +112,8 @@ const iconeEditarEmail ='https://svgshare.com/i/aT5.svg';
 const iconePainelSetaDireita = 'https://svgshare.com/i/_qq.svg';
 const iconePainelSetaCima = 'https://svgshare.com/i/_t9.svg';
 const iconePainelSetaBaixo = 'https://svgshare.com/i/_rT.svg';
+const iconeFoto = chrome.runtime.getURL("img/foto.svg");
+const iconeAvaliacaoInstucional = chrome.runtime.getURL("img/avaliacao-institucional.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -1057,11 +1059,11 @@ function executar (){
     xcss('.ThemeOfficeSubMenu',"boxShadow", sombra1);
 
     //Mudar o icone de avalição institucional
-    xsrc('input, textarea, select,input#agenda','https://sig.unb.br/sigaa/img/avaliacao.jpg','https://svgshare.com/i/Xzo.svg');
+    xsrc('input, textarea, select,input#agenda','https://sig.unb.br/sigaa/img/avaliacao.jpg',iconeAvaliacaoInstucional);
     xcss('#agenda-docente input','width','168px');
 
     //Mudar foto
-    xsrc('.foto, img','https://sig.unb.br/sigaa/img/no_picture.png','https://svgshare.com/i/Y09.svg');
+    xsrc('.foto, img','https://sig.unb.br/sigaa/img/no_picture.png',iconeFoto);
     xcss('.foto','margin','10px');
     xcss('.foto img','borderRadius', '4px');
 
@@ -1296,7 +1298,7 @@ function executar (){
     mudancasBarraDeCima();
     corrigirFonte();
     //Mudar foto
-    xsrc('.fotoPerfil, img','https://sig.unb.br/sigaa/img/no_picture.png','https://svgshare.com/i/Y09.svg');
+    xsrc('.fotoPerfil, img','https://sig.unb.br/sigaa/img/no_picture.png',iconeFoto);
   }
   //Tela de login
   else if (enderecosLogin){
@@ -1410,7 +1412,7 @@ function executar (){
  }
  buttonPower.style.color = 'white';
  buttonPower.style.paddingLeft = '2em';
- buttonPower.style.backgroundImage = 'url("https://svgshare.com/i/bjb.svg")';
+ buttonPower.style.backgroundImage = 'url(' + chrome.runtime.getURL("img/power-white.svg") + ')';
  buttonPower.style.backgroundPosition = '2% 50%';
 
  // Inserir Botão
