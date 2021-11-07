@@ -46,7 +46,3 @@ Para evitar qualquer problema com atualizações futuras do SIGAA, é adicionado
 
 ### Download:
 [Página do SIGAA Remix na Chrome Web Store](https://chrome.google.com/webstore/detail/sigaa-remix/plpmdkigbdddlaihbfbpjgcknmefjijf?hl=pt-BR&authuser=0)<br>
-
-# Como instalar (Versão Tampermonkey):
-
-[Guia de Instalação SIGAA Remix (Versão Tampermoneky)](https://github.com/luisrguerra/unb-sigaa-remix/wiki/Guia-de-Instala%C3%A7%C3%A3o-SIGAA-Remix-(Vers%C3%A3o-Tampermoneky))
