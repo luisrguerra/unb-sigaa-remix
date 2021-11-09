@@ -770,6 +770,16 @@ function executar (){
     #barraEsquerda table{
       border: none !important;
     }
+    
+    /* Ajustar fonte pequena notícia */
+    .conteudoNoticia p{
+      font-size: inherit !important;
+    }
+    
+    /* Ajustar fonte pequena no título das datas */
+    .topico-aula .titulo{
+      font-size: inherit !important;
+    }
 
    `;
    document.head.appendChild(turmaCss);
