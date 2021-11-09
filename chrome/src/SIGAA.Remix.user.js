@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.7
+// @version      2.0.8
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.7';
+const versao = '2.0.8';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -76,7 +76,7 @@ var corFonteClara1 = "#fbfbfb"; //bkp #f0f0f0
 var paddingPadrao = "1em";
 
 //Sombras
-var sombra1 = 'rgb(0 0 0 / 8%) 0px 6px 6px';
+var sombra1 = 'rgb(0 0 0 / 8%) 0px 3px 6px';
 var sombra2 = '0px 3px 5px rgba(0, 0, 0, 0.20)';
 
 //Imagens e icones
@@ -137,6 +137,7 @@ const iconeAtividades16 = chrome.runtime.getURL("img/atividades-black-16.svg");
 const iconeEstatistica16 = chrome.runtime.getURL("img/estatistica-black-16.svg");
 const iconeAjuda16 = chrome.runtime.getURL("img/ajuda-black-16.svg");
 const iconeArteTurmaVirtual = chrome.runtime.getURL("img/arte-turma-virtual.svg");
+const iconePesquisaEmail = chrome.runtime.getURL("img/email-search-black.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -877,6 +878,10 @@ function executar (){
 
   //Mudar ícone de encaminhar email
   xsrc('img','https://sig.unb.br/shared/img/caixa_postal/email_go.png', iconeEncaminharEmail);
+  
+  //bug posição errada
+  //Mudar ícone de pesquisar entre os emails na caixa de email
+  //xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_buscar.png', iconePesquisaEmail);
 
   //Mudar ícone de Remover X
   xsrc('img','https://sig.unb.br/shared/img/caixa_postal/cross.gif', iconeRemoverX);
