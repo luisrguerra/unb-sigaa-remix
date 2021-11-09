@@ -110,6 +110,7 @@ const iconeEncaminharEmail = chrome.runtime.getURL("img/encaminhar-email-black.s
 const iconeRemoverX = chrome.runtime.getURL("img/remover-x-black.svg");
 const iconeEditarEmail = chrome.runtime.getURL("img/editar-email-black.svg");
 const iconePainelSetaDireita = chrome.runtime.getURL("img/painel-seta-direita-black.svg");
+const iconePainelSetaEsquerda = chrome.runtime.getURL("img/painel-seta-esquerda-black.svg");
 const iconePainelSetaCima = chrome.runtime.getURL("img/painel-seta-cima-black.svg");
 const iconePainelSetaBaixo = chrome.runtime.getURL("img/painel-seta-baixo-black.svg");
 const iconeFoto = chrome.runtime.getURL("img/foto.svg");
@@ -123,6 +124,19 @@ const iconeTodasNoticias = chrome.runtime.getURL("img/todas-noticias-black.svg")
 const iconeProximo = chrome.runtime.getURL("img/proximo-black.svg");
 const iconeAnterior = chrome.runtime.getURL("img/anterior-black.svg");
 const iconeSetaDropdown = chrome.runtime.getURL("img/seta-dropdown-white.svg"); 
+const iconeHomeBlack12 = chrome.runtime.getURL("img/home-black-12.svg");
+const iconeImpressoraBlack12 = chrome.runtime.getURL("img/impressora-black-12.svg");
+const iconeAulasPaginadas = chrome.runtime.getURL("img/aulas-paginadas-black-12.svg");
+const iconeAulasLista = chrome.runtime.getURL("img/aulas-lista-black-12.svg");
+const iconeTrocarTurma = chrome.runtime.getURL("img/trocar-turma-black-12.svg");
+const iconeOpcoes12 = chrome.runtime.getURL("img/opcoes-black-12.svg");
+const iconeTurma16 = chrome.runtime.getURL("img/turma-black-16.svg");
+const iconeAlunos16 = chrome.runtime.getURL("img/alunos-black-16.svg");
+const iconeMateriais16 = chrome.runtime.getURL("img/materiais-black-16.svg");
+const iconeAtividades16 = chrome.runtime.getURL("img/atividades-black-16.svg");
+const iconeEstatistica16 = chrome.runtime.getURL("img/estatistica-black-16.svg");
+const iconeAjuda16 = chrome.runtime.getURL("img/ajuda-black-16.svg");
+const iconeArteTurmaVirtual = chrome.runtime.getURL("img/arte-turma-virtual.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -647,7 +661,7 @@ function executar (){
     }
     /* Mudança no ícone de seta para esquerda */
     .botaoDireita {
-      background: white url("https://svgshare.com/i/_sf.svg") no-repeat 5px 5px !important;
+      background: white url("` + iconePainelSetaEsquerda + `") no-repeat 5px 5px !important;
     }
     /* Mudar borda azul (elemento visual) que aparece do lado de titulos */
     fieldset {
@@ -684,60 +698,60 @@ function executar (){
     }
     /* Imagem turma virtual */
     div.intro-aval {
-      background: white url(https://svgshare.com/i/_tf.svg) no-repeat left top !important;
+      background: white url(` + iconeArteTurmaVirtual + `) no-repeat left top !important;
     }
     /* Alterar o ícone de impressora */
     .botaoImprimir {
-      background-image: url("https://svgshare.com/i/a91.svg") !important;
+      background-image: url("` + iconeImpressoraBlack12 + `") !important;
       background-position: center !important;
     }
     /*  Alterar o ícone de casa/home  */
     .botaoPortal {
-      background-image: url("https://svgshare.com/i/a9f.svg") !important;
+      background-image: url("` + iconeHomeBlack12 + `") !important;
       background-position: center !important;
     }
     /* Mudar ícone de ajuda do menu da esquerda */
     .itemMenuHeaderAjuda {
-      background-image: url("https://svgshare.com/i/_zS.svg");
+      background-image: url("` + iconeAjuda16 + `");
     }
     /* Mudar ícone de estastistica */
     .itemMenuHeaderRelatorios {
-      background-image: url("https://svgshare.com/i/_y5.svg");
+      background-image: url("` + iconeEstatistica16 + `");
     }
     /* Mudar ícone de cadeira */
     .itemMenuHeaderTurma {
-      background-image: url("https://svgshare.com/i/_x4.svg");
+      background-image: url("` + iconeTurma16 + `");
     }
     /* Mudar ícone Materias/Livro*/
     .itemMenuHeaderMateriais {
-      background-image: url("https://svgshare.com/i/_yB.svg");
+      background-image: url("` + iconeMateriais16 + `");
     }
     /* ícone atividades */
     .itemMenuHeaderAtividades {
-      background-image: url("https://svgshare.com/i/_xw.svg");
+      background-image: url("` + iconeAtividades16 + `");
     }
     /* ícone alunos */
     .itemMenuHeaderAlunos {
-      background-image: url("https://svgshare.com/i/_wm.svg");
+      background-image: url("` + iconeAlunos16 + `");
     }
     /*ícone opções turmas */
     .botaoOpcoesTurma {
-      background-image: url("https://svgshare.com/i/aA_.svg") !important;
+      background-image: url("` + iconeOpcoes12 + `") !important;
       background-position: center !important;
     }
     /* Mudar ícone Aula paginadas (setas)  */
     .botaoAulasPaginadas {
-      background-image: url("https://svgshare.com/i/a8H.svg") !important;
+      background-image: url("` + iconeAulasPaginadas + `") !important;
       background-position: center !important;
     }
     /* Mudar ícone Aula em lista (setas verticais)  */
     .botaoAulasEmLista {
-      background-image: url("https://svgshare.com/i/aAk.svg") !important;
+      background-image: url("` + iconeAulasLista + `") !important;
       background-position: center !important;
     }
     /* Mudar ícone trocar de turma (seta ondulada) */
     .botaoTrocarTurma{
-      background-image: url("https://svgshare.com/i/_zm.svg") !important;
+      background-image: url("` + iconeTrocarTurma + `") !important;
       background-position: center !important;
     }
 
