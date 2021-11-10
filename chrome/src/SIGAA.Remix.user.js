@@ -138,10 +138,12 @@ const iconeEstatistica16 = chrome.runtime.getURL("img/estatistica-black-16.svg")
 const iconeAjuda16 = chrome.runtime.getURL("img/ajuda-black-16.svg");
 const iconeArteTurmaVirtual = chrome.runtime.getURL("img/arte-turma-virtual.svg");
 const iconePesquisaEmail = chrome.runtime.getURL("img/email-search-black.svg");
-const iconeCaixaEntrada = chrome.runtime.getURL("img/inbox-black.svg");
-const iconeCaixaSaida = chrome.runtime.getURL("img/send-black.svg");
-const iconeLixeira = chrome.runtime.getURL("img/delete-black.svg");
-const iconeLixeiraEsvaziar = chrome.runtime.getURL("img/delete-forever-red.svg");
+const iconeCaixaEntrada = chrome.runtime.getURL("img/botao-recebidos.svg");
+const iconeCaixaSaida = chrome.runtime.getURL("img/botao-enviados.svg");
+const iconeLixeira = chrome.runtime.getURL("img/botao-lixeira.svg");
+const iconeLixeiraEsvaziar = chrome.runtime.getURL("img/botao-esvaziar.svg");
+const iconeEmailNaoLido = chrome.runtime.getURL("img/email-outline.svg");
+const iconeEmailLido = chrome.runtime.getURL("img/email-open-outline.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -894,6 +896,12 @@ function executar (){
   
   //Mudar ícone de apagar lixeira
   xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_limpar.png', iconeLixeiraEsvaziar);
+  
+  //Mudar ícone de email não lido
+  xsrc('img','https://sig.unb.br/cxpostal/img/email2.png', iconeEmailNaoLido);
+  
+  //Mudar ícone de email lido
+  xsrc('img','https://sig.unb.br/cxpostal/img/email_open.gif', iconeEmailLido);
 
   //bug posição errada
   //Mudar ícone de pesquisar entre os emails na caixa de email
@@ -914,7 +922,7 @@ function executar (){
   const enderecosPaginaInicial = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
   const enderecosIndicesAcademicos = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
   const enderecosTurmasAnteriores = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
-  const enderecosCaixaPostal = urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf#' || urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#';
+  const enderecosCaixaPostal = urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf#' || urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#' || urlAtual == 'https://sig.unb.br/cxpostal/envia_mensagem.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/envia_mensagem.jsf#';
   const enderecosLogin = urlAtual == 'https://sig.unb.br/sigaa/verTelaLogin.do' || urlAtual == 'https://sig.unb.br/sigaa/logar.do?dispatch=logOff' || urlAtual == 'https://sig.unb.br/sipac/?modo=classico' || urlAtual == 'https://sig.unb.br/sigrh/login.jsf' || urlAtual == 'https://sig.unb.br/admin/login.jsf' || urlAtual == 'https://sig.unb.br/sipac/';
   const enderecosAtualizarDadosPessoais = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/dados_discente.jsf#';
   const enderecosMatricula = urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_curriculo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_equivalentes_curriculo.jsf#' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/matricula/turmas_selecionadas.jsf#';
@@ -1240,13 +1248,27 @@ function executar (){
     xcss('label','fontSize', '16px');
   }
   //Correção de Página genéricas
-  else if (enderecosTurmasSelecionadas || enderecosAvisoCovid || enderecosAtualizarDadosPessoais || enderecosPlanoMatricula){
+  else if (enderecosTurmasSelecionadas || enderecosAtualizarDadosPessoais || enderecosPlanoMatricula){
     mudancasBasicias();
     corrigirFonte();
     mudancasBarraDeCima();
 
   }
-  // àrea de mensagens
+  // área de avisos
+  else if (enderecosAvisoCovid){
+   mudancasBasicias();
+   corrigirFonte();
+   mudancasBarraDeCima();
+
+   var AvisoCovidCss = document.createElement('style');
+   AvisoCovidCss.innerHTML = `
+   #conteudo {
+      margin: 1em;
+   }
+   `;
+   document.head.appendChild(AvisoCovidCss);
+  }
+  // área de mensagens
   else if (enderecosCaixaPostal){
     mudancasBasicias();
     corrigirFonte();
