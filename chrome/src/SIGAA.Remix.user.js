@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         SIGAA Remix
-// @version      2.0.8
+// @version      2.0.9
 // @description  Redesign do SIGAA UnB
 // @author       Luís Eduardo Ribeiro Guerra
 // @match        https://sig.unb.br/*
@@ -14,7 +14,7 @@
 
 
 'use strict';
-const versao = '2.0.8';
+const versao = '2.0.9';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -138,6 +138,10 @@ const iconeEstatistica16 = chrome.runtime.getURL("img/estatistica-black-16.svg")
 const iconeAjuda16 = chrome.runtime.getURL("img/ajuda-black-16.svg");
 const iconeArteTurmaVirtual = chrome.runtime.getURL("img/arte-turma-virtual.svg");
 const iconePesquisaEmail = chrome.runtime.getURL("img/email-search-black.svg");
+const iconeCaixaEntrada = chrome.runtime.getURL("img/inbox-black.svg");
+const iconeCaixaSaida = chrome.runtime.getURL("img/send-black.svg");
+const iconeLixeira = chrome.runtime.getURL("img/delete-black.svg");
+const iconeLixeiraEsvaziar = chrome.runtime.getURL("img/delete-forever-red.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -879,6 +883,18 @@ function executar (){
   //Mudar ícone de encaminhar email
   xsrc('img','https://sig.unb.br/shared/img/caixa_postal/email_go.png', iconeEncaminharEmail);
   
+  //Mudar ícone de caixa de entrada
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_inbox.png', iconeCaixaEntrada);
+
+  //Mudar ícone de caixa de saída
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_sent.png', iconeCaixaSaida);
+  
+  //Mudar ícone da lixeira
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_trash.png', iconeLixeira);
+  
+  //Mudar ícone de apagar lixeira
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_limpar.png', iconeLixeiraEsvaziar);
+
   //bug posição errada
   //Mudar ícone de pesquisar entre os emails na caixa de email
   //xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_buscar.png', iconePesquisaEmail);
