@@ -1,20 +1,5 @@
-// ==UserScript==
-// @name         SIGAA Remix
-// @version      2.0.9
-// @description  Redesign do SIGAA UnB
-// @author       Luís Eduardo Ribeiro Guerra
-// @match        https://sig.unb.br/*
-// @grant        none
-// @supportURL   https://github.com/luisrguerra/unb-sigaa-remix/
-// @updateURL    https://github.com/luisrguerra/unb-sigaa-remix/raw/main/SIGAA%20Remix.user.js
-// @downloadURL  https://github.com/luisrguerra/unb-sigaa-remix/raw/main/SIGAA%20Remix.user.js
-// ==/UserScript==
-
-/*globals $*/
-
-
 'use strict';
-const versao = '2.0.9';
+const versao = '2.1';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -144,6 +129,11 @@ const iconeLixeira = chrome.runtime.getURL("img/botao-lixeira.svg");
 const iconeLixeiraEsvaziar = chrome.runtime.getURL("img/botao-esvaziar.svg");
 const iconeEmailNaoLido = chrome.runtime.getURL("img/email-outline.svg");
 const iconeEmailLido = chrome.runtime.getURL("img/email-open-outline.svg");
+const iconeEmailBuscar = chrome.runtime.getURL("img/botao-busca.svg");
+const iconeEmailEscrever = chrome.runtime.getURL("img/botao-escrever.svg");
+const iconeEmailRemover = chrome.runtime.getURL("img/botao-remover.svg");
+const iconeEmailProximo = chrome.runtime.getURL("img/arrow-right-circle.svg");
+const iconeEmailAnterior = chrome.runtime.getURL("img/arrow-left-circle.svg");
 
 let menuCorRGB = localStorage.getItem("menuCorRGB");
 
@@ -902,6 +892,21 @@ function executar (){
   
   //Mudar ícone de email lido
   xsrc('img','https://sig.unb.br/cxpostal/img/email_open.gif', iconeEmailLido);
+  
+  //Mudar ícone de buscar email
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_buscar.png', iconeEmailBuscar);
+  
+  //Mudar ícone de enviar email
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_enviar.png', iconeEmailEscrever);
+  
+  //Mudar ícone de remover seleção de emails
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_remover.png', iconeEmailRemover);
+
+  //Mudar ícone de email anterior
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_anterior.png', iconeEmailAnterior);
+
+  //Mudar ícone de próximo email
+  xsrc('img','https://sig.unb.br/shared/img/caixa_postal/bt_proxima.png', iconeEmailProximo);
 
   //bug posição errada
   //Mudar ícone de pesquisar entre os emails na caixa de email
@@ -1442,7 +1447,7 @@ function executar (){
  divBotoes.style.marginRight = 'auto';
  divBotoes.style.marginTop = '1em';
  divBotoes.style.marginBottom = '0.5em';
- divBotoes.style.maxWidth = '89em';
+ divBotoes.style.maxWidth = '86em';
  divBotoes.style.flexWrap = 'wrap';
  body.appendChild(divBotoes);
 
@@ -1509,12 +1514,12 @@ function executar (){
   //Botão do github
   var buttonGithub = document.createElement("button");
   buttonGithub.setAttribute("class", "botaoTema");
-  buttonGithub.innerHTML = 'Informações sobre o SIGAA Remix';
+  buttonGithub.innerHTML = 'Sobre o SIGAA Remix';
   buttonGithub.style.paddingLeft = '2em';
   buttonGithub.style.backgroundImage = 'url("' + iconeGitHub + '")';
   buttonGithub.style.backgroundPosition = '1% 50%';
   buttonGithub.onclick = function(){
-    alert("Será aberta uma nova janela na página do Github do projeto, lá você pode checar se há novas atualizações (É importante fazer isso!), ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
+    alert("Será aberta uma nova janela na página do Github do projeto, lá você poderá ler tutoriais, relatar bugs e ver o código fonte.\r\n\r\nSIGAA Remix desenvolvido por Luís Guerra");
     window.open("https://github.com/luisrguerra/unb-sigaa-remix");
   };
   document.getElementById("idBotoes").appendChild(buttonGithub);
