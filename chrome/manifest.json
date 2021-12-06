@@ -1,7 +1,6 @@
 {
   "name": "SIGAA Remix",
-  "version": "2.1",
-  "version_name": "Versão 2.1",
+  "version": "2.1.1",
   "manifest_version": 3,
   "description": "Melhorias diversas na plataforma SIGAA UnB",
   "icons" : {

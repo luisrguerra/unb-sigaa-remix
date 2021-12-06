@@ -1,5 +1,5 @@
 'use strict';
-const versao = '2.1';
+const versao = '2.1.1';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -353,6 +353,33 @@ function executar (){
     xcss('#rodape','display','none');
     //Corrigir o bug
     xcss('#container','minWidth','70em');
+
+   var basicasCss = document.createElement('style');
+   basicasCss.innerHTML = `
+   /* mudanças no aviso amarelo */
+    div.descricaoOperacao {
+      background: white;
+      border-radius: 4px;
+      border: 1px solid #e0e0e0;
+      margin-inline: 0.5em;
+    }
+    /* Tirar o estilo small-caps dos titulos h2 */
+    h2, h2#title{
+      font-variant: initial;
+    }
+    /* Tirar o estilo small-caps das tables */
+    table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela{
+      font-variant: initial;
+    }
+    /* Mudança nos botões */
+    .box-geral .btn{
+      border-radius: 4px;
+      border: none;
+      box-shadow: 0px 1px 2px rgb(0 0 0 / 20%);
+      border-top: 1px solid #ffffff38;
+    }
+   `;
+   document.head.appendChild(basicasCss);
  }
  function mudancasBarraDeCima(){
     var mudancasBarraDeCimaCss = document.createElement('style');
@@ -639,12 +666,6 @@ function executar (){
       font-size: 14px !important;
       /* Mudar a cor do texto de azul para preto */
       color: #212121 !important;
-    }
-    /* mudanças no aviso amarelo */
-    div.descricaoOperacao {
-      background: white;
-      border-radius: 4px;
-      border: 1px solid #e0e0e0;
     }
     /* Melhoria tamanho da letra em dados do progrma */
     #relatorio-rodape table tr td {
@@ -1285,7 +1306,6 @@ function executar (){
     #form > h2 {
      background: white;
      border-bottom: none;
-     font-variant: inherit;
      padding: inherit;
      color: black;
     }
