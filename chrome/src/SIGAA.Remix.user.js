@@ -363,13 +363,24 @@ function executar (){
       border: 1px solid #e0e0e0;
       margin-inline: 0.5em;
     }
-    /* Tirar o estilo small-caps dos titulos h2 */
+    /* Tirar o estilo small-caps*/
     h2, h2#title{
       font-variant: initial;
     }
-    /* Tirar o estilo small-caps das tables */
     table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela{
       font-variant: initial;
+    }
+    .box-geral .box-secao .titulo{
+      font-variant: initial;
+    }
+    .box-geral .box-cabecalho{
+      font-variant: initial;
+    }
+    table.subFormulario caption, caption.subFormulario, td.subFormulario, table.formulario table caption, table.listagem tr.titulo{
+      font-variant: initial;
+    }
+    #main-docente .simple-panel h4{
+      font-variant: initial !important;
     }
     /* Mudança nos botões */
     .box-geral .btn{
@@ -972,10 +983,6 @@ function executar (){
     
     var inicialCss = document.createElement('style');
     inicialCss.innerHTML = `
-    /* Mudar as letras que estavam forçadas em maiusculo */
-    #main-docente .simple-panel h4 {
-      font-variant: inherit !important;
-    }
     /* Tirar o não há atividades cadastradas.. do itálico */
     #main-docente .simple-panel p.vazio {
       font-style: inherit !important;
