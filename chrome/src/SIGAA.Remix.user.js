@@ -401,7 +401,7 @@ function executar (){
       border-radius: 3px; 
     }
     /* Mudar a borda preta de foco no input para azul */
-    input[type=text]:focus,input[type=password]:focus,textarea:focus{
+    input[type=text]:focus,input[type=password]:focus,textarea:focus,select:focus{
       outline-color: #2d81ff;
     }
     /* Melhorias visuais nas barras de texto */
