@@ -1,5 +1,5 @@
 'use strict';
-const versao = '2.1.1';
+const versao = '2.1.2';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -388,6 +388,56 @@ function executar (){
       border: none;
       box-shadow: 0px 1px 2px rgb(0 0 0 / 20%);
       border-top: 1px solid #ffffff38;
+    }
+    input[type="submit"], input[type="button"]{
+      border-radius: 3px;
+    }
+    /* Mudança na cor dos botões e inputs */
+    input, textarea, select{
+      border: 1px solid #0000002e;
+    }
+    /* Adicionar borda arredondada nas caixas de texto */
+    input[type="text"], input[type="password"], textarea{
+      border-radius: 3px; 
+    }
+    /* Mudar a borda preta de foco no input para azul */
+    input[type=text]:focus,input[type=password]:focus,textarea:focus{
+      outline-color: #2d81ff;
+    }
+    /* Melhorias visuais nas barras de texto */
+    .box-geral .box-secao .titulo{
+      background: #f7f7f7;
+      border: 1px solid #efefef;
+      color: #0e0e0e;
+      border-radius: 3px;
+    }
+    .infoAltRem{
+      border: 1px solid #efefef;
+      background: #f7f7f7;
+      border-radius: 3px;
+    }
+    /* Melhorias visuais nas tabelas */
+    table.listagem, table.subListagem{
+      border: 1px solid #e3e3e3;
+    }
+    table thead, table tr.linhaCinza{
+      background-color: #ebebeb;
+      border-bottom: 1px solid #e3e3e3;
+    }
+    .linhaPar{
+      background-color: #fdfdfd;
+    }
+    .linhaImpar{
+      background-color: #f5f5f5;
+    }
+    table.listagem tr.periodo td{
+      background: #d7d7d7;
+    }
+    table.listagem > tfoot, table.listagem > tfoot td{
+      background-color: #e5e5e5;
+    }
+    table.listagem tr td.periodo{
+      background: #dbd9d9 !important;
     }
    `;
    document.head.appendChild(basicasCss);
@@ -1259,10 +1309,6 @@ function executar (){
     xcss('table.listagem caption','borderRadius',arrendondamentoBorda1);
 
     //Mudar barras
-    xcss('table thead, table tr.linhaCinza','background','white');
-    xcss('table.listagem tr td.periodo','background','#bdbdbd');
-    xcss('.linhaPar','background','white');
-    xcss('.linhaImpar','background','#ececec');
     xcss('table.listagem > tfoot, table.listagem > tfoot td','background',cor1);
     xcss('table.listagem > tfoot, table.listagem > tfoot td','borderRadius',arrendondamentoBorda1);
 
