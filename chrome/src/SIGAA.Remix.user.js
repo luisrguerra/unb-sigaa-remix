@@ -936,7 +936,11 @@ function executar (){
    var AvisoCovidCss = document.createElement('style');
    AvisoCovidCss.innerHTML = `
    #conteudo {
-      margin: 1em;
+     margin: 1em;
+   }
+   /* Remover bordar Portal Público.... */
+   #info-sistema span.acessibilidade{
+     border: none !important;
    }
    `;
    document.head.appendChild(AvisoCovidCss);
