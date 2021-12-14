@@ -670,9 +670,6 @@ function executar (){
     
     carregarCSS("css/paginainicial.css")
 
-    //Mudança da borda de cima do ver turmas anteriores
-    xcss('#portal-docente .mais','borderTop', '0.5px solid #eeeeee');
-
     //Mudar Fundo da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','border', brancoBorda1);
     xcss('#perfil-docente #agenda-docente','borderRadius', arrendondamentoBorda1);

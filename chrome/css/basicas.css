@@ -37,6 +37,7 @@ input[type="submit"], input[type="button"]{
 /* Mudança na cor dos botões e inputs */
 input, textarea, select{
   border: 1px solid #0000002e;
+  border-radius: 3px;
 }
 /* Adicionar borda arredondada nas caixas de texto */
 input[type="text"], input[type="password"], textarea{

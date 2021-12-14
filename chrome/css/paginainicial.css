@@ -27,4 +27,7 @@
 .ThemeOfficeMainItemHover{
     background-color: unset;
     color: white;
-}  
+}
+#portal-docente .mais{
+    border-top: none !important;
+}
