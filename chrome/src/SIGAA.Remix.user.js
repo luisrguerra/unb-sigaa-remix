@@ -364,6 +364,16 @@ function executar (){
     //Corrigir o bug
     xcss('#container','minWidth','70em');
 
+    var basicasCss = document.createElement('style');
+    basicasCss.innerHTML = `
+    /*Mudar cor da barra com imagem*/
+    table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela{
+      background: ` + cor1 + `;
+      border-radius: 2px;
+    }
+    `;
+    document.head.appendChild(basicasCss);
+
     
  }
 
@@ -891,13 +901,9 @@ function executar (){
     //Melhorar a margem
     xcss('table.listagem, table.subListagem','width','90%');
 
-    //Mudar 'todas as turmas virtuais'
-    xcss('table.listagem caption','background',cor1);
-    xcss('table.listagem caption','borderRadius',arrendondamentoBorda1);
-
     //Mudar barras
     xcss('table.listagem > tfoot, table.listagem > tfoot td','background',cor1);
-    xcss('table.listagem > tfoot, table.listagem > tfoot td','borderRadius',arrendondamentoBorda1);
+    xcss('table.listagem > tfoot, table.listagem > tfoot td','borderRadius',"2px");
 
     //Remover Portal do dicente/Turma Virtual de baixo
     removerTexto ('div> a:link', 'Portal do Discente');

@@ -81,3 +81,12 @@ table.listagem > tfoot, table.listagem > tfoot td{
 table.listagem tr td.periodo{
   background: #dbd9d9 !important;
 }
+table.formulario tfoot tr {
+  background: #f7f7f7;
+}
+table.formulario, table.subFormulario {
+  background-color: #fdfdfd;
+}
+table.formulario{
+  border: 1px solid #e3e3e3;
+}
