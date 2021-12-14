@@ -1,0 +1,30 @@
+/* Tirar o não há atividades cadastradas.. do itálico */
+#main-docente .simple-panel p.vazio {
+  font-style: inherit !important;
+}
+/*Corrigir cor do texto cinza */
+/*Dados instucionais*/
+#perfil-docente #agenda-docente h4{
+   color: black !important;
+}
+/* tag td */
+#perfil-docente #agenda-docente td{
+   color: black !important;
+}
+/* Esconder forum inutil */
+#forum-portal{
+   display:none;
+}
+/* Esconder comunidade inutil */
+#participantes{
+   display:none;
+}
+/* Corrigir bug em ensino, pesquisa, ... ao passar o mouse enquanto carrega */
+.ThemeOfficeMainItem{
+    background-color: unset;
+    color: white;
+}
+.ThemeOfficeMainItemHover{
+    background-color: unset;
+    color: white;
+}  

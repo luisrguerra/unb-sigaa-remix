@@ -1,6 +1,6 @@
 {
   "name": "SIGAA Remix",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "manifest_version": 3,
   "description": "Melhorias diversas na plataforma SIGAA UnB",
   "icons" : {
@@ -20,7 +20,7 @@
 
   "web_accessible_resources": [
     {
-    "resources": ["img/**"],
+    "resources": ["img/*","css/*"],
     "matches": ["https://sig.unb.br/*"]
     }
   ]

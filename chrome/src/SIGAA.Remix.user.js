@@ -1,5 +1,5 @@
 'use strict';
-const versao = '2.1.2';
+const versao = '2.1.3';
 
 var ativado = localStorage.getItem("ativado");
 var temaAtivado = localStorage.getItem("temaAtivado");
@@ -340,9 +340,19 @@ function substituirTexto (regra, antigo, novo){
     }
 }
 
+function carregarCSS( cssURL ) {
+  var link = document.createElement( 'link' );
+  link.rel  = 'stylesheet';
+  link.href = chrome.runtime.getURL(cssURL);
+  document.head.appendChild( link );
+}
+
 //Aplicar as mudanças na página
 function executar (){
   function mudancasBasicias(){
+
+    carregarCSS("css/basicas.css")
+
     //Mudar fonte
     document.body.style.fontFamily = fontePadrao;
     //Remoção do fundo
@@ -354,206 +364,13 @@ function executar (){
     //Corrigir o bug
     xcss('#container','minWidth','70em');
 
-   var basicasCss = document.createElement('style');
-   basicasCss.innerHTML = `
-   /* mudanças no aviso amarelo */
-    div.descricaoOperacao {
-      background: white;
-      border-radius: 4px;
-      border: 1px solid #e0e0e0;
-      margin-inline: 0.5em;
-    }
-    /* Tirar o estilo small-caps*/
-    h2, h2#title{
-      font-variant: initial;
-    }
-    table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela{
-      font-variant: initial;
-    }
-    .box-geral .box-secao .titulo{
-      font-variant: initial;
-    }
-    .box-geral .box-cabecalho{
-      font-variant: initial;
-    }
-    table.subFormulario caption, caption.subFormulario, td.subFormulario, table.formulario table caption, table.listagem tr.titulo{
-      font-variant: initial;
-    }
-    #main-docente .simple-panel h4{
-      font-variant: initial !important;
-    }
-    /* Mudança nos botões */
-    .box-geral .btn{
-      border-radius: 4px;
-      border: none;
-      box-shadow: 0px 1px 2px rgb(0 0 0 / 20%);
-      border-top: 1px solid #ffffff38;
-    }
-    input[type="submit"], input[type="button"]{
-      border-radius: 3px;
-    }
-    /* Mudança na cor dos botões e inputs */
-    input, textarea, select{
-      border: 1px solid #0000002e;
-    }
-    /* Adicionar borda arredondada nas caixas de texto */
-    input[type="text"], input[type="password"], textarea{
-      border-radius: 3px; 
-    }
-    /* Mudar a borda preta de foco no input para azul */
-    input[type=text]:focus,input[type=password]:focus,textarea:focus,select:focus{
-      outline-color: #2d81ff;
-    }
-    /* Melhorias visuais nas barras de texto */
-    .box-geral .box-secao .titulo{
-      background: #f7f7f7;
-      border: 1px solid #efefef;
-      color: #0e0e0e;
-      border-radius: 3px;
-    }
-    .infoAltRem{
-      border: 1px solid #efefef;
-      background: #f7f7f7;
-      border-radius: 3px;
-    }
-    /* Melhorias visuais nas tabelas */
-    table.listagem, table.subListagem{
-      border: 1px solid #e3e3e3;
-    }
-    table thead, table tr.linhaCinza{
-      background-color: #ebebeb;
-      border-bottom: 1px solid #e3e3e3;
-    }
-    .linhaPar{
-      background-color: #fdfdfd;
-    }
-    .linhaImpar{
-      background-color: #f5f5f5;
-    }
-    table.listagem tr.periodo td{
-      background: #d7d7d7;
-    }
-    table.listagem > tfoot, table.listagem > tfoot td{
-      background-color: #e5e5e5;
-    }
-    table.listagem tr td.periodo{
-      background: #dbd9d9 !important;
-    }
-   `;
-   document.head.appendChild(basicasCss);
+    
  }
+
+
  function mudancasBarraDeCima(){
-    var mudancasBarraDeCimaCss = document.createElement('style');
-    mudancasBarraDeCimaCss.innerHTML = `
-    /* remover a barra lateral do lado do título do sigaa */
-    #info-sistema h1 span{
-      border-width: 0px !important;
-    }
-    /* Melhorar padding de ensino,pesquisa,extensão,... */
-    #menu-dropdown {
-      background: #EFEBDE;
-      padding: 0px;
-      /*padding: 1px 0px 1px 0px;*/
-    }
 
-    /* Melhorias na área de módulos */
-    /* Melhoria no texto dos módulos*/
-    #menu_principal .tooltip, #menu_principal ul li a, #menu_principal ul li a:hover{
-       color: black;
-       font-size: 14px;
-    }
-    /* Melhoria no fundo dos módulos*/
-    #menu_principal ul li.off{
-       background-color: white;
-    }
-    #menu_principal ul li.off a{
-       background: none;
-       background-color: #f1f1f1 !important;
-       border-radius: 2px;
-    }
-    /* Itens com fundo azul */
-    #menu_principal ul li{
-       border-radius: 2px;
-       background-color: #edf0f7;
-    }
-    #menu_principal li a{
-       background: none;
-       background-color: #C4D2EB;
-       border-radius: 2px;
-    }
-    /* Fundo azul da janela para branco */
-    .ydlg .ydlg-dlg-body{
-       background: none;
-       background-color: white;
-    }
-    /* Remover borda desnecessária da janela de módulos*/
-    #menu_principal.popup{
-       border: none;
-    }
-    /* Mudar borda da janela de módulos*/
-    .ydlg .ydlg-dlg-body{
-       border: 1px solid #bfbfbf;
-       border-radius: 0px 0px 3px 3px;
-    }
-    /* remover sombra tosca da janela de módulos */
-    .ydlg-shadow{
-       display:none !important;
-    }
-    /* Nova sombra janela modulos */
-    #painel-modulos{
-       box-shadow: rgb(0 0 0 / 8%) 6px 6px 12px;
-    }
-    /* Correção do tamanho da barra de cima */
-    #painel-usuario{
-       min-height: 56px;
-    }
-
-    /* Esconder ajuste de tamanho de letra  */
-    a.fonteMaior{
-       display: none;
-    }
-    a.fonteMenor{
-       display: none;
-    }
-
-    /* Melhorar o Portal discente> todas as turmas ... e outros */
-    #conteudo h2{
-       background: none;
-       border: none;
-    }
-
-    /* Melhorar Tamanho da letra */
-    #info-sistema h3{
-       font-size: 18.72px !important;
-    }
-    /* Nome do usuário */
-    #painel-usuario #info-usuario p{
-       font-size: 16px !important;
-    }
-    #info-sistema h1 span{
-       font-size: 18.72px !important;
-    }
-    #tempoSessao small em, #tempoSessao small span{
-       font-size: 13.28px !important;
-    }
-    #painel-usuario #menu-usuario li a{
-       font-size: 14px !important;
-    }
-    #info-sistema a , #sair-sistema a{
-       font-size: 18.72px !important;
-    }
-
-    /* Mudar estilo da fonte para o padrão em "Acessar turma virtual"*/
-    .infoAltRem{
-       font-variant: inherit !important;
-    }
-
-    /* remover icone de erro feio */
-    #painel-erros ul.erros{
-        background: none;
-    }
-    `;
-    document.head.appendChild(mudancasBarraDeCimaCss);
+    carregarCSS("css/barradecima.css")
 
     //Escurecer sistema de gestão...
     xcss('#info-sistema','background',cor1);
@@ -627,239 +444,72 @@ function executar (){
 
  function mudancasTurma(){
 
+   carregarCSS("css/turma.css")
+
    var turmaCss = document.createElement('style');
    turmaCss.innerHTML = `
-     /* Remover fundo azul */
-     body {
-       background: white;
-       /* Melhorar o redimiensionamento da página evitando textos quebrados */
-       min-width: 800px;
-     }
-     /* Remover fundo azul */
-     #baseLayout > #cabecalho,
-     #baseLayout > .ui-layout-resizer {
-       background: none;
-     }
-    /* remover borda azul */
-    .ui-layout-pane {
-      border: 1px solid #e0e0e0;
-    }
-    /* Botão troca de turma */
-    button.ui-button{
-      border: 1px solid #e0e0e0;
-      background: white;
-      color: inherit;
-    }
-    button.ui-button:hover{
-      background-color: #f5f5f5;
-    }
-    /* Menu lateral */
-    .rich-panelbar {
-      background: #f5f5f5;
-      border: 1px solid #e0e0e0;
-    }
-    .rich-stglpanel {
-      border-color: #e0e0e0;
-    }
-    /* Menu lateral correção tamanho das letras */
-    .rich-panelbar-header, .rich-panelbar-header-act {
-      font-size: 1em;
-      font-weight: inherit;
-    }
-    /* Remover borda infeior azul nos itens do menu*/
-    div.itemMenuHeaderTurma{
-       border-bottom: 1px solid #CCCCCC;
-    }
-    #toggleDireita , .itemMenuHeaderAlunos, .itemMenuHeaderMateriais, .itemMenuHeaderAtividades, .itemMenuHeaderRelatorios, .itemMenuHeaderAjuda{
-       border-bottom: 1px solid #e0e0e0;
-    }
-    /* Ajeitar texto cortado no menu lateral*/
-    .itemMenu{
-       height: min-content;
-       text-indent: inherit;
-    }
-    /* correção do tamanho do texto no botão trocar de turma */
-    .ui-widget{
-      font-size: 14px;
-    }
-    /* Remover fundo com imagem e ajeitar borda do menu lateral, Andamento das Aulas, Notícias, Enquetes, ... */
-    .headerBloco{
-      background: white;
-      border: none;
-      border-bottom: 1px solid #e0e0e0;
-    }
-    /* esconder departamento do aluno */
-    #painelDadosUsuario > div {
-       display: none;
-    }
-    /* centralizar nome do aluno e ajeitar o padding */
-    #painelDadosUsuario > p{
-      padding-top: 3px;
-      padding-right: 4px;
-    }
-    /*Adicionar borda arrendodada e melhorar margem da janela de atenção */
-    #scroll-wrapper > #painel-erros {
-      border-radius: 4px;
-      margin-bottom: 0.5em;
-      border-bottom: none !important;
-    }
-    /* Melhorar a posição do botão de remover a janela de atenção */
-    #scroll-wrapper > #painel-erros > #fechar-painel-erros {
-      right: 8px !important;
-      bottom: 5px !important;
-    }
-    /* ajeitar tamanho e posição do texto da barra de cima portal público, ajuda?, sair */
-    #info-sistema div.dir{
-      top: 0px;
-    }
-    /* corrigir bug da margem do conteúdo */
-    div #conteudo {
-      width: auto !important;
-    }
-    /* melhoria do tamanho da letra no menu da direita */
-    .rich-stglpanel-body {
-      font-size: 14px;
-    }
-    .headerBloco{
-      font-size: 14px;
-    }
-    #barraEsquerda > table > tbody > tr > td {
-      font-size: 14px !important;
-      /* Mudar a cor do texto de azul para preto */
-      color: #212121 !important;
-    }
-    /* Melhoria tamanho da letra em dados do progrma */
-    #relatorio-rodape table tr td {
-      font-size: 1em;
-    }
-    /* mudanças no aviso cinza sobre a turma virtual */
-    div.intro-aval div.textos {
-      background: white !important;
-      border-radius: 4px;
-      border: 1px solid #e0e0e0;
-    }
-    /* Mudança no ícone de seta para esquerda */
-    .botaoDireita {
-      background: white url("` + iconePainelSetaEsquerda + `") no-repeat 5px 5px !important;
-    }
-    /* Mudar borda azul (elemento visual) que aparece do lado de titulos */
-    fieldset {
-      border-top: 1px solid #e0e0e0;
-    }
-    /* Mudar tamanho e cor dos titulos azuis */
-    fieldset legend {
-      color: #212121;
-      font-size: 1em;
-      font-variant: inherit;
-    }
-    /* Mudar cor do texto vermelho */
-    p.empty-listing {
-      color: #212121;
-      font-weight: inherit;
-    }
-    /* Trocar a cor do Turma Virtual! de azul para preto  */
-    div.intro-aval h4 {
-      color: #212121 !important;
-    }
-    /* Trocar a cor do Ampliando os horizontes... de azul para preto  */
-    div.intro-aval h5 {
-      color: #212121 !important;
-    }
-    /* Alterar a barra de progresso da carga horária da turma */
-    .progress {
-      background-image: none !important;
-      background-color: #f5f5f5;
-    }
-    .progress-bar {
-      background-color: #e2e2e2 !important;
-      box-shadow: none !important;
-      color: black !important;
-    }
-    /* Imagem turma virtual */
-    div.intro-aval {
-      background: white url(` + iconeArteTurmaVirtual + `) no-repeat left top !important;
-    }
-    /* Alterar o ícone de impressora */
-    .botaoImprimir {
-      background-image: url("` + iconeImpressoraBlack12 + `") !important;
-      background-position: center !important;
-    }
-    /*  Alterar o ícone de casa/home  */
-    .botaoPortal {
-      background-image: url("` + iconeHomeBlack12 + `") !important;
-      background-position: center !important;
-    }
-    /* Mudar ícone de ajuda do menu da esquerda */
-    .itemMenuHeaderAjuda {
-      background-image: url("` + iconeAjuda16 + `");
-    }
-    /* Mudar ícone de estastistica */
-    .itemMenuHeaderRelatorios {
-      background-image: url("` + iconeEstatistica16 + `");
-    }
-    /* Mudar ícone de cadeira */
-    .itemMenuHeaderTurma {
-      background-image: url("` + iconeTurma16 + `");
-    }
-    /* Mudar ícone Materias/Livro*/
-    .itemMenuHeaderMateriais {
-      background-image: url("` + iconeMateriais16 + `");
-    }
-    /* ícone atividades */
-    .itemMenuHeaderAtividades {
-      background-image: url("` + iconeAtividades16 + `");
-    }
-    /* ícone alunos */
-    .itemMenuHeaderAlunos {
-      background-image: url("` + iconeAlunos16 + `");
-    }
-    /*ícone opções turmas */
-    .botaoOpcoesTurma {
-      background-image: url("` + iconeOpcoes12 + `") !important;
-      background-position: center !important;
-    }
-    /* Mudar ícone Aula paginadas (setas)  */
-    .botaoAulasPaginadas {
-      background-image: url("` + iconeAulasPaginadas + `") !important;
-      background-position: center !important;
-    }
-    /* Mudar ícone Aula em lista (setas verticais)  */
-    .botaoAulasEmLista {
-      background-image: url("` + iconeAulasLista + `") !important;
-      background-position: center !important;
-    }
-    /* Mudar ícone trocar de turma (seta ondulada) */
-    .botaoTrocarTurma{
-      background-image: url("` + iconeTrocarTurma + `") !important;
-      background-position: center !important;
-    }
-
-    /* Mudar as bordas de cada item na barra que diz portal público, Ajuda, Tempo de sessão.... */
-    #info-sistema span{
-      border-width: 0px !important;
-    }
-    #info-sistema a{
-      border-width: 0 0 0 0 !important;
-    }
-    #info-sistema #sair-sistema{
-      border-width: 0 0 0 0 !important;
-    }
-
-    /* Remover borda azul */
-    #barraEsquerda table{
-      border: none !important;
-    }
-    
-    /* Ajustar fonte pequena notícia */
-    .conteudoNoticia p{
-      font-size: inherit !important;
-    }
-    
-    /* Ajustar fonte pequena no título das datas */
-    .topico-aula .titulo{
-      font-size: inherit !important;
-    }
-
+   /* Mudança no ícone de seta para esquerda */
+   .botaoDireita {
+     background: white url("` + iconePainelSetaEsquerda + `") no-repeat 5px 5px !important;
+   }
+   /* Imagem turma virtual */
+   div.intro-aval {
+     background: white url(` + iconeArteTurmaVirtual + `) no-repeat left top !important;
+   }
+   /* Alterar o ícone de impressora */
+   .botaoImprimir {
+     background-image: url("` + iconeImpressoraBlack12 + `") !important;
+     background-position: center !important;
+   }
+   /*  Alterar o ícone de casa/home  */
+   .botaoPortal {
+     background-image: url("` + iconeHomeBlack12 + `") !important;
+     background-position: center !important;
+   }
+   /* Mudar ícone de ajuda do menu da esquerda */
+   .itemMenuHeaderAjuda {
+     background-image: url("` + iconeAjuda16 + `");
+   }
+   /* Mudar ícone de estastistica */
+   .itemMenuHeaderRelatorios {
+     background-image: url("` + iconeEstatistica16 + `");
+   }
+   /* Mudar ícone de cadeira */
+   .itemMenuHeaderTurma {
+     background-image: url("` + iconeTurma16 + `");
+   }
+   /* Mudar ícone Materias/Livro*/
+   .itemMenuHeaderMateriais {
+     background-image: url("` + iconeMateriais16 + `");
+   }
+   /* ícone atividades */
+   .itemMenuHeaderAtividades {
+     background-image: url("` + iconeAtividades16 + `");
+   }
+   /* ícone alunos */
+   .itemMenuHeaderAlunos {
+     background-image: url("` + iconeAlunos16 + `");
+   }
+   /*ícone opções turmas */
+   .botaoOpcoesTurma {
+     background-image: url("` + iconeOpcoes12 + `") !important;
+     background-position: center !important;
+   }
+   /* Mudar ícone Aula paginadas (setas)  */
+   .botaoAulasPaginadas {
+     background-image: url("` + iconeAulasPaginadas + `") !important;
+     background-position: center !important;
+   }
+   /* Mudar ícone Aula em lista (setas verticais)  */
+   .botaoAulasEmLista {
+     background-image: url("` + iconeAulasLista + `") !important;
+     background-position: center !important;
+   }
+   /* Mudar ícone trocar de turma (seta ondulada) */
+   .botaoTrocarTurma{
+     background-image: url("` + iconeTrocarTurma + `") !important;
+     background-position: center !important;
+   }
    `;
    document.head.appendChild(turmaCss);
 
@@ -1031,47 +681,7 @@ function executar (){
     //Corrigir o ícone de relógio errado, com o ícone de informação
     xsrc('img',iconeInfo,iconeRelogio);
     
-    var inicialCss = document.createElement('style');
-    inicialCss.innerHTML = `
-    /* Tirar o não há atividades cadastradas.. do itálico */
-    #main-docente .simple-panel p.vazio {
-      font-style: inherit !important;
-    }
-
-    /*Corrigir cor do texto cinza */
-
-    /*Dados instucionais*/
-    #perfil-docente #agenda-docente h4{
-       color: black !important;
-    }
-    /* tag td */
-    #perfil-docente #agenda-docente td{
-       color: black !important;
-    }
-
-    /* Esconder forum inutil */
-    #forum-portal{
-       display:none;
-    }
-
-    /* Esconder comunidade inutil */
-    #participantes{
-       display:none;
-    }
-
-
-    /* Corrigir bug em ensino, pesquisa, ... ao passar o mouse enquanto carrega */
-    .ThemeOfficeMainItem{
-        background-color: unset;
-        color: white;
-    }
-    .ThemeOfficeMainItemHover{
-        background-color: unset;
-        color: white;
-    }
-
-    `;
-    document.head.appendChild(inicialCss);
+    carregarCSS("css/paginainicial.css")
 
     //Mudança da borda de cima do ver turmas anteriores
     xcss('#portal-docente .mais','borderTop', '0.5px solid #eeeeee');
@@ -1353,81 +963,7 @@ function executar (){
     corrigirFonte();
     mudancasBarraDeCima();
 
-    var caixaPostalCss = document.createElement('style');
-    caixaPostalCss.innerHTML = `
-    /* Mudanças no título caixa postal */
-    #form > h2 {
-     background: white;
-     border-bottom: none;
-     padding: inherit;
-     color: black;
-    }
-    /* Melhorar a margem da caixa de mensagens */
-    #form {
-     margin: 1em 1em !important;
-    }
-
-    /* área caixa de entrada, caisa de saída, lixeira */
-    #pastas{
-       background: white !important;
-       border: none !important;
-    }
-    #pastas ul li.marcarMsg{
-       background: white !important;
-    }
-
-    /* Remover fundo azul */
-    #mensagens table caption{
-       background: white !important;
-    }
-    .rich-table-subheader{
-       background: white;
-    }
-
-    /* Remover borda */
-    #mensagens{
-       border: none !important;
-    }
-
-    /* Corrigir tamanho letra */
-    .rich-table-subheadercell{
-       font-size: inherit;
-    }
-    .rich-table-cell{
-       font-size: inherit !important;
-    }
-
-    /* mudar o estilos da fonte do títlo caixa de entrada */
-    #mensagens table caption{
-       font-variant: inherit !important;
-       padding: 1em 0 !important;
-    }
-
-    /* mudar cor da borda todos, assuntos, Remetente*/
-    #mensagens table thead{
-       border-bottom: 1px solid #C0C0C0 !important;
-    }
-
-    /* Mudar caixa de mensagem */
-    .lerMsg{
-       border: 1px solid rgb(224, 224, 224) !important;
-    }
-    .lerMsg thead{
-       background: white !important;
-    }
-    table .opcoesMensagem{
-       background: white !important;
-    }
-
-    /* Título caixa de mensagem */
-    .lerMsg caption{
-       color: black !important;
-       background: white !important;
-       font-variant: inherit !important;
-    }
-
-    `;
-    document.head.appendChild(caixaPostalCss);
+    carregarCSS("css/caixapostal.css")
 
     //Substituir nome SIGAA por SIGAA Remix
     substituirTexto('#info-sistema h1','all','SIGAA Remix');

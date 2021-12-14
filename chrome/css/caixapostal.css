@@ -1,0 +1,62 @@
+/* Mudanças no título caixa postal */
+#form > h2 {
+   background: white;
+   border-bottom: none;
+   padding: inherit;
+   color: black;
+}
+/* Melhorar a margem da caixa de mensagens */
+#form {
+   margin: 1em 1em !important;
+}
+/* área caixa de entrada, caisa de saída, lixeira */
+#pastas{
+   background: white !important;
+   border: none !important;
+}
+#pastas ul li.marcarMsg{
+   background: white !important;
+}
+/* Remover fundo azul */
+#mensagens table caption{
+   background: white !important;
+}
+.rich-table-subheader{
+   background: white;
+}
+/* Remover borda */
+#mensagens{
+   border: none !important;
+}
+/* Corrigir tamanho letra */
+.rich-table-subheadercell{
+   font-size: inherit;
+}
+.rich-table-cell{
+   font-size: inherit !important;
+}
+/* mudar o estilos da fonte do títlo caixa de entrada */
+#mensagens table caption{
+   font-variant: inherit !important;
+   padding: 1em 0 !important;
+}
+/* mudar cor da borda todos, assuntos, Remetente*/
+#mensagens table thead{
+   border-bottom: 1px solid #C0C0C0 !important;
+}
+/* Mudar caixa de mensagem */
+.lerMsg{
+   border: 1px solid rgb(224, 224, 224) !important;
+}
+.lerMsg thead{
+   background: white !important;
+}
+table .opcoesMensagem{
+   background: white !important;
+}
+/* Título caixa de mensagem */
+.lerMsg caption{
+   color: black !important;
+   background: white !important;
+   font-variant: inherit !important;
+}   

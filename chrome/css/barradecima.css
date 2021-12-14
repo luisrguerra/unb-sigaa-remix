@@ -1,0 +1,101 @@
+/* remover a barra lateral do lado do título do sigaa */
+#info-sistema h1 span{
+    border-width: 0px !important;
+}
+/* Melhorar padding de ensino,pesquisa,extensão,... */
+#menu-dropdown {
+  background: #EFEBDE;
+  padding: 0px;
+  /*padding: 1px 0px 1px 0px;*/
+}
+/* Melhorias na área de módulos */
+/* Melhoria no texto dos módulos*/
+#menu_principal .tooltip, #menu_principal ul li a, #menu_principal ul li a:hover{
+   color: black;
+   font-size: 14px;
+}
+/* Melhoria no fundo dos módulos*/
+#menu_principal ul li.off{
+   background-color: white;
+}
+#menu_principal ul li.off a{
+   background: none;
+   background-color: #f1f1f1 !important;
+   border-radius: 2px;
+}
+/* Itens com fundo azul */
+#menu_principal ul li{
+   border-radius: 2px;
+   background-color: #edf0f7;
+}
+#menu_principal li a{
+   background: none;
+   background-color: #C4D2EB;
+   border-radius: 2px;
+}
+/* Fundo azul da janela para branco */
+.ydlg .ydlg-dlg-body{
+   background: none;
+   background-color: white;
+}
+/* Remover borda desnecessária da janela de módulos*/
+#menu_principal.popup{
+   border: none;
+}
+/* Mudar borda da janela de módulos*/
+.ydlg .ydlg-dlg-body{
+   border: 1px solid #bfbfbf;
+   border-radius: 0px 0px 3px 3px;
+}
+/* remover sombra tosca da janela de módulos */
+.ydlg-shadow{
+   display:none !important;
+}
+/* Nova sombra janela modulos */
+#painel-modulos{
+   box-shadow: rgb(0 0 0 / 8%) 6px 6px 12px;
+}
+/* Correção do tamanho da barra de cima */
+#painel-usuario{
+   min-height: 56px;
+}
+/* Esconder ajuste de tamanho de letra  */
+a.fonteMaior{
+   display: none;
+}
+a.fonteMenor{
+   display: none;
+}
+/* Melhorar o Portal discente> todas as turmas ... e outros */
+#conteudo h2{
+   background: none;
+   border: none;
+}
+/* Melhorar Tamanho da letra */
+#info-sistema h3{
+   font-size: 18.72px !important;
+}
+/* Nome do usuário */
+#painel-usuario #info-usuario p{
+   font-size: 16px !important;
+}
+#info-sistema h1 span{
+   font-size: 18.72px !important;
+}
+#tempoSessao small em, #tempoSessao small span{
+   font-size: 13.28px !important;
+}
+#painel-usuario #menu-usuario li a{
+   font-size: 14px !important;
+}
+#info-sistema a , #sair-sistema a{
+   font-size: 18.72px !important;
+}
+/* Mudar estilo da fonte para o padrão em "Acessar turma virtual"*/
+.infoAltRem{
+   font-variant: inherit !important;
+}
+/* remover icone de erro feio */
+#painel-erros ul.erros{
+    background: none;
+}
