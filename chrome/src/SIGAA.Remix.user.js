@@ -147,7 +147,7 @@ const temas2 = [
   ['Ciano', '#0C4651','#07393D','#041F24','#3E737D',''],
   ['Verde', '#48631b','#3c4e12','#192506','#8ba06a',''],
   ['Verde Esmeralda', '#0D5249','#0A4036','#062320','#31786F',''],
-  ['Rosa', '#bb2052','#af194a','#8e0b36','#ef6b8c', '#ff9d9d'],
+  ['Rosa', '#380644','#380644','#cd2f74','#cd2f74', '#f95d6c'],
   ['Marrom', '#65292B','#501F22','#2F1313','#874C4D',''],
   ['Vinho', '#801c49','#670d3b','#320C1D','#9c486f',''],
   ['Alto Contraste', '#000000','#000000','#ffffff','#ffffff',''],
@@ -368,6 +368,10 @@ function executar (){
     basicasCss.innerHTML = `
     /*Mudar cor da barra com imagem*/
     table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela{
+      background: ` + cor1 + `;
+      border-radius: 2px;
+    }
+    .box-geral .box-cabecalho{
       background: ` + cor1 + `;
       border-radius: 2px;
     }
