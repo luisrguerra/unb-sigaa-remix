@@ -91,3 +91,7 @@ table.formulario, table.subFormulario {
 table.formulario{
   border: 1px solid #e3e3e3;
 }
+/*Melhoria texto*/
+#main-docente .simple-panel h4 {
+  color: black !important;
+}

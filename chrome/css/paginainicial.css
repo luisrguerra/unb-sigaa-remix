@@ -31,3 +31,11 @@
 #portal-docente .mais{
     border-top: none !important;
 }
+/*Mudar padding de título últimas atualizações e componente curricular*/
+#main-docente table th {
+   padding: 6px 0 6px !important;
+}
+/*Melhorar margen de ver turmas anteriores*/
+#main-docente .simple-panel table {
+   margin-bottom: 0.5em;
+}
