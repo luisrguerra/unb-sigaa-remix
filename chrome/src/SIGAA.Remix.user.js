@@ -547,32 +547,9 @@ function executar (){
    document.body.style.fontSize = tamanhoFonte1;
  }
  function mudarScrollBar(){
-   var scrollCss = document.createElement('style');
-   scrollCss.innerHTML = `
-      /* width */
-      ::-webkit-scrollbar {
-         width: 10px;
-         height: 12px;
-      }
 
-      /* Track */
-      ::-webkit-scrollbar-track {
-        background: #00000014;
-      }
+  carregarCSS("css/scrollbar.css")
 
-      /* Handle */
-      ::-webkit-scrollbar-thumb {
-         background: #00000026;
-         border-radius: 8px;
-      }
-
-      /* Handle on hover */
-      ::-webkit-scrollbar-thumb:hover {
-         background: #00000078;
-      }
-
-   `;
-   document.head.appendChild(scrollCss);
  }
 
  //Se o sigaa remix estiver ativado
@@ -1008,24 +985,8 @@ function executar (){
    xcss('.logon h3','background', '#eeeeee');
    xcss('.logon h3','border', 'none');
 
-   var loginCss = document.createElement('style');
-   loginCss.innerHTML = `
-   .logon table{
-       border: none;
-   }
-   td.azulMedio{
-       background-color: white;
-   }
-   td.painel{
-       background-color: #f5f5f5;
-       border-radius: 4px;
-   }
-   td.sistemaAtual{
-       background-color: #e0e0e0;
-       border-radius: 4px;
-   };
-   `;
-   document.head.appendChild(loginCss);
+   carregarCSS("css/login.css")
+
   }
  }
 
@@ -1061,31 +1022,7 @@ function executar (){
  body.appendChild(divBotoes);
 
 
- var botaoCss = document.createElement('style');
- botaoCss.innerHTML = `
- .botaoTema {
-    background-color: #fafafa;
-    background-repeat: no-repeat;
-    padding: 0.5em;
-    min-width: fit-content;
-    max-height: 34px;
-    margin-left: 0.5em;
-    margin-right: 0.5em;
-    margin-bottom: 0.5em;
-    border: none;
-    border-radius: 4px;
-    display: flex;
-    font-size: 16px;
-    cursor: pointer;
-    outline: none;
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
-    border-top: 1px solid #ffffff38;
- }
- .botaoTema:hover {
-    background-color: #f5f5f5;
- };
- `;
- document.head.appendChild(botaoCss);
+ carregarCSS("css/botao.css")
 
  //Botão de ativar e desativar
  // Criar botão
@@ -1186,25 +1123,7 @@ function executar (){
 
   //Botões de customização de cores
 
-  var temaBotaoCorCss = document.createElement('style');
-  temaBotaoCorCss.innerHTML = `
-  .temaBotaoCor {
-     border: none;
-     width: 30px;
-     height: 32px;
-     cursor: pointer;
-     margin-left: 4px;
-     margin-right: 4px;
-     background-color: transparent;
-     border-radius: 100%;
-  }
-  .temaBotaoCor::-webkit-color-swatch{
-     border-radius: 100%;
-     border: none;
-     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
-  };
-  `;
-  document.head.appendChild(temaBotaoCorCss);
+  carregarCSS("css/botaocor.css")
 
   var botaoCor1 = document.createElement("INPUT");
   botaoCor1.setAttribute("type", "color");

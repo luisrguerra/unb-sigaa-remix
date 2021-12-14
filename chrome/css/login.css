@@ -1,0 +1,14 @@
+.logon table{
+    border: none;
+}
+td.azulMedio{
+    background-color: white;
+}
+td.painel{
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+td.sistemaAtual{
+    background-color: #e0e0e0;
+    border-radius: 4px;
+};

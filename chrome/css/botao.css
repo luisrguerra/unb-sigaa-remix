@@ -1,0 +1,21 @@
+.botaoTema {
+   background-color: #fafafa;
+   background-repeat: no-repeat;
+   padding: 0.5em;
+   min-width: fit-content;
+   max-height: 34px;
+   margin-left: 0.5em;
+   margin-right: 0.5em;
+   margin-bottom: 0.5em;
+   border: none;
+   border-radius: 4px;
+   display: flex;
+   font-size: 16px;
+   cursor: pointer;
+   outline: none;
+   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
+   border-top: 1px solid #ffffff38;
+}
+.botaoTema:hover {
+   background-color: #f5f5f5;
+};
