@@ -971,19 +971,12 @@ function executar (){
    mudancasBasicias();
    mudancasBarraDeCima();
    corrigirFonte();
-   xcss('.logon h3','background', '#C8D5EC');
    //aluno
    xsrc('img','https://sig.unb.br/sigaa/img/user.png', iconeAluno);
    //professor funcionário
    xsrc('img','https://sig.unb.br/sigaa/img/novo_usuario.gif',iconeProfessorFuncionario);
    xsrc('img','https://sig.unb.br/sipac/img_css/novo_usuario.gif',iconeProfessorFuncionario);
    xsrc('img','https://sig.unb.br/shared/img/novo_usuario.gif',iconeProfessorFuncionario);
-
-   //Remover fundo azul de aviso
-   xcss('#conteudo div','background', 'white');
-
-   xcss('.logon h3','background', '#eeeeee');
-   xcss('.logon h3','border', 'none');
 
    carregarCSS("css/login.css")
 

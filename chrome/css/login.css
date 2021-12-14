@@ -1,13 +1,28 @@
+/*Título entrar no sistema*/
+.logon h3{
+    background: #eeeeee;
+    width: unset;
+    border:none;
+    color: black;
+}
+/*Remover fundo azul de aviso*/
+#conteudo div{
+    background: white !important;
+}
+/*Área/Formulário de login*/
 .logon table{
     border: none;
 }
+/*Esconder barra azul*/
 td.azulMedio{
     background-color: white;
 }
+/*Opções SIGAA, SIPAC,...*/
 td.painel{
     background-color: #f5f5f5;
     border-radius: 4px;
 }
+/*Opção selecionada amarela*/
 td.sistemaAtual{
     background-color: #e0e0e0;
     border-radius: 4px;
