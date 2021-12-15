@@ -14,7 +14,7 @@
     {
       "matches": ["https://sig.unb.br/*"],
       "css": ["src/custom.css"],
-      "js": ["src/SIGAA.Remix.user.js"]
+      "js": ["src/variaveis.js","src/funcoes.js","src/sigaaremix.js"]
     }
   ],
 
