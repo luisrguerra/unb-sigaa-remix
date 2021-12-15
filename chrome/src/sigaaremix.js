@@ -303,14 +303,6 @@ function executar (){
     //Melhorar a margem da área de perfil docente
     xcss('#perfil-docente','marginTop', '8px');
 
-    //Mudar cor do fundo de notícias para branco
-    xcss('#noticias-portal','background', corTransparente);
-    //Adicionar borda ao notícias
-    xcss('#noticias-portal','border', brancoBorda1);
-    xcss('#noticias-portal','borderRadius','arrendondamentoBorda1');
-    //Melhorar margem da área de notícias
-    xcss('#noticias-portal','marginTop','8px');
-
     //Evitar bug de redimensionamento
     xcss('#container','minWidth','68em');
     //Ocultar plano de fundo

@@ -95,3 +95,12 @@ table.formulario{
 #main-docente .simple-panel h4 {
   color: black !important;
 }
+
+/* Menu de notícia na tela inicial */
+#main-docente #noticias-portal{
+   background: unset !important;
+   border: 1px solid rgb(224, 224, 224);
+   margin-top: 8px !important;
+   border-radius: 3px;
+   height: 110px !important;
+}
