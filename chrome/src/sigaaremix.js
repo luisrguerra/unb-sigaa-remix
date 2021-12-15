@@ -282,6 +282,8 @@ function executar (){
     
     carregarCSS("css/paginainicial.css")
 
+    carregarCSS("css/mostrarhorario.css")
+
     //Mudar Fundo da área de dados pessoais
     xcss('#perfil-docente #agenda-docente','border', brancoBorda1);
     xcss('#perfil-docente #agenda-docente','borderRadius', arrendondamentoBorda1);

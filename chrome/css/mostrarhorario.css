@@ -1,0 +1,24 @@
+/* Remover a invisibilidade da janela de horario, desativar a posição fixa
+   para voltar o elemento a sua posição inicial e tirar a cor amarela */
+#main-docente  div#turmas-portal td.info div.popUp{
+  visibility: visible !important;
+  border: none;
+  position: relative;
+  width: max-content !important;
+  top: 0;
+  background-color: unset;
+  color: unset;
+  padding: 0;
+  text-align: center;
+}
+#main-docente  div#turmas-portal td.info span{
+    position: relative !important;
+}
+#main-docente div#turmas-portal td.info img{
+    opacity: 0.7;
+}
+#main-docente div#turmas-portal td.descricao{
+    font-size: 1em;
+    padding-left: 0.5em;
+
+}
