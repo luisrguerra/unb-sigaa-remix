@@ -84,7 +84,16 @@ function novasImagens(){
   xsrc('#controls img','https://sig.unb.br/shared/img/flash_vai.gif', xurl("img/proximo-black.svg"));
   //Todas
   xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg', xurl("img/todas-noticias-black.svg"));
+  
+  //Tela de login
+  //aluno
+  xsrc('img','https://sig.unb.br/sigaa/img/user.png', xurl("img/aluno-black.svg") );
+  //professor funcionário
+  xsrc('img','https://sig.unb.br/sigaa/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
+  xsrc('img','https://sig.unb.br/sipac/img_css/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
+  xsrc('img','https://sig.unb.br/shared/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
 
+  xsrc('img','https://sig.unb.br/sigaa/img/view.gif', xurl("img/lupa-black.svg") );
 
 }
 

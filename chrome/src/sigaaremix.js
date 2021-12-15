@@ -493,6 +493,8 @@ function executar (){
     corrigirFonte();
     mudancasBarraDeCima();
     xcss('label','fontSize', '16px');
+    //Melhorar tamanho de texto na área de equivalências
+    xcss('table.listagem#lista-turmas-curriculo > tbody tr.disciplina.no-hover td','fontSize', '1em');
   }
   //Correção de Página genéricas
   else if (enderecosTurmasSelecionadas || enderecosAtualizarDadosPessoais || enderecosPlanoMatricula){
@@ -554,12 +556,6 @@ function executar (){
    mudancasBasicias();
    mudancasBarraDeCima();
    corrigirFonte();
-   //aluno
-   xsrc('img','https://sig.unb.br/sigaa/img/user.png', xurl("img/aluno-black.svg") );
-   //professor funcionário
-   xsrc('img','https://sig.unb.br/sigaa/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
-   xsrc('img','https://sig.unb.br/sipac/img_css/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
-   xsrc('img','https://sig.unb.br/shared/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
 
    carregarCSS("css/login.css")
 
