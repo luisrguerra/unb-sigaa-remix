@@ -75,19 +75,20 @@ function novasImagens(){
   //Mudar foto
   xsrc('img','https://sig.unb.br/sigaa/img/no_picture.png',xurl("img/foto.svg"));
 
+  //Mudar botões noticias
+  //Esquerda
+  xsrc('#controls img','https://sig.unb.br/shared/img/flash_volta.gif',xurl("img/anterior-black.svg"));
+  //Pause
+  xsrc('#controls img','https://sig.unb.br/shared/img/flash_pause.gif', xurl("img/pause-black.svg"));
+  //Direita
+  xsrc('#controls img','https://sig.unb.br/shared/img/flash_vai.gif', xurl("img/proximo-black.svg"));
+  //Todas
+  xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg', xurl("img/todas-noticias-black.svg"));
+
 
 }
 
 function novasImagensHome(){
-    //Mudar botões noticias
-    //Esquerda
-    xsrc('#controls img','https://sig.unb.br/shared/img/flash_volta.gif',xurl("img/anterior-black.svg"));
-    //Pause
-    xsrc('#controls img','https://sig.unb.br/shared/img/flash_pause.gif', xurl("img/pause-black.svg"));
-    //Direita
-    xsrc('#controls img','https://sig.unb.br/shared/img/flash_vai.gif', xurl("img/proximo-black.svg"));
-    //Todas
-    xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg', xurl("img/todas-noticias-black.svg"));
 
     //Corrigir o ícone de relógio errado, com o ícone de informação
     xsrc('img',xurl("img/info-black.svg"),xurl("img/relogio-black.svg") );
