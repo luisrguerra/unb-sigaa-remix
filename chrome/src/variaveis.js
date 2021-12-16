@@ -1,7 +1,7 @@
 'use strict';
 
 //Versão mostrada na interface
-const versao = '2.2';
+const versao = '2.2.1';
 
 //Se o tema está atividado (boleano)
 var ativado = localStorage.getItem("ativado");

@@ -677,8 +677,31 @@ function executar (){
   };
   `;
   document.head.appendChild(temaSeletorCss);
-
   document.getElementById("idBotoes").appendChild(temaSeletor);
+
+   //Botão Contato SIGAA
+   var buttonContato = document.createElement("button");
+   buttonContato.setAttribute("class", "botaoTema");
+   buttonContato.innerHTML = 'Contato SIGAA Remix';
+   buttonContato.style.paddingLeft = '2.25em';
+   buttonContato.style.backgroundImage = 'url("' + xurl("img/editar-email-black.svg") + '")';
+   buttonContato.style.backgroundPosition = '3% 50%';
+   buttonContato.onclick = function(){
+     window.open("https://forms.gle/ftX57dBGQTHo3QS87");
+   };
+   document.getElementById("idBotoes").appendChild(buttonContato);
+
+   //Botão Link para o Cadê o Matricula Web
+   var buttonMW = document.createElement("button");
+   buttonMW.setAttribute("class", "botaoTema");
+   buttonMW.innerHTML = 'Cadê o MW?';
+   buttonMW.style.paddingLeft = '2.25em';
+   buttonMW.style.backgroundImage = 'url("' + xurl("img/aluno-black.svg") + '")';
+   buttonMW.style.backgroundPosition = '3% 50%';
+   buttonMW.onclick = function(){
+     window.open("https://cadeomw.com.br/");
+   };
+   document.getElementById("idBotoes").appendChild(buttonMW);
 
   var opcaoTitulo = document.createElement("option");
   opcaoTitulo.setAttribute("value", "none");
