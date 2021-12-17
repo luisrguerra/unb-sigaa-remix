@@ -701,7 +701,7 @@ function executar (){
    buttonMW.onclick = function(){
      window.open("https://cadeomw.com.br/");
    };
-   //document.getElementById("idBotoes").appendChild(buttonMW);
+   document.getElementById("idBotoes").appendChild(buttonMW);
 
   var opcaoTitulo = document.createElement("option");
   opcaoTitulo.setAttribute("value", "none");
