@@ -1,7 +1,7 @@
 'use strict';
 
 //Versão mostrada na interface
-const versao = '2.2.1';
+const versao = '2.2.2';
 
 //Se o tema está atividado (boleano)
 var ativado = localStorage.getItem("ativado");
@@ -60,38 +60,30 @@ const temas2 = [
     ['Tema Customizado', '','','','',''],
 ];
 
+class CorCustomizadaObj {
+    constructor(variavelLocal, valorPadrao) {
+      this.variavelLocal = variavelLocal;
+      this.valorPadrao = valorPadrao;
+    }
+    get() {
+      if (localStorage.getItem(this.variavelLocal) == null) {
+          localStorage.setItem(this.variavelLocal, this.valorPadrao);
+          return this.valorPadrao;
+      }
+      else{
+        return localStorage.getItem(this.variavelLocal);
+      };
+    };
+    set(novoValor){
+        localStorage.setItem(this.variavelLocal, novoValor);
+    }
+};
+
 //Cores customizadas, carregar da memoria salva ou utilizar a cor atual
-var cor1Customizado;
-if (localStorage.getItem("cor1Customizado") == null) {
-    localStorage.setItem('cor1Customizado', cor1);
-}
-else{
-    cor1Customizado = localStorage.getItem("cor1Customizado");
-};
-
-var cor2Customizado;
-if (localStorage.getItem("cor2Customizado") == null) {
-    localStorage.setItem('cor2Customizado', cor2);
-}
-else{
-    cor2Customizado = localStorage.getItem("cor2Customizado");
-};
-
-var cor3Customizado;
-if (localStorage.getItem("cor3Customizado") == null) {
-    localStorage.setItem('cor3Customizado', cor3);
-}
-else{
-    cor3Customizado = localStorage.getItem("cor3Customizado");
-};
-
-var cor4Customizado;
-if (localStorage.getItem("cor4Customizado") == null) {
-    localStorage.setItem('cor4Customizado', cor3);
-}
-else{
-    cor4Customizado = localStorage.getItem("cor4Customizado");
-};
+var cor1CustomizadoObj = new CorCustomizadaObj("cor1Customizado",cor1);
+var cor2CustomizadoObj = new CorCustomizadaObj("cor2Customizado",cor2);
+var cor3CustomizadoObj = new CorCustomizadaObj("cor3Customizado",cor3);
+var cor4CustomizadoObj = new CorCustomizadaObj("cor4Customizado",cor4);
 //Fim cores customizadas, carregar
 
 

@@ -39,3 +39,7 @@
 #main-docente .simple-panel table {
    margin-bottom: 0.5em;
 }
+/* Melhorar tamanho da letra em meu plano de matrículas */
+table.listagem tbody tr.linhaPar, table.listagem tbody tr.linhaImpar, table.listagem thead{
+   font-size: unset !important;
+}

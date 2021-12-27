@@ -10,6 +10,7 @@
   color: unset;
   padding: 0;
   text-align: center;
+  z-index: unset;
 }
 #main-docente  div#turmas-portal td.info span{
     position: relative !important;

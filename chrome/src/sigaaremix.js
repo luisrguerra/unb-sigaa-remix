@@ -13,10 +13,10 @@ function tema(cor){
         };
    };
    if(cor == 'Tema Customizado'){
-      cor1 = localStorage.getItem("cor1Customizado");
-      cor2 = localStorage.getItem("cor2Customizado");
-      cor3 = localStorage.getItem("cor3Customizado");
-      cor4 = localStorage.getItem("cor4Customizado");
+      cor1 = cor1CustomizadoObj.get();
+      cor2 = cor2CustomizadoObj.get();
+      cor3 = cor3CustomizadoObj.get();
+      cor4 = cor4CustomizadoObj.get();
       achouTema = true;
    }
    if(achouTema == false){
@@ -703,6 +703,18 @@ function executar (){
    };
    document.getElementById("idBotoes").appendChild(buttonMW);
 
+   //Botão Link Notícias UnB
+   var buttonNoticias = document.createElement("button");
+   buttonNoticias.setAttribute("class", "botaoTema");
+   buttonNoticias.innerHTML = 'UnB Notícias';
+   buttonNoticias.style.paddingLeft = '2.25em';
+   buttonNoticias.style.backgroundImage = 'url("' + xurl("img/newspaper-black.svg") + '")';
+   buttonNoticias.style.backgroundPosition = '3% 50%';
+   buttonNoticias.onclick = function(){
+     window.open("https://noticias.unb.br/");
+   };
+   document.getElementById("idBotoes").appendChild(buttonNoticias);
+
   var opcaoTitulo = document.createElement("option");
   opcaoTitulo.setAttribute("value", "none");
   var opcaoTituloTexto = document.createTextNode("\u00A0\u00A0\u00A0\u00A0 Selecionar um tema \u00A0\u00A0\u00A0\u00A0");
@@ -718,28 +730,28 @@ function executar (){
   botaoCor1.setAttribute("type", "color");
   botaoCor1.setAttribute("class", "temaBotaoCor");
   botaoCor1.setAttribute("id", "botaoCor1");
-  botaoCor1.setAttribute("value", cor1Customizado);
+  botaoCor1.setAttribute("value", cor1CustomizadoObj.get() );
   divBotoesCor.appendChild(botaoCor1);
 
   var botaoCor2 = document.createElement("INPUT");
   botaoCor2.setAttribute("type", "color");
   botaoCor2.setAttribute("class", "temaBotaoCor");
   botaoCor2.setAttribute("id", "botaoCor2");
-  botaoCor2.setAttribute("value", cor2Customizado);
+  botaoCor2.setAttribute("value", cor2CustomizadoObj.get() );
   divBotoesCor.appendChild(botaoCor2);
 
   var botaoCor3 = document.createElement("INPUT");
   botaoCor3.setAttribute("type", "color");
   botaoCor3.setAttribute("class", "temaBotaoCor");
   botaoCor3.setAttribute("id", "botaoCor3");
-  botaoCor3.setAttribute("value", cor3Customizado);
+  botaoCor3.setAttribute("value", cor3CustomizadoObj.get() );
   divBotoesCor.appendChild(botaoCor3);
 
   var botaoCor4 = document.createElement("INPUT");
   botaoCor4.setAttribute("type", "color");
   botaoCor4.setAttribute("class", "temaBotaoCor");
   botaoCor4.setAttribute("id", "botaoCor4");
-  botaoCor4.setAttribute("value", cor4Customizado);
+  botaoCor4.setAttribute("value", cor4CustomizadoObj.get() );
   divBotoesCor.appendChild(botaoCor4);
 
   var temabotaoCorAplicarCss = document.createElement('style');
@@ -767,15 +779,15 @@ function executar (){
   botaoCorAplicar.src = xurl("img/check-white.svg");
   botaoCorAplicar.setAttribute("onclick", `
 
-       let cor1Customizado = document.getElementById("botaoCor1").value;
-       let cor2Customizado = document.getElementById("botaoCor2").value;
-       let cor3Customizado = document.getElementById("botaoCor3").value;
-       let cor4Customizado = document.getElementById("botaoCor4").value;
-
-       localStorage.setItem('cor1Customizado', cor1Customizado);
-       localStorage.setItem('cor2Customizado', cor2Customizado);
-       localStorage.setItem('cor3Customizado', cor3Customizado);
-       localStorage.setItem('cor4Customizado', cor4Customizado);
+       let botaoCor1 = document.getElementById("botaoCor1");
+       let botaoCor2 = document.getElementById("botaoCor2");
+       let botaoCor3 = document.getElementById("botaoCor3");
+       let botaoCor4 = document.getElementById("botaoCor4");
+       
+       localStorage.setItem('cor1Customizado', botaoCor1.value);
+       localStorage.setItem('cor2Customizado', botaoCor2.value);
+       localStorage.setItem('cor3Customizado', botaoCor3.value);
+       localStorage.setItem('cor4Customizado', botaoCor4.value);
 
        localStorage.setItem('menuCorRGB', 'false');
 
