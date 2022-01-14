@@ -1,7 +1,7 @@
 'use strict';
 
 //Versão mostrada na interface
-const versao = '2.2.2';
+const versao = '2.2.3';
 
 //Se o tema está atividado (boleano)
 var ativado = localStorage.getItem("ativado");
@@ -90,7 +90,7 @@ var cor4CustomizadoObj = new CorCustomizadaObj("cor4Customizado",cor4);
 const urlAtual = window.location.href;
 //Endereços de páginas
 // || urlAtual == ''
-const enderecosPaginaInicial = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#';
+const enderecosPaginaInicial = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/discente.jsf#' || urlAtual == "https://sig.unb.br/sigaa/graduacao/matricula/extraordinaria/matricula_extraordinaria.jsf" || urlAtual == "https://sig.unb.br/sigaa/graduacao/matricula/extraordinaria/matricula_extraordinaria.jsf#";
 const enderecosIndicesAcademicos = urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf' || urlAtual == 'https://sig.unb.br/sigaa/graduacao/discente/relatorio_indices_discente.jsf#';
 const enderecosTurmasAnteriores = urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf' || urlAtual == 'https://sig.unb.br/sigaa/portais/discente/turmas.jsf#';
 const enderecosCaixaPostal = urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf#' || urlAtual == 'https://sig.unb.br/cxpostal/ver_mensagem.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/caixa_postal.jsf#' || urlAtual == 'https://sig.unb.br/cxpostal/envia_mensagem.jsf' || urlAtual == 'https://sig.unb.br/cxpostal/envia_mensagem.jsf#';
