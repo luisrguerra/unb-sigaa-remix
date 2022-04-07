@@ -6,6 +6,7 @@ function xurl(URL){
 function novasImagens(){
   //Mudar o ícone de interroção dos horários para um ícone de relógio
   xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif', xurl("img/info-black.svg") );
+  xsrc('img','https://sig.unb.br/sigaa/img/ajuda.gif', xurl("img/info-black2.svg") );
   
   //Mudar icone de Matricula negada
   xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png', xurl("img/matricula-negada.svg") );
@@ -123,4 +124,7 @@ function novasImagensHome(){
 
     //Mudar seta menu
     xsrc('.ThemeOfficeMenuFolderRight img','all', xurl("img/seta-dropdown-white.svg"));
+    
+    //Mudar o ícone de aviso de prova
+    xsrc('img','https://sig.unb.br/sigaa/img/prova_semana.png', xurl("img/prova_semana.png.svg") );
 }
