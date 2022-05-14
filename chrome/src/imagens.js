@@ -110,6 +110,8 @@ function novasImagensHome(){
     xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/pesquisa_menu.gif', xurl("img/pesquisa-white.svg"));
     //Extensão
     xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/extensao_menu.gif', xurl("img/extensao-white.svg"));
+    //Biblioteca
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/biblioteca_menu.gif', xurl("img/biblioteca-white-24.svg") );
     //Bolsas
     xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/bolsas.png', xurl("img/bolsas-white.svg"));
     //Estagio
