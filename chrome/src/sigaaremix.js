@@ -242,13 +242,13 @@ function executar (){
    xcss('#painelDadosUsuario > p','fontSize', tamanhoFonte1);
 
    //Mudar o ícone de seta para a direita
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_dir.png",xurl("img/painel-seta-direita-black.svg"));
+   xsrc("img","https://sigaa.unb.br/sigaa/ava/img/painel_seta_dir.png",xurl("img/painel-seta-direita-black.svg"));
 
    //Mudar o ícone de seta para a cima
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_cima.png",xurl("img/painel-seta-baixo-black.svg"));
+   xsrc("img","https://sigaa.unb.br/sigaa/ava/img/painel_seta_cima.png",xurl("img/painel-seta-baixo-black.svg"));
 
    //Mudar o ícone da sra para baixo
-   xsrc("img","https://sig.unb.br/sigaa/ava/img/painel_seta_baixo.png",xurl("img/painel-seta-cima-black.svg"));
+   xsrc("img","https://sigaa.unb.br/sigaa/ava/img/painel_seta_baixo.png",xurl("img/painel-seta-cima-black.svg"));
 
  };
 
@@ -395,7 +395,7 @@ function executar (){
     xcss('.foto img','borderRadius', '4px');
 
     //Remover imagem de telefone antigo inutil
-    xsrc('img','https://sig.unb.br/sigaa/img/celular.jpg','');
+    xsrc('img','https://sigaa.unb.br/sigaa/img/celular.jpg','');
     //Aumentar a area ocupada na horizontal do relatório de notas do aluno
     xcss('#relatorio-paisagem-container',"width", '90%');
     xcss('#relatorio-paisagem-container',"minWidth", '60em');
