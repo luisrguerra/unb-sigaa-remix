@@ -6,6 +6,7 @@ function xurl(URL){
 function novasImagens(){
   //Mudar o ícone de interroção dos horários para um ícone de relógio
   xsrc('img','https://sigaa.unb.br/shared/img/geral/ajuda.gif', xurl("img/info-black.svg") );
+  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif', xurl("img/info-black2.svg") );
   xsrc('img','https://sigaa.unb.br/sigaa/img/ajuda.gif', xurl("img/info-black2.svg") );
   
   //Mudar icone de Matricula negada
@@ -27,7 +28,8 @@ function novasImagens(){
   
   //Mudar icone impressora
   xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', xurl("img/impressora.svg") );
-  
+  xsrc('img','https://sigaa.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', xurl("img/impressora.svg") );
+
   //Mudar ícone de encaminhar email
   xsrc('img','https://sig.unb.br/shared/img/caixa_postal/email_go.png', xurl("img/encaminhar-email-black.svg") );
   
