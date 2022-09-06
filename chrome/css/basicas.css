@@ -18,6 +18,11 @@ table.formulario caption, table.listagem caption, table.visualizacao caption, h3
 .box-geral .box-cabecalho{
   font-variant: initial;
 }
+#main-docente .simple-panel h4{
+  font-variant: initial !important;
+}
+
+/* Tirar o fundo e borda azul */
 table.subFormulario caption, caption.subFormulario, td.subFormulario, table.formulario table caption, table.listagem tr.titulo{
   font-variant: initial;
   letter-spacing: initial;
@@ -25,9 +30,7 @@ table.subFormulario caption, caption.subFormulario, td.subFormulario, table.form
   border-bottom: 1px solid #d7d7d7;
   color: black;
 }
-#main-docente .simple-panel h4{
-  font-variant: initial !important;
-}
+
 /* Mudança nos botões */
 .box-geral .btn{
   border-radius: 4px;
@@ -107,4 +110,10 @@ table.formulario{
    margin-top: 8px !important;
    border-radius: 3px;
    height: 110px !important;
+}
+
+/* Remover fundo Azul */
+.confirmaSenha table.confirmacao{
+  border: none !important;
+  border-width: 2px 1px;
 }
