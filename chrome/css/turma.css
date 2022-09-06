@@ -47,6 +47,9 @@
         height: min-content;
         text-indent: inherit;
      }
+     .itemMenu:hover{
+      background-color:#f1f1f1;
+     }
      /* correção do tamanho do texto no botão trocar de turma */
      .ui-widget{
        font-size: 14px;
