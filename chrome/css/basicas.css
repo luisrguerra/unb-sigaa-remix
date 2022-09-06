@@ -20,6 +20,10 @@ table.formulario caption, table.listagem caption, table.visualizacao caption, h3
 }
 table.subFormulario caption, caption.subFormulario, td.subFormulario, table.formulario table caption, table.listagem tr.titulo{
   font-variant: initial;
+  letter-spacing: initial;
+  background: #f5f5f5;
+  border-bottom: 1px solid #d7d7d7;
+  color: black;
 }
 #main-docente .simple-panel h4{
   font-variant: initial !important;
