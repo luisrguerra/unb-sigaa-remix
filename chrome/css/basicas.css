@@ -117,3 +117,8 @@ table.formulario{
   border: none !important;
   border-width: 2px 1px;
 }
+
+/*"#menu principal" menu com varios icones com acesso a diferentes partes do site*/
+#menu_principal ul{
+  border: none;
+}
