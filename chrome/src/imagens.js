@@ -5,25 +5,25 @@ function xurl(URL){
 
 function novasImagens(){
   //Mudar o ícone de interroção dos horários para um ícone de relógio
-  xsrc('img','https://sig.unb.br/shared/img/geral/ajuda.gif', xurl("img/info-black.svg") );
-  xsrc('img','https://sig.unb.br/sigaa/img/ajuda.gif', xurl("img/info-black2.svg") );
+  xsrc('img','https://sigaa.unb.br/shared/img/geral/ajuda.gif', xurl("img/info-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/ajuda.gif', xurl("img/info-black2.svg") );
   
   //Mudar icone de Matricula negada
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png', xurl("img/matricula-negada.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/graduacao/matriculas/matricula_negada.png', xurl("img/matricula-negada.svg") );
   //Mudar icone de Matricula permitida
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_permitida.png', xurl("img/matricula-permitida.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/graduacao/matriculas/matricula_permitida.png', xurl("img/matricula-permitida.svg") );
   
   //Mudar icone zoom matricula
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/zoom.png', xurl("img/zoom-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/graduacao/matriculas/zoom.png', xurl("img/zoom-black.svg") );
   
   //Mudar icone chave
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/matricula_tem_reservas.png', xurl("img/chave-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/graduacao/matriculas/matricula_tem_reservas.png', xurl("img/chave-black.svg") );
   
   //Mudar icone de restrição reserva matrizes curriculares especificas
-  xsrc('img','https://sig.unb.br/sigaa/img/graduacao/matriculas/restricao_reserva.png', xurl("img/turma-reservada.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/graduacao/matriculas/restricao_reserva.png', xurl("img/turma-reservada.svg") );
   
   //Mudar icone de seta para direita
-  xsrc('img','https://sig.unb.br/sigaa/img/avancar.gif', xurl("img/seta-direita-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/avancar.gif', xurl("img/seta-direita-black.svg") );
   
   //Mudar icone impressora
   xsrc('img','https://sig.unb.br/shared/javascript/ext-1.1/docs/resources/print.gif', xurl("img/impressora.svg") );
@@ -71,30 +71,31 @@ function novasImagens(){
   xsrc('img','https://sig.unb.br/shared/img/caixa_postal/email_edit.gif', xurl("img/editar-email-black.svg") );
 
   //Mudar ícone de excluir opção da matrícula
-  xsrc('img','https://sig.unb.br/sigaa/ava/img/cancel.png', xurl("img/cancelar.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/ava/img/cancel.png', xurl("img/cancelar.svg") );
 
   //Mudar foto
-  xsrc('img','https://sig.unb.br/sigaa/img/no_picture.png',xurl("img/foto.svg"));
+  xsrc('img','https://sigaa.unb.br/sigaa/img/no_picture.png',xurl("img/foto.svg"));
 
   //Mudar botões noticias
   //Esquerda
-  xsrc('#controls img','https://sig.unb.br/shared/img/flash_volta.gif',xurl("img/anterior-black.svg"));
+  xsrc('#controls img','https://sigaa.unb.br/shared/img/flash_volta.gif',xurl("img/anterior-black.svg"));
   //Pause
-  xsrc('#controls img','https://sig.unb.br/shared/img/flash_pause.gif', xurl("img/pause-black.svg"));
+  xsrc('#controls img','https://sigaa.unb.br/shared/img/flash_pause.gif', xurl("img/pause-black.svg"));
   //Direita
-  xsrc('#controls img','https://sig.unb.br/shared/img/flash_vai.gif', xurl("img/proximo-black.svg"));
+  xsrc('#controls img','https://sigaa.unb.br/shared/img/flash_vai.gif', xurl("img/proximo-black.svg"));
   //Todas
-  xsrc('#controls img','https://sig.unb.br/shared/img/vermais8.jpg', xurl("img/todas-noticias-black.svg"));
+  xsrc('#controls img','https://sigaa.unb.br/shared/img/vermais8.jpg', xurl("img/todas-noticias-black.svg"));
   
   //Tela de login
   //aluno
-  xsrc('img','https://sig.unb.br/sigaa/img/user.png', xurl("img/aluno-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/user.png', xurl("img/aluno-black.svg") );
   //professor funcionário
   xsrc('img','https://sig.unb.br/sigaa/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
   xsrc('img','https://sig.unb.br/sipac/img_css/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
   xsrc('img','https://sig.unb.br/shared/img/novo_usuario.gif',xurl("img/professor-funcionario-black.svg") );
 
-  xsrc('img','https://sig.unb.br/sigaa/img/view.gif', xurl("img/lupa-black.svg") );
+  xsrc('img','https://sigaa.unb.br/sigaa/img/view.gif', xurl("img/lupa-black.svg") );
 
 }
 
@@ -105,28 +106,28 @@ function novasImagensHome(){
 
     //ensino, cadastro, bolsas..... icones
     //Ensino
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/ensino_menu.gif', xurl("img/ensino-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/icones/ensino_menu.gif', xurl("img/ensino-white.svg"));
     //Pesquisa
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/pesquisa_menu.gif', xurl("img/pesquisa-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/icones/pesquisa_menu.gif', xurl("img/pesquisa-white.svg"));
     //Extensão
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/extensao_menu.gif', xurl("img/extensao-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/icones/extensao_menu.gif', xurl("img/extensao-white.svg"));
     //Biblioteca
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/icones/biblioteca_menu.gif', xurl("img/biblioteca-white-24.svg") );
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/icones/biblioteca_menu.gif', xurl("img/biblioteca-white-24.svg") );
     //Bolsas
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/bolsas.png', xurl("img/bolsas-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/bolsas.png', xurl("img/bolsas-white.svg"));
     //Estagio
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/estagio/estagio_menu.png', xurl("img/estagio-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/estagio/estagio_menu.png', xurl("img/estagio-white.svg"));
     //Relações Internacionais
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/relacoes_internacionais/mobilidade.png', xurl("img/internacionais-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/relacoes_internacionais/mobilidade.png', xurl("img/internacionais-white.svg"));
     //Outros
-    xsrc('.ThemeOfficeMainFolderLeft img','https://sig.unb.br/sigaa/img/menu/outros.png', xurl("img/outros-white.svg"));
+    xsrc('.ThemeOfficeMainFolderLeft img','https://sigaa.unb.br/sigaa/img/menu/outros.png', xurl("img/outros-white.svg"));
 
     //Mudar o icone de avalição institucional
-    xsrc('input, textarea, select,input#agenda','https://sig.unb.br/sigaa/img/avaliacao.jpg',xurl("img/avaliacao-institucional.svg"));
+    xsrc('input, textarea, select,input#agenda','https://sigaa.unb.br/sigaa/img/avaliacao.jpg',xurl("img/avaliacao-institucional.svg"));
 
     //Mudar seta menu
     xsrc('.ThemeOfficeMenuFolderRight img','all', xurl("img/seta-dropdown-white.svg"));
     
     //Mudar o ícone de aviso de prova
-    xsrc('img','https://sig.unb.br/sigaa/img/prova_semana.png', xurl("img/prova_semana.png.svg") );
+    xsrc('img','https://sigaa.unb.br/sigaa/img/prova_semana.png', xurl("img/prova_semana.png.svg") );
 }
