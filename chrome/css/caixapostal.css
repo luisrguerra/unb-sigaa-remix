@@ -5,6 +5,12 @@
    padding: inherit;
    color: black;
 }
+
+h2.title{
+   background: white;
+   border-bottom: none;
+   color: black;
+}
 /* Melhorar a margem da caixa de mensagens */
 #form {
    margin: 1em 1em !important;
