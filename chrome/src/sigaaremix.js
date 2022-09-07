@@ -754,21 +754,6 @@ function executar (){
   botaoCor4.setAttribute("value", cor4CustomizadoObj.get() );
   divBotoesCor.appendChild(botaoCor4);
 
-  var temabotaoCorAplicarCss = document.createElement('style');
-  temabotaoCorAplicarCss.innerHTML = `
-  #botaoCorAplicar {
-     border: none;
-     width: 24px;
-     height: 24px;
-     cursor: pointer;
-     margin-inline: 4px;
-     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.20);
-     border-radius: 100%;
-     cursor: pointer;
-  };
-  `;
-  document.head.appendChild(temabotaoCorAplicarCss);
-
   var botaoCorAplicar = document.createElement("IMG");
   botaoCorAplicar.setAttribute("id", "botaoCorAplicar");
   botaoCorAplicar.style.backgroundColor = corAtivar;
