@@ -128,3 +128,8 @@ table.formulario{
 #conteudo > #portal-docente > #perfil-docente > br{
   display: none;
 }
+
+/* Melhorar espaçamento em minhas atividades e turmas do semestre */
+#main-docente .simple-panel{
+  margin: 2.5em 0 0 5px !important;
+}
