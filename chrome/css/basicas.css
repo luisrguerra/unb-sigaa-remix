@@ -11,6 +11,7 @@ h2, h2#title{
 }
 table.formulario caption, table.listagem caption, table.visualizacao caption, h3.tituloTabela{
   font-variant: initial;
+  letter-spacing: initial;
 }
 .box-geral .box-secao .titulo{
   font-variant: initial;
@@ -121,4 +122,9 @@ table.formulario{
 /*"#menu principal" menu com varios icones com acesso a diferentes partes do site*/
 #menu_principal ul{
   border: none;
+}
+
+/* Remover espaço em branco entre avaliação institucional e dados pessoais */
+#conteudo > #portal-docente > #perfil-docente > br{
+  display: none;
 }
